@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.viewflipimage.MainActivity"
+    android:orientation="vertical"
+    >
+    
+    
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    
+        <ImageButton
+            android:id="@+id/imgBtnprev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/arrleft"/>
+    
+        <ImageButton
+            android:id="@+id/imgBtnnext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/arrright"/>
+    
+       
+    </LinearLayout>
+    
+    <ViewFlipper
+        android:id="@+id/viewFlip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+        <ImageView
+            android:id="@+id/imgView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/bgthunder"/>
+        
+        <ImageView
+            android:id="@+id/imgView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/brk"/>
+    
+    
+        <ImageView
+            android:id="@+id/imgView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ballhouse"/>
+    </ViewFlipper>
+    
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Constraint Layout</string>
+    <string name="app_name2">Linear Layout</string>
+</resources>

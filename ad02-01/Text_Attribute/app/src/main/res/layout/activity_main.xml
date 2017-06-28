@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.text_attribute.MainActivity">
+    
+    <TextView
+        android:id="@+id/textSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="TextSize 속성"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/textColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        android:text="textColor 속성"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/textStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        android:text="TextStyle속성"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/typeFace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="typeface속성"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/singleLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        android:text="singleLine 속성"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/text_practice1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        android:text="TextView 연습 1"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/text_practice2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
+        android:text="TextView 연습 2"
+        android:visibility="visible"
+        />
+    
+    <TextView
+        android:id="@+id/text_practice3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="TextView 연습 3"
+        android:visibility="visible"
+        />
+    
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="속성설정"/>
+
+</LinearLayout>

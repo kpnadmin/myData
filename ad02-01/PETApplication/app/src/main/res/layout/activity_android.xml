@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.android_application.AndroidActivity">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            />
+    
+        <Switch
+            android:id="@+id/switch_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/android_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible">
+    
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="좋아하는 안드로이드 버젼은?"/>
+    
+        <RadioGroup
+            android:id="@+id/rgp_android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        
+            <RadioButton
+                android:id="@+id/rd_rolly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="롤리팝"/>
+        
+            <RadioButton
+                android:id="@+id/rd_marshmello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="마시멜로"/>
+        
+            <RadioButton
+                android:id="@+id/rd_nougat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="nougat"/>
+    
+
+        </RadioGroup>
+    
+        <ImageView
+            android:id="@+id/img_android"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+        
+            app:srcCompat="@drawable/border"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    
+        <Button
+            android:id="@+id/btn_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종료"/>
+    
+        <Button
+            android:id="@+id/btn_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="처음으로"/>
+    </LinearLayout>
+    
+</LinearLayout>
