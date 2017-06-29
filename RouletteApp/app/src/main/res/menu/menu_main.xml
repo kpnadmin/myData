@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.android.rouletteapp.RotateActivity"
+    >
+    <item
+        android:id="@+id/menu_login"
+        android:orderInCategory="100"
+        android:title="로그인"
+        />
+    
+    <item
+        android:id="@+id/menu_logout"
+        android:orderInCategory="100"
+        android:title="로그아웃"
+        />
+    
+    <item
+        android:id="@+id/menu_a"
+        android:orderInCategory="100"
+        android:title="다음"
+        />
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+          android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_refresh" android:title="@string/action_refresh"
+          android:orderInCategory="100" app:showAsAction="never" />
+</menu>

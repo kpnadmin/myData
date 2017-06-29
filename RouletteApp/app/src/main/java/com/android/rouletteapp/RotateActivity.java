@@ -1,6 +1,7 @@
 package com.android.rouletteapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,6 +30,11 @@ public class RotateActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Intent intent = getIntent();
+
+
 
 // 커스텀뷰 클래스 불러오기
 //        setContentView(R.layout.activity_rotate);
