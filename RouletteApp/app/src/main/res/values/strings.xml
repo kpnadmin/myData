@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">RouletteApp</string>
+    <string name="action_settings">action_settings</string>
+    <string name="action_refresh">action_refresh</string>
+    <string name="title_activity_intro">IntroActivity</string>
+    <string name="dead_or_Alive">Dead_or_Alive</string>
+    <string name="Draw_jackpot">Draw Jackpot</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="loading">loading</string>
+    <string name="signed_out">signed_out</string>
+    <string name="signed_in_fmt">LoginTest</string>
 </resources>

@@ -14,21 +14,39 @@
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_gravity="center">
-    
-    <ImageView
-        android:id="@+id/img_wheel"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:srcCompat="@drawable/roulette"/>
+        android:text="V"
+        android:id="@+id/wheelPoint"
+        android:gravity="center"
+        />
+    
     
         <Button
             android:id="@+id/rotate_btn"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
-            android:background="@drawable/round_btn"
-            android:text="버튼"
+            android:background="@android:color/transparent"
+            android:text=""
             />
-  </FrameLayout>
+    
+        <ImageView
+            android:id="@+id/img_wheel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            app:srcCompat="@drawable/roulette"
+            />
+    
+        <ImageView
+            android:id="@+id/rpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            app:srcCompat="@drawable/rpin"
+            />
+    </FrameLayout>
 </LinearLayout>
