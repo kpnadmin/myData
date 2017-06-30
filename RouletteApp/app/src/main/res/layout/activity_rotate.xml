@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,44 +10,49 @@
     >
     
     <FrameLayout
-        android:id="@+id/FrameLayout01"
-        android:layout_width="wrap_content"
+        android:id="@+id/frame1"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484"
+        android:layout_marginTop="8dp">
     
-        <TextView
-            android:id="@+id/wheelPoint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="V"
-            />
-    
-    
-        <Button
-            android:id="@+id/rotate_btn"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:text=""
-            />
     
         <ImageView
             android:id="@+id/img_wheel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:visibility="visible"
-            app:srcCompat="@drawable/roulette"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/roulette"/>
+    
+        <Button
+            android:id="@+id/btn_rotate"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/round_btn"
+            android:text="Start"
+            android:layout_gravity="center"
             />
     
-        <ImageView
+        <ImageButton
             android:id="@+id/rpin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            app:srcCompat="@drawable/rpin"
-            />
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/rpin"/>
+
     </FrameLayout>
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="447dp"
+        android:layout_marginLeft="280dp"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
