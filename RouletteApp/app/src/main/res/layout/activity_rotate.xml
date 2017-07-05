@@ -28,6 +28,12 @@
             android:layout_gravity="center"
             app:srcCompat="@drawable/roulette"/>
     
+        <ImageView
+            android:id="@+id/rpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/rpin"/>
+    
         <Button
             android:id="@+id/btn_rotate"
             android:layout_width="60dp"
@@ -36,13 +42,6 @@
             android:text="Start"
             android:layout_gravity="center"
             />
-    
-        <ImageButton
-            android:id="@+id/rpin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/rpin"/>
 
     </FrameLayout>
     <Button

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 public class RotateActivity extends Activity{
@@ -31,7 +33,8 @@ public class RotateActivity extends Activity{
     private Bitmap mBitMap;
     private ImageView pin_marker;
     private Button btn_rotate;
-
+    private FrameLayout frame1;
+    LayoutInflater inflater = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +60,18 @@ public class RotateActivity extends Activity{
                 onWheelImage();
             }
         });
+
+       CircleBoard c1 =  new CircleBoard(this);
+      /*  inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        inflater.inflate(R.layout.layout_sub1, viewContainer, true);*/
+
 // 커스텀뷰 클래스 불러오기
 //        setContentView(R.layout.activity_rotate);
 
         //이미지 set
-      /* img_wheel = (ImageView) findViewById(R.id.img_wheel) ;
+      /*
+      img_wheel = (ImageView) findViewById(R.id.img_wheel) ;
         pin_marker = (ImageView) findViewById(R.id.rpin);
         pin_marker.setImageResource(R.drawable.rpin);
         //imageView1.setImageResource(R.drawable.roulette) ;
@@ -79,6 +89,10 @@ public class RotateActivity extends Activity{
                 onWheelImage();
             }
         });*/
+      //CircleBoard c1 = new CircleBoard(this);
+
+
+
     }
 
     @Override
@@ -151,51 +165,6 @@ public class RotateActivity extends Activity{
                 img_wheel.startAnimation(rAnim);
             }
         });
-    }
-
-
-
-    protected class MainCircle extends View {
-        public MainCircle(Context context){
-            super(context);
-        }
-        public void onDraw(Canvas canvas){
-            canvas.drawColor(Color.WHITE);
-            //
-            Paint pnt = new Paint();
-            pnt.setStyle(Paint.Style.STROKE);
-            pnt.setStrokeWidth(3);
-            pnt.setColor(Color.BLACK);
-            pnt.setAntiAlias(true);
-            //
-            RectF rect = new RectF();
-            rect.set(57,57,183,183);
-
-
-            //
-            rect.set(30, 510, 210, 690);
-            pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(0xffff8800);
-            canvas.drawArc(rect, 0 , 120, true, pnt);
-
-
-            // 2
-            pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(0xffffff00);
-            canvas.drawArc(rect, 120, 80, true, pnt);
-
-            //
-            pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(0xff0088ff);
-            canvas.drawArc(rect, 200, 160, true, pnt);
-            /*pnt.setStyle(Paint.Style.STROKE);
-            pnt.setColor(Color.BLACK);
-            canvas.drawArc(rect, 200 , 160, true, pnt);
-*/
-        }
-
-
-
     }
 
 }

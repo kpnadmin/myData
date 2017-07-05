@@ -76,14 +76,11 @@ public class HomeActivity extends AppCompatActivity  implements Serializable{
                      String  str1 =   edit_arr.getText().toString();
                         p_map_arr.put(String.valueOf(i), str1);
                     }
-
-
                 }
                 Intent intent = new Intent(getApplicationContext(),RotateActivity.class);
                 intent.putExtra("p_count", p_count);
                 intent.putExtra("edit_res",p_map_arr);
                 startActivityForResult(intent,RES_CODE);
-
             }
         });
 
