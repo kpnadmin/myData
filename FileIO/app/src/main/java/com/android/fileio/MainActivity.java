@@ -2,12 +2,15 @@ package com.android.fileio;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private  String mSdPath;
     private  EditText edit_main1;
     private  String ext;
+    private GridLayout grid1;
+    private ConstraintLayout const1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         res_text = (TextView) findViewById(R.id.res_text);
         edit_main1 = (EditText)findViewById(R.id.edit_main1);
         // 내장 메모리 파일 읽기
+        //grid1 = (GridLayout) findViewById(R.id.grid1);
+        const1 = (ConstraintLayout) findViewById(R.id.const1);
+
+
+
+
     }
 
     public void onClick(View v) {
@@ -149,33 +161,56 @@ public class MainActivity extends AppCompatActivity {
             break;
             case R.id.btn8:
 
-                String str = Environment.getExternalStorageState();
-                if (str.equals(Environment.MEDIA_MOUNTED)) {
-                    String dirPath = "/sdcard/android/data/res";
-                    File file = new File(dirPath);
-                    if (!file.exists())  // 원하는 경로에 폴더가 있는지 확인
-                        file.mkdirs();
-                } else
+                String path_c = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+                  File mydir = new File(path_c+"/mydir");
+                if(!mydir.isDirectory()){
+                    mydir.mkdir();
+                }
+                else {
                     Toast.makeText(MainActivity.this, "SD Card 인식 실패", Toast.LENGTH_SHORT).show();
-                break;
+                }break;
             case R.id.btn9:
-                String sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                String dirPath = "/sdcard/android/data";
-                File file = new File(dirPath+"/res");
-                 file.delete();
+                String path_in = Environment.getExternalStorageDirectory().getAbsolutePath();
+                //String dirPath = "/sdcard/android/data";
+                try {
+                   File mydir2 = new File(path_in + "/mydir");
+                    if(mydir2.isDirectory())
+                        mydir2.delete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                //File file = new File(dirPath+"/res");
                 break;
             case R.id.btn10:
-                File files = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
+
+                File files = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures");
+
+
+
+
+                String str_file = "";
                 if(files.listFiles().length>0){  // 안에 있는 파일의 갯수가 0보다 클때
                     for(File res : files.listFiles()){
                         //Log.e("1","name: "+ res.getName());  // 로그에 파일의 이름이 찍힘
-                        res_text.setText("<파일>"+res.getName()+"\n");
+                        str_file = str_file + "  <파일>"+res.getName()+"\n";
+                        res_text.setText(str_file);
                     }
                 }
                 break;
+            default:
+                InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                mgr.hideSoftInputFromWindow(edit_main1.getWindowToken(), 0);
+                break;
+
         }
     }
 
+    protected void hideSoftKeyboard(View view) {
+        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
 
 }
