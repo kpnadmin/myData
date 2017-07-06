@@ -20,13 +20,19 @@
         app:layout_constraintVertical_bias="0.484"
         android:layout_marginTop="8dp">
     
-    
-        <ImageView
+        <!--    <ImageView
             android:id="@+id/img_wheel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/roulette"/>
+            app:srcCompat="@drawable/roulette"/>-->
+    
+        <com.android.rouletteapp.CustomView
+            android:id="@+id/img_wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    
+            />
     
         <ImageView
             android:id="@+id/rpin"
@@ -44,6 +50,7 @@
             />
 
     </FrameLayout>
+    
     <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"

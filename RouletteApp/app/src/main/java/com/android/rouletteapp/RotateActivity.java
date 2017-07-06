@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 public class RotateActivity extends Activity{
 
-    private ImageView img_wheel; // 회전 이미지
+    private CustomView img_wheel; // 회전 이미지
     private float init_angle = 0.0f;  //초기각도
     private final int IMG_DP = 300 ; // 이미지 dp
     private Bitmap mBitMap;
@@ -44,8 +44,8 @@ public class RotateActivity extends Activity{
        */
         Intent intent = getIntent();
 
-        img_wheel = (ImageView) findViewById(R.id.img_wheel) ;
-        img_wheel.setImageResource(R.drawable.roulette);
+        img_wheel = (CustomView) findViewById(R.id.img_wheel) ;
+        //img_wheel.setImageResource(R.drawable.roulette);
         /*mBitMap = BitmapFactory.decodeResource(getResources(), R.drawable.roulette);
         img_wheel.setImageBitmap(onResizeImage(mBitMap));*/
 
@@ -54,14 +54,26 @@ public class RotateActivity extends Activity{
 
 
        btn_rotate = (Button) findViewById(R.id.btn_rotate);
-        btn_rotate.setOnClickListener(new OnClickListener() {
+  /*      btn_rotate.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onWheelImage();
+            }
+        });*/
+
+        CustomView sView = new CustomView(this);
+        sView.setDrawingCacheEnabled(true);
+        sView.buildDrawingCache();
+        Bitmap bmp = sView.getDrawingCache();
+
+        Button btn = (Button) findViewById(R.id.btn_rotate);
+        btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 onWheelImage();
             }
         });
 
-       CircleBoard c1 =  new CircleBoard(this);
       /*  inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
         inflater.inflate(R.layout.layout_sub1, viewContainer, true);*/
