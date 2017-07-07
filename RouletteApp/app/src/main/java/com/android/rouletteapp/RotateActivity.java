@@ -32,9 +32,11 @@ public class RotateActivity extends Activity{
     private final int IMG_DP = 300 ; // 이미지 dp
     private Bitmap mBitMap;
     private ImageView pin_marker;
-    private Button btn_rotate;
+    private Button btn_rotate, btn_back_rotate;
     private FrameLayout frame1;
     LayoutInflater inflater = null;
+    private final int RES_OK = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +105,15 @@ public class RotateActivity extends Activity{
         });*/
       //CircleBoard c1 = new CircleBoard(this);
 
-
+        Button btn_back_rotate = (Button) findViewById(R.id.btn_back_rotate);
+        btn_back_rotate.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                setResult(RES_OK, intent);
+                finish();
+            }
+        });
 
     }
 

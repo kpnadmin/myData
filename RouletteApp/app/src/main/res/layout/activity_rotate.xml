@@ -52,13 +52,13 @@
     </FrameLayout>
     
     <Button
-        android:id="@+id/btn_back"
+        android:id="@+id/btn_back_rotate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="447dp"
         android:layout_marginLeft="280dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:layout_marginTop="447dp"
+        android:text="Back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
