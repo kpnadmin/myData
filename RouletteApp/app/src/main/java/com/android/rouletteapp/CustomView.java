@@ -7,10 +7,13 @@ import android.graphics.*;
 import android.os.*;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.*;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
 
 /**
  * Created by Administrator on 2017-06-14.
@@ -19,6 +22,9 @@ import android.widget.Toast;
 public class CustomView extends View{
     TextView tv;
     RotateActivity cnxt;
+
+    //sv = new SomeView(this);
+
 
     public CustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -70,5 +76,23 @@ public class CustomView extends View{
         super.onLayout(changed, left, top, right, bottom);
     }
 
+    private void saveView( View view )
+    {
+        Bitmap  b = Bitmap.createBitmap( view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas( b );
+        view.draw( c );
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream( "/sdcard/some_view_image_" + System.currentTimeMillis() + ".png" );
+            if ( fos != null )
+            {
+                b.compress(Bitmap.CompressFormat.PNG, 100, fos );
+                fos.close();
+            }
 
+        } catch( Exception e )
+        {
+            Log.e("testSaveView", "Exception: " + e.toString() );
+        }
+    }
 }

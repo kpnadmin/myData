@@ -40,7 +40,7 @@ public class RotateActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        img_wheel = new CustomView(this);
         setContentView(R.layout.activity_rotate);
       /*  MainCircle drawCircle = new MainCircle(this);
        */
