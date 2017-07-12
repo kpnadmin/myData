@@ -47,7 +47,7 @@ public class PhotoShopActivity extends Activity {
                             savedInstanceState.getSerializable("list");
         }
         setContentView(mDrawView);
-
+        savePicture();
     }
 //
 
@@ -156,6 +156,7 @@ public boolean onOptionsItemSelected(MenuItem item){
     return super.onOptionsItemSelected(item);
 }
 private void loadPicture(){
+    String path = Environment.getExternalStorageDirectory().getAbsolutePath();
     File dir =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
     Bitmap bm = BitmapFactory.decodeFile(dir+"/my.png");
@@ -163,17 +164,19 @@ private void loadPicture(){
     mDrawView.draw(new Canvas(bm));
 }
     private  void savePicture(){
+        //String path = Environment.getExternalStorageDirectory().getAbsolutePath();
         //1. 캐쉬를 허용시킨다
         // 2. 그림은 Bitmap으로 저장
         // 3. 캐쉬를 막는다 .
         mDrawView.setDrawingCacheEnabled(true); // 캐쉬허용
         // 캐쉬에서 가져온 비트맵을 복사해서 새로운 비트맵(스크린샷) 생성
-        Bitmap screenshot = Bitmap.createBitmap(mDrawView.getDrawingCache());
-        mDrawView.setDrawingCacheEnabled(false); // 캐쉬 닫기
+        //Bitmap screenshot = Bitmap.createBitmap(mDrawView.getDrawingCache());
         // SDCard(ExternalStorate) : 외부 저장공간
         // 접근하려면 반드시 AndroidManifest.xml 에 권한 설정을 한다.
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        // 폴더가 있는지 확인 후 없으면 새로 만들어준다 .
+     // File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        //File dir = new File(path+"/mydir");
+
+     /*   // 폴더가 있는지 확인 후 없으면 새로 만들어준다 .
         if(!dir.exists()) dir.mkdirs();
         FileOutputStream fos;
         try{
@@ -184,8 +187,8 @@ private void loadPicture(){
         }catch (Exception e){
             Log.e("pthoto", "그림저장오류", e);
             Toast.makeText(this, "저장 실패", Toast.LENGTH_SHORT).show();
-        }
-
+        }*/
+        mDrawView.setDrawingCacheEnabled(false); // 캐쉬 닫기
     }
 
 
