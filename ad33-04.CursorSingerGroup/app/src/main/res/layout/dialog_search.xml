@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="5dp">
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:gravity="left"
+        android:text="Name"
+        android:textSize="12sp"/>
+    
+    <EditText
+        android:id="@+id/dialog_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3.5"
+        android:gravity="left"
+        android:hint="input name"
+        android:textSize="12sp"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:gravity="left"
+        android:text="Number"
+        android:textSize="12sp"/>
+    
+    <EditText
+        android:id="@+id/dialog_number"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3.5"
+        android:gravity="left"
+        android:hint="input number"
+        android:textSize="12sp"/>
+    
+    <LinearLayout
+        android:id="@+id/line_radio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
+    
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="정렬조건"
+            android:textSize="12sp"/>
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        
+            <RadioGroup
+                android:id="@+id/rdo_order1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            
+                <RadioButton
+                    android:id="@+id/radio_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="gName"/>
+            
+                <RadioButton
+                    android:id="@+id/radio_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="gNumber"/>
+        
+            </RadioGroup>
+        </LinearLayout>
+    
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="정렬조건"
+            android:textSize="12sp"/>
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        
+            <RadioGroup
+                android:id="@+id/rdo_order2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            
+                <RadioButton
+                    android:id="@+id/radio_asc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="asc"/>
+            
+                <RadioButton
+                    android:id="@+id/radio_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="desc"/>
+            </RadioGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
