@@ -197,7 +197,7 @@ private void loadPicture(){
     */
     private static class DrawView extends View implements View.OnTouchListener{
             float x;
-        float y;
+             float y;
         public ArrayList<Point> pointList = new ArrayList<DrawView.Point>();
 
         public DrawView(Context context) {

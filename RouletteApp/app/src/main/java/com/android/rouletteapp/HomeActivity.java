@@ -35,10 +35,8 @@ public class HomeActivity extends AppCompatActivity  implements Serializable{
         setContentView(R.layout.activity_home);
 
         edit_cnt1 = (EditText) findViewById(R.id.edit_cnt1);
-
         home_btn1 = (Button) findViewById(R.id.home_btn1);
         home_btn2 = (Button) findViewById(R.id.home_btn2);
-
 
         scroll_menu = (ScrollView) findViewById(R.id.scroll_menu);
         line_1 = (LinearLayout) findViewById(R.id.line_1);

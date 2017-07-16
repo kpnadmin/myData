@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 public class RotateActivity extends Activity{
 
     private CustomView img_wheel; // 회전 이미지
@@ -36,16 +40,30 @@ public class RotateActivity extends Activity{
     private FrameLayout frame1;
     LayoutInflater inflater = null;
     private final int RES_OK = 0;
+    private int p_count ;
+    private LinearLayout line_bottom;
+
+    public int getP_count() {
+        return p_count;
+    }
+
+    public void setP_count(int p_count) {
+        this.p_count = p_count;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        img_wheel = new CustomView(this);
+
         setContentView(R.layout.activity_rotate);
       /*  MainCircle drawCircle = new MainCircle(this);
        */
         Intent intent = getIntent();
-
+        p_count = intent.getIntExtra("p_count", 0);
+        CustomView csView = new CustomView(this);
+        csView.setP_count(p_count);
+        img_wheel = csView;
+        //img_wheel.setP_count(p_count);
         img_wheel = (CustomView) findViewById(R.id.img_wheel) ;
         //img_wheel.setImageResource(R.drawable.roulette);
         /*mBitMap = BitmapFactory.decodeResource(getResources(), R.drawable.roulette);
@@ -64,6 +82,7 @@ public class RotateActivity extends Activity{
         });*/
 
         CustomView sView = new CustomView(this);
+
         sView.setDrawingCacheEnabled(true);
         sView.buildDrawingCache();
         Bitmap bmp = sView.getDrawingCache();
@@ -75,7 +94,21 @@ public class RotateActivity extends Activity{
                 onWheelImage();
             }
         });
+        line_bottom = (LinearLayout) findViewById(R.id.line_bottom);
+        TextView view_count = new TextView(this);
+        view_count.setText(String.valueOf(p_count));
+        //view1.setTextSize(FONT_SIZE);
+        view_count.setTextColor(Color.BLACK);
 
+        //layout_width, layout_height, gravity 설정
+   LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.CENTER;
+        view_count.setLayoutParams(lp);
+
+        //부모 뷰에 추가
+        line_bottom.addView(view_count);
+        sView.setP_count(p_count);
+       // Toast.makeText(getApplicationContext(),String.valueOf(p_count), Toast.LENGTH_SHORT);
       /*  inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
         inflater.inflate(R.layout.layout_sub1, viewContainer, true);*/
