@@ -13,7 +13,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2017-06-14.
@@ -98,9 +101,20 @@ public class CustomView extends View{
                     pnt.setColor(R.color.Beige);
                     canvas.drawArc(rect, 270, 90, true, pnt);
         }else{
+                   /* int width = 400;
+                    int height = 400;
+                    Bitmap bitmap1 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                    Canvas can1 = new Canvas();*/
+                    /*can1.setBitmap(bitmap1);
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xffff8800);
-                    canvas.drawArc(rect, 0 , 72, true, pnt);
+                    can1.drawArc(rect, 0 , 72, true, pnt);
+                    String rectf1 = "";*/
+                    //saveBitmapToJpeg(getContext(), bitmap1, rectf1);
+                    //
+                     pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(0xffff8800);
+                    canvas.drawArc(rect, 0 , 120, true, pnt);
                     // 2
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xffffff00);
@@ -129,24 +143,30 @@ public class CustomView extends View{
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
     }
+    public static String saveBitmapToJpeg(Context context,Bitmap bitmap, String name){
 
-    private void saveView( View view )
-    {
-        Bitmap  b = Bitmap.createBitmap( view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas( b );
-        view.draw( c );
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream( "/sdcard/some_view_image_" + System.currentTimeMillis() + ".png" );
-            if ( fos != null )
-            {
-                b.compress(Bitmap.CompressFormat.PNG, 100, fos );
-                fos.close();
-            }
+        File storage = context.getCacheDir(); // 이 부분이 임시파일 저장 경로
 
-        } catch( Exception e )
-        {
-            Log.e("testSaveView", "Exception: " + e.toString() );
+        String fileName = name + ".png";  // 파일이름은 마음대로!
+
+        File tempFile = new File(storage,fileName);
+
+        try{
+            tempFile.createNewFile();  // 파일을 생성해주고
+
+            FileOutputStream out = new FileOutputStream(tempFile);
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90 , out);  // 넘거 받은 bitmap을 jpeg(손실압축)으로 저장해줌
+
+            out.close(); // 마무리로 닫아줍니다.
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        return tempFile.getAbsolutePath();   // 임시파일 저장경로를 리턴해주면 끝!
     }
+
 }
