@@ -60,7 +60,7 @@ public class RotateActivity extends Activity{
        */
         Intent intent = getIntent();
         p_count = intent.getIntExtra("p_count", 0);
-        CustomView csView = new CustomView(this);
+        CustomView csView = new CustomView(this, p_count);
         csView.setP_count(p_count);
         //img_wheel = csView;
         //img_wheel.setP_count(p_count);

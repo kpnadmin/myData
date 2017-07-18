@@ -58,7 +58,7 @@ public class CustomView extends View{
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-         p_count = getP_count();
+
                 canvas.drawColor(Color.WHITE);
                 //
                 Paint pnt = new Paint();
@@ -84,6 +84,7 @@ public class CustomView extends View{
                 pnt.setStyle(Paint.Style.FILL);
                 pnt.setColor(0xff0088ff);
                 canvas.drawArc(rect, 200, 160, true, pnt);
+                    canvas.save();
                 }else if(p_count == 4){
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xffff8800);
