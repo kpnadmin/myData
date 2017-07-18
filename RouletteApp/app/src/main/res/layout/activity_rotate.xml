@@ -27,12 +27,12 @@
             android:layout_gravity="center"
             app:srcCompat="@drawable/roulette"/>-->
     
-        <com.android.rouletteapp.CustomView
+      <!--  <com.android.rouletteapp.CustomView
             android:id="@+id/img_wheel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-    
+    -->
         <ImageView
             android:id="@+id/rpin"
             android:layout_width="wrap_content"

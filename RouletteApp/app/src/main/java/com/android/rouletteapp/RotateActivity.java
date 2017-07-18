@@ -62,9 +62,9 @@ public class RotateActivity extends Activity{
         p_count = intent.getIntExtra("p_count", 0);
         CustomView csView = new CustomView(this);
         csView.setP_count(p_count);
-        img_wheel = csView;
+        //img_wheel = csView;
         //img_wheel.setP_count(p_count);
-        img_wheel = (CustomView) findViewById(R.id.img_wheel) ;
+        //img_wheel = (CustomView) findViewById(R.id.img_wheel) ;
         //img_wheel.setImageResource(R.drawable.roulette);
         /*mBitMap = BitmapFactory.decodeResource(getResources(), R.drawable.roulette);
         img_wheel.setImageBitmap(onResizeImage(mBitMap));*/
@@ -91,7 +91,7 @@ public class RotateActivity extends Activity{
         btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                onWheelImage();
+               // onWheelImage();
             }
         });
         line_bottom = (LinearLayout) findViewById(R.id.line_bottom);
@@ -204,7 +204,7 @@ public class RotateActivity extends Activity{
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //회전수를 제어
+            /*    //회전수를 제어
                 // 랜덤 0 ~ 360 + 720 도 회전각
                 float fromAngel = getRandom(360)+720 +init_angle;
                     // 초기 시작 각도를 update 한다
@@ -217,7 +217,7 @@ public class RotateActivity extends Activity{
                 rAnim.setFillEnabled(true);
                 rAnim.setFillAfter(true);
                 // 회전을 한다 .
-                img_wheel.startAnimation(rAnim);
+                img_wheel.startAnimation(rAnim);*/
             }
         });
     }
