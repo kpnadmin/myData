@@ -98,7 +98,7 @@ public class CustomView extends View{
                     canvas.drawArc(rect, 180, 90, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
-                    pnt.setColor(R.color.Beige);
+                    pnt.setColor(getResources().getColor(R.color.Beige));
                     canvas.drawArc(rect, 270, 90, true, pnt);
         }else{
                    /* int width = 400;
@@ -125,11 +125,11 @@ public class CustomView extends View{
                     canvas.drawArc(rect, 144, 72, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
-                    pnt.setColor(R.color.Beige);
+                    pnt.setColor(Color.DKGRAY);
                     canvas.drawArc(rect, 216, 72, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
-                    pnt.setColor(R.color.Violet);
+                    pnt.setColor(Color.MAGENTA);
                     canvas.drawArc(rect, 288, 72, true, pnt);
                 }
             }
