@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,6 +48,11 @@ public class HomeActivity extends AppCompatActivity  implements Serializable{
             @Override
             public void onClick(View v) {
                 p_count = Integer.parseInt(String.valueOf(edit_cnt1.getText()));
+                if(p_count > 8 || p_count < 1){
+                    edit_cnt1.setText("");
+                    Toast.makeText(getApplicationContext(),"8명 이하만 가능합니다.", Toast.LENGTH_SHORT);
+                    return;
+                }else{
 
                 for(int i = 0 ; i < p_count ; i ++) {
                     EditText edit = new EditText(getApplicationContext());
@@ -56,6 +62,7 @@ public class HomeActivity extends AppCompatActivity  implements Serializable{
                     line_1.addView(edit);
                 }
                 downKeyboard(getApplicationContext(), edit_cnt1);
+                }
             }
         });
 

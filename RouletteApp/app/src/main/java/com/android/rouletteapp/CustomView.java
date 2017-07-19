@@ -3,6 +3,7 @@ package com.android.rouletteapp;
 import android.app.Activity;
 import android.app.*;
 import android.content.*;
+import android.content.res.Resources;
 import android.graphics.*;
 import android.os.*;
 import android.support.annotation.Nullable;
@@ -27,6 +28,8 @@ public class CustomView extends View{
     RotateActivity cnxt;
     private int p_count;
     //sv = new SomeView(this);
+    Context context;
+    private Bitmap image; // 이미지
 
 
     public int getP_count() {
@@ -44,6 +47,7 @@ public class CustomView extends View{
 
     public CustomView(Context context) {
         super(context);
+        // 그림 읽어들이기
 
     }
     public CustomView(Context context, int p_count) {
@@ -56,8 +60,8 @@ public class CustomView extends View{
     }
 
     public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
 
+        super.onDraw(canvas);
 
                 canvas.drawColor(Color.WHITE);
                 //
@@ -101,6 +105,52 @@ public class CustomView extends View{
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(getResources().getColor(R.color.Beige));
                     canvas.drawArc(rect, 270, 90, true, pnt);
+        } if(p_count == 3){
+            //
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(0xffff8800);
+            canvas.drawArc(rect, 0 , 120, true, pnt);
+            // 2
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(0xffffff00);
+            canvas.drawArc(rect, 120, 80, true, pnt);
+            //
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(0xff0088ff);
+            canvas.drawArc(rect, 200, 160, true, pnt);
+            canvas.save();
+        }else if(p_count == 8){
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(0xffff8800);
+            canvas.drawArc(rect, 0 , 45, true, pnt);
+            // 2
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.AntiqueWhite);
+            canvas.drawArc(rect, 45, 45, true, pnt);
+            //
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.SteelBlue);
+            canvas.drawArc(rect, 90, 45, true, pnt);
+            //
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.Peru);
+            canvas.drawArc(rect, 135, 45, true, pnt);
+
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.Maroon);
+            canvas.drawArc(rect, 180 , 45, true, pnt);
+            // 2
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.Khaki);
+            canvas.drawArc(rect, 225, 45, true, pnt);
+            //
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.BurlyWood);
+            canvas.drawArc(rect, 270, 45, true, pnt);
+            //
+            pnt.setStyle(Paint.Style.FILL);
+            pnt.setColor(R.color.Olive);
+            canvas.drawArc(rect, 315, 45, true, pnt);
         }else{
                    /* int width = 400;
                     int height = 400;
@@ -115,7 +165,7 @@ public class CustomView extends View{
                     //
                      pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xffff8800);
-                    canvas.drawArc(rect, 0 , 120, true, pnt);
+                    canvas.drawArc(rect, 0 , 72, true, pnt);
                     // 2
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xffffff00);
@@ -133,6 +183,8 @@ public class CustomView extends View{
                     pnt.setColor(Color.MAGENTA);
                     canvas.drawArc(rect, 288, 72, true, pnt);
                 }
+
+
             }
 
     @Override
@@ -143,6 +195,8 @@ public class CustomView extends View{
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+
+        setMeasuredDimension(400, 400);
     }
     public static String saveBitmapToJpeg(Context context,Bitmap bitmap, String name){
 

@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 public class RotateActivity extends Activity{
 
-    private CustomView img_wheel; // 회전 이미지
+    private ImageView img_wheel; // 회전 이미지
     private float init_angle = 0.0f;  //초기각도
     private final int IMG_DP = 300 ; // 이미지 dp
     private Bitmap mBitMap;
@@ -61,27 +61,31 @@ public class RotateActivity extends Activity{
         Intent intent = getIntent();
         p_count = intent.getIntExtra("p_count", 0);
         CustomView csView = new CustomView(this, p_count);
-        csView.setP_count(p_count);
-        //img_wheel = csView;
+       // csView.setP_count(p_count);
+        csView.setId(0x99999);
+        FrameLayout frame1= (FrameLayout)findViewById(R.id.frame1);
+        frame1.addView(csView, 0);
+
+
         //img_wheel.setP_count(p_count);
-        //img_wheel = (CustomView) findViewById(R.id.img_wheel) ;
+        //img_wheel = (ImageView) findViewById(R.id.img_wheel);
         //img_wheel.setImageResource(R.drawable.roulette);
-        /*mBitMap = BitmapFactory.decodeResource(getResources(), R.drawable.roulette);
+        /*mBitMap = BitmapFactory.decodeResource(getResources(), R.id.img_wheel);
         img_wheel.setImageBitmap(onResizeImage(mBitMap));*/
 
         pin_marker = (ImageView) findViewById(R.id.rpin);
         pin_marker.setImageResource(R.drawable.rpin);
 
 
-       btn_rotate = (Button) findViewById(R.id.btn_rotate);
-  /*      btn_rotate.setOnClickListener(new OnClickListener() {
+        btn_rotate = (Button) findViewById(R.id.btn_rotate);
+        btn_rotate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 onWheelImage();
             }
-        });*/
+        });
 
-        CustomView sView = new CustomView(this);
+        /*CustomView sView = new CustomView(this);
 
         sView.setDrawingCacheEnabled(true);
         sView.buildDrawingCache();
@@ -91,9 +95,9 @@ public class RotateActivity extends Activity{
         btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               // onWheelImage();
+                onWheelImage();
             }
-        });
+        });*/
         line_bottom = (LinearLayout) findViewById(R.id.line_bottom);
         TextView view_count = new TextView(this);
         view_count.setText(String.valueOf(p_count));
@@ -101,13 +105,25 @@ public class RotateActivity extends Activity{
         view_count.setTextColor(Color.BLACK);
 
         //layout_width, layout_height, gravity 설정
-   LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.CENTER;
         view_count.setLayoutParams(lp);
 
         //부모 뷰에 추가
         line_bottom.addView(view_count);
-        sView.setP_count(p_count);
+
+        Button btn_back_rotate = (Button) findViewById(R.id.btn_back_rotate);
+        btn_back_rotate.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                setResult(RES_OK, intent);
+                finish();
+            }
+        });
+
+    }
+       // sView.setP_count(p_count);
        // Toast.makeText(getApplicationContext(),String.valueOf(p_count), Toast.LENGTH_SHORT);
       /*  inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -135,18 +151,10 @@ public class RotateActivity extends Activity{
             public void onClick(View v) {
                 onWheelImage();
             }
-        });*/
+        });
       //CircleBoard c1 = new CircleBoard(this);
 
-        Button btn_back_rotate = (Button) findViewById(R.id.btn_back_rotate);
-        btn_back_rotate.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                setResult(RES_OK, intent);
-                finish();
-            }
-        });
+
 
     }
 
@@ -204,7 +212,7 @@ public class RotateActivity extends Activity{
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            /*    //회전수를 제어
+              //회전수를 제어
                 // 랜덤 0 ~ 360 + 720 도 회전각
                 float fromAngel = getRandom(360)+720 +init_angle;
                     // 초기 시작 각도를 update 한다
@@ -217,7 +225,7 @@ public class RotateActivity extends Activity{
                 rAnim.setFillEnabled(true);
                 rAnim.setFillAfter(true);
                 // 회전을 한다 .
-                img_wheel.startAnimation(rAnim);*/
+                img_wheel.startAnimation(rAnim);
             }
         });
     }
