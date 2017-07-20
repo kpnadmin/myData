@@ -9,6 +9,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Environment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
@@ -28,6 +32,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class RotateActivity extends Activity{
 
@@ -62,9 +71,30 @@ public class RotateActivity extends Activity{
         p_count = intent.getIntExtra("p_count", 0);
         CustomView csView = new CustomView(this, p_count);
        // csView.setP_count(p_count);
-        csView.setId(0x99999);
+        //csView.setId(0x99999);
         FrameLayout frame1= (FrameLayout)findViewById(R.id.frame1);
-        frame1.addView(csView, 0);
+        //frame1.addView(csView, 0);
+
+        csView.setDrawingCacheEnabled(true);
+        csView.buildDrawingCache();
+        Bitmap bmp = csView.getDrawingCache();
+        Drawable d = getDrawableFromBitmap(bmp);
+        img_wheel = new ImageView(this);
+
+
+
+        FileOutputStream fos;
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File mydir = new File ( path + "/Pictures" );
+
+
+
+        //img_wheel = new ImageView(this);
+        //img_wheel.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+        /*img_wheel = (ImageView) findViewById(R.id.img_wheel);
+        bmp = BitmapFactory.decodeResource(getResources(), R.id.img_wheel);
+        img_wheel.setImageBitmap(bmp);*/
+        //frame1.addView(img_wheel, 0);
 
 
         //img_wheel.setP_count(p_count);
@@ -229,5 +259,12 @@ public class RotateActivity extends Activity{
             }
         });
     }
+
+    public Drawable getDrawableFromBitmap(Bitmap bitmap){
+        Drawable d = new BitmapDrawable(bitmap);
+        return d;
+    }
+
+
 
 }

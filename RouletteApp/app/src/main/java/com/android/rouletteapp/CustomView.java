@@ -1,15 +1,22 @@
 package com.android.rouletteapp;
 
 import android.app.Activity;
-import android.app.*;
-import android.content.*;
+
+
+import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.*;
-import android.os.*;
+
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.*;
+
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +30,7 @@ import java.io.IOException;
  * Created by Administrator on 2017-06-14.
  */
 
-public class CustomView extends View{
+public class CustomView extends View {
     TextView tv;
     RotateActivity cnxt;
     private int p_count;
@@ -116,7 +123,7 @@ public class CustomView extends View{
             canvas.drawArc(rect, 120, 80, true, pnt);
             //
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(0xff0088ff);
+            pnt.setColor(getResources().getColor(R.color.MediumTurquoise));
             canvas.drawArc(rect, 200, 160, true, pnt);
             canvas.save();
         }else if(p_count == 8){
@@ -125,31 +132,31 @@ public class CustomView extends View{
             canvas.drawArc(rect, 0 , 45, true, pnt);
             // 2
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.AntiqueWhite);
+            pnt.setColor(getResources().getColor(R.color.Thistle));
             canvas.drawArc(rect, 45, 45, true, pnt);
             //
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.SteelBlue);
+            pnt.setColor(Color.LTGRAY);
             canvas.drawArc(rect, 90, 45, true, pnt);
             //
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.Peru);
+            pnt.setColor(getResources().getColor(R.color.PapayaWhip));
             canvas.drawArc(rect, 135, 45, true, pnt);
 
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.Maroon);
+            pnt.setColor(getResources().getColor(R.color.OrangeRed));
             canvas.drawArc(rect, 180 , 45, true, pnt);
             // 2
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.Khaki);
+            pnt.setColor(Color.GREEN);
             canvas.drawArc(rect, 225, 45, true, pnt);
             //
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.BurlyWood);
+            pnt.setColor(getResources().getColor(R.color.Azure));
             canvas.drawArc(rect, 270, 45, true, pnt);
             //
             pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(R.color.Olive);
+            pnt.setColor(getResources().getColor(R.color.Teal));
             canvas.drawArc(rect, 315, 45, true, pnt);
         }else{
                    /* int width = 400;
@@ -164,11 +171,11 @@ public class CustomView extends View{
                     //saveBitmapToJpeg(getContext(), bitmap1, rectf1);
                     //
                      pnt.setStyle(Paint.Style.FILL);
-                    pnt.setColor(0xffff8800);
+                    pnt.setColor(getResources().getColor(R.color.Tomato));
                     canvas.drawArc(rect, 0 , 72, true, pnt);
                     // 2
                     pnt.setStyle(Paint.Style.FILL);
-                    pnt.setColor(0xffffff00);
+                    pnt.setColor(getResources().getColor(R.color.Gold));
                     canvas.drawArc(rect, 72, 72, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
