@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="game.speed.android.truthordare"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+    
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".RealWord"/>
+        <activity android:name=".BigAdventure"/>
+        <activity android:name=".Screen.GuideActivity"/>
+        <activity android:name=".Screen.DoorOpenActivity"/>
+        
+    </application>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+</manifest>

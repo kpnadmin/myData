@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:background="@drawable/yindao3"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+        >
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text=" \n \n 지금부터 행복"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        />
+    
+    <Button
+        android:id="@+id/startBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/start_bt"
+        android:onClick="startbutton"
+        android:text="Start"/>
+</RelativeLayout>
