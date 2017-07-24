@@ -44,6 +44,9 @@ public class HomeActivity extends AppCompatActivity  implements Serializable{
         final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(10,10,10,10);
 
+
+
+
         home_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +62,11 @@ public class HomeActivity extends AppCompatActivity  implements Serializable{
                     edit.setId(5000+i);
                     edit.setLayoutParams(lp);
                     edit.setText("s"+i);
+                    //edit.setHint("벌칙을 입력해주세요");
+                    edit.setPrivateImeOptions("defaultInputmode=korean;");
+                    edit.setHighlightColor(Color.GREEN);
+                    edit.setHintTextColor(Color.GREEN);
+                    edit.setTextColor(Color.BLACK);
                     line_1.addView(edit);
                 }
                 downKeyboard(getApplicationContext(), edit_cnt1);

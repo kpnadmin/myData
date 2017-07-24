@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.android.rouletteapp.RotateActivity"
     android:orientation="vertical"
+    android:background="@color/White"
     >
     
     <FrameLayout
@@ -20,33 +21,38 @@
         app:layout_constraintVertical_bias="0.484"
         android:layout_marginTop="8dp">
     
-        <!--    <ImageView
-            android:id="@+id/img_wheel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/roulette"/>-->
-    
-        <ImageView
-            android:id="@+id/img_wheel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/roulette"/>
-    
-        <ImageView
-            android:id="@+id/rpin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/rpin"/>
+       
     
         <Button
+            android:layout_marginTop="15dp"
             android:id="@+id/btn_rotate"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
             android:background="@drawable/round_btn"
             android:text="Start"
-            android:layout_gravity="center"
             />
+    
+      <com.android.rouletteapp.CustomView
+          android:layout_marginTop="30dp"
+            android:id="@+id/img_wheel"
+            android:layout_width="600px"
+            android:layout_height="600px"
+            android:layout_gravity="center_horizontal"
+            />
+        <ImageView
+            android:id="@+id/rpin"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/rpin"
+            android:layout_gravity="center_horizontal"
+            />
+         <!-- <ImageView
+            android:id="@+id/img_wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />-->
 
     </FrameLayout>
     
@@ -55,20 +61,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/frame1"
+        app:layout_constraintTop_toBottomOf="@+id/frame1"
         app:layout_constraintLeft_toLeftOf="parent">
     
         <Button
             android:id="@+id/btn_back_rotate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginLeft="280dp"
-            android:layout_marginStart="280dp"
-            android:layout_marginTop="447dp"
-            android:layout_weight="1"
             android:text="Back"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

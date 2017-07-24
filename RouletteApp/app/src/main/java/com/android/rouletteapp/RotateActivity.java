@@ -40,7 +40,7 @@ import java.io.IOException;
 
 public class RotateActivity extends Activity{
 
-    private ImageView img_wheel; // 회전 이미지
+    private CustomView img_wheel; // 회전 이미지
     private float init_angle = 0.0f;  //초기각도
     private final int IMG_DP = 300 ; // 이미지 dp
     private Bitmap mBitMap;
@@ -51,6 +51,8 @@ public class RotateActivity extends Activity{
     private final int RES_OK = 0;
     private int p_count ;
     private LinearLayout line_bottom;
+    private Bitmap bmp;
+    private int left = 20 , top = 20 , width = 10, height = 30;
 
     public int getP_count() {
         return p_count;
@@ -73,13 +75,17 @@ public class RotateActivity extends Activity{
        // csView.setP_count(p_count);
         //csView.setId(0x99999);
         FrameLayout frame1= (FrameLayout)findViewById(R.id.frame1);
+        img_wheel = (CustomView) findViewById(R.id.img_wheel);
         //frame1.addView(csView, 0);
+        //img_wheel = (ImageView) findViewById(R.id.img_wheel);
+        img_wheel.setP_count(p_count);
+       /* csView.setDrawingCacheEnabled(true);
+        csView.buildDrawingCache();*/
 
-        csView.setDrawingCacheEnabled(true);
-        csView.buildDrawingCache();
-        Bitmap bmp = csView.getDrawingCache();
-        Drawable d = getDrawableFromBitmap(bmp);
-        img_wheel = new ImageView(this);
+        //bmp = csView.getDrawingCache();
+        //Drawable d = getDrawableFromBitmap(bmp);
+
+        //img_wheel.setImageBitmap(bmp);
 
 
 

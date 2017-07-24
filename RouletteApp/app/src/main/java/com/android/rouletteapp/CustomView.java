@@ -37,7 +37,15 @@ public class CustomView extends View {
     //sv = new SomeView(this);
     Context context;
     private Bitmap image; // 이미지
+    private Bitmap bm;
 
+    public Bitmap getBm() {
+        return bm;
+    }
+
+    public void setBm(Bitmap bm) {
+        this.bm = bm;
+    }
 
     public int getP_count() {
         return p_count;
@@ -55,7 +63,6 @@ public class CustomView extends View {
     public CustomView(Context context) {
         super(context);
         // 그림 읽어들이기
-
     }
     public CustomView(Context context, int p_count) {
         super(context);
@@ -71,7 +78,9 @@ public class CustomView extends View {
         super.onDraw(canvas);
 
                 canvas.drawColor(Color.WHITE);
-                //
+        /*Bitmap bm = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bm);*/
+                 //
                 Paint pnt = new Paint();
                 pnt.setStyle(Paint.Style.STROKE);
                 pnt.setStrokeWidth(3);
@@ -80,7 +89,7 @@ public class CustomView extends View {
                 //
 
                 RectF rect = new RectF();
-                rect.set(200,200,600,600);
+                rect.set(0,0,600,600);
 
                 if(p_count == 3){
                 //
@@ -90,12 +99,11 @@ public class CustomView extends View {
                 // 2
                 pnt.setStyle(Paint.Style.FILL);
                 pnt.setColor(0xffffff00);
-                canvas.drawArc(rect, 120, 80, true, pnt);
+                canvas.drawArc(rect, 120, 120, true, pnt);
                 //
                 pnt.setStyle(Paint.Style.FILL);
                 pnt.setColor(0xff0088ff);
-                canvas.drawArc(rect, 200, 160, true, pnt);
-                    canvas.save();
+                canvas.drawArc(rect, 240, 240, true, pnt);
                 }else if(p_count == 4){
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xffff8800);
@@ -112,20 +120,27 @@ public class CustomView extends View {
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(getResources().getColor(R.color.Beige));
                     canvas.drawArc(rect, 270, 90, true, pnt);
-        } if(p_count == 3){
+        }else if(p_count == 5){
             //
-            pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(0xffff8800);
-            canvas.drawArc(rect, 0 , 120, true, pnt);
-            // 2
-            pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(0xffffff00);
-            canvas.drawArc(rect, 120, 80, true, pnt);
-            //
-            pnt.setStyle(Paint.Style.FILL);
-            pnt.setColor(getResources().getColor(R.color.MediumTurquoise));
-            canvas.drawArc(rect, 200, 160, true, pnt);
-            canvas.save();
+                    pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(getResources().getColor(R.color.Tomato));
+                    canvas.drawArc(rect, 0 , 72, true, pnt);
+                    // 2
+                    pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(getResources().getColor(R.color.Gold));
+                    canvas.drawArc(rect, 72, 72, true, pnt);
+                    //
+                    pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(0xff0088ff);
+                    canvas.drawArc(rect, 144, 72, true, pnt);
+                    //
+                    pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(Color.DKGRAY);
+                    canvas.drawArc(rect, 216, 72, true, pnt);
+                    //
+                    pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(Color.MAGENTA);
+                    canvas.drawArc(rect, 288, 72, true, pnt);
         }else if(p_count == 8){
             pnt.setStyle(Paint.Style.FILL);
             pnt.setColor(0xffff8800);
@@ -172,23 +187,27 @@ public class CustomView extends View {
                     //
                      pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(getResources().getColor(R.color.Tomato));
-                    canvas.drawArc(rect, 0 , 72, true, pnt);
+                    canvas.drawArc(rect, 0 , 60, true, pnt);
                     // 2
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(getResources().getColor(R.color.Gold));
-                    canvas.drawArc(rect, 72, 72, true, pnt);
+                    canvas.drawArc(rect, 60, 60, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(0xff0088ff);
-                    canvas.drawArc(rect, 144, 72, true, pnt);
+                    canvas.drawArc(rect, 120, 60, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(Color.DKGRAY);
-                    canvas.drawArc(rect, 216, 72, true, pnt);
+                    canvas.drawArc(rect, 180, 60, true, pnt);
                     //
                     pnt.setStyle(Paint.Style.FILL);
                     pnt.setColor(Color.MAGENTA);
-                    canvas.drawArc(rect, 288, 72, true, pnt);
+                    canvas.drawArc(rect, 240, 60, true, pnt);
+                    //
+                    pnt.setStyle(Paint.Style.FILL);
+                    pnt.setColor(getResources().getColor(R.color.Fuchsia));
+                    canvas.drawArc(rect, 300, 60, true, pnt);
                 }
 
 

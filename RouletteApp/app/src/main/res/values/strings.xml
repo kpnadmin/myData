@@ -10,4 +10,16 @@
     <string name="loading">loading</string>
     <string name="signed_out">signed_out</string>
     <string name="signed_in_fmt">LoginTest</string>
+    <string name="pattern_alphanumeric">^[a-zA-Z0-9]+$</string>
+    <string name="pattern_alphanumeric_hangul">^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55]+$</string>
+    <string name="input_error_alphanum">영문자와 숫자만 허용합니다.</string>
+    <string name="input_error_alphanumeric_hangul">영문자와 숫자, 한글만 허용합니다.</string>
+   <!-- <string name="panalty1"></string>
+    <string name="panalty2"></string>
+    <string name="panalty3"></string>
+    <string name="panalty4"></string>
+    <string name="panalty5"></string>
+    <string name="panalty6"></string>
+    <string name="panalty7"></string>
+    <string name="panalty8"></string>-->
 </resources>
