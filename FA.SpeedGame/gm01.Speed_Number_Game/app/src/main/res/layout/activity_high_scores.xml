@@ -1,0 +1,508 @@
+<!--  
+Speedy Numbers Android Game
+Copyright 2013 Jesse Toms
+ 
+  This file is part of Speedy Numbers.
+
+  Speedy Numbers is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  Speedy Numbers is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Speedy Numbers.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:orientation="vertical"
+tools:context=".HighScores">
+     
+	<TextView
+	android:gravity="center"
+	android:layout_height="0dp"
+	android:layout_weight="0.25"
+	android:layout_width="match_parent"   
+	android:text="@string/title_activity_high_scores"
+	android:textSize="@dimen/text_size_title"
+	android:textStyle="bold"
+	android:typeface="serif"/>      
+        
+	<TextView
+	android:id="@+id/textview_no_high_scores" 
+	android:gravity="center"
+	android:layout_height="0dp"
+	android:layout_weight="0.8"
+	android:layout_width="match_parent"
+	android:textSize="@dimen/text_size"
+	android:typeface="serif"/>
+	
+    <ScrollView
+    android:id="@+id/scrollview_high_scores"
+    android:layout_height="0dp"
+    android:layout_weight="0.6"
+    android:layout_width="match_parent">
+        
+		<TableLayout 
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent">
+	       
+			<TableRow
+		    android:id="@+id/tablerow_highscores_0"
+	  		android:layout_height="wrap_content"
+	    	android:layout_width="match_parent">
+	          	
+	           	<TextView
+	       	    android:id="@+id/textview_table_0_0"
+	       	    android:layout_height="wrap_content"
+	       	    android:layout_weight="2"
+	       	    android:layout_width="wrap_content"
+	       	    android:text="@string/textview_table_rank"
+				android:textSize="@dimen/text_size"
+				android:typeface="serif"
+				android:textStyle="bold"/>
+		           	
+				<TextView
+			    android:id="@+id/textview_table_0_1"
+			    android:layout_height="wrap_content"	
+			    android:layout_weight="3"
+			    android:layout_width="wrap_content"
+			    android:text="@string/textview_table_mode"
+				android:textSize="@dimen/text_size"
+				android:typeface="serif"
+				android:textStyle="bold"/>
+		           	
+	           	<TextView
+          	    android:id="@+id/textview_table_0_2"
+          	    android:layout_height="wrap_content"
+          	    android:layout_weight="2"
+          	    android:layout_width="wrap_content"
+          	    android:text="@string/textview_table_errors"
+				android:textSize="@dimen/text_size"
+				android:typeface="serif"
+				android:textStyle="bold"/>
+		           	
+	           	<TextView
+         	    android:id="@+id/textview_table_0_3"
+         	    android:layout_height="wrap_content"
+         	    android:layout_weight="2"
+         	    android:layout_width="wrap_content"
+         	    android:text="@string/textview_table_time"
+				android:textSize="@dimen/text_size"
+				android:typeface="serif"
+				android:textStyle="bold"/>
+	           	
+			</TableRow>
+	           
+			<TableRow
+		    android:id="@+id/tablerow_highscores_1"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">  
+	           
+	            <TextView
+	            android:id="@+id/textview_table_1_0"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="2"
+	            android:layout_width="wrap_content"
+				android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_1_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_1_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/> 
+	           	
+             	<TextView
+             	android:id="@+id/textview_table_1_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/> 
+	           	
+			</TableRow>
+	           
+			<TableRow
+			android:id="@+id/tablerow_highscores_2"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	             	
+              	<TextView
+              	android:id="@+id/textview_table_2_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+				android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_2_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_2_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_2_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+			</TableRow>
+	           
+			<TableRow
+		    android:id="@+id/tablerow_highscores_3"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"> 
+	           
+          		<TextView
+          		android:id="@+id/textview_table_3_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_3_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_3_2"
+	            android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>  
+	           	     
+          		<TextView
+          		android:id="@+id/textview_table_3_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>  
+	           	         
+			</TableRow>
+	           
+			<TableRow
+		   	android:id="@+id/tablerow_highscores_4"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	          		
+           		<TextView
+           		android:id="@+id/textview_table_4_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_4_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_4_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_4_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+			</TableRow>
+	           
+			<TableRow
+		    android:id="@+id/tablerow_highscores_5"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	           	
+              	<TextView
+               	android:id="@+id/textview_table_5_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_5_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_5_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_5_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>	
+	   			
+			</TableRow>
+			
+			<TableRow
+		    android:id="@+id/tablerow_highscores_6"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	           	
+              	<TextView
+               	android:id="@+id/textview_table_6_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_6_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_6_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_6_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>	
+	   			
+			</TableRow>
+			
+			<TableRow
+		    android:id="@+id/tablerow_highscores_7"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	           	
+              	<TextView
+               	android:id="@+id/textview_table_7_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_7_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_7_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_7_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>	
+	   			
+			</TableRow>
+			
+			<TableRow
+		    android:id="@+id/tablerow_highscores_8"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	           	
+              	<TextView
+               	android:id="@+id/textview_table_8_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_8_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_8_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_8_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>	
+	   			
+			</TableRow>
+			
+			<TableRow
+		    android:id="@+id/tablerow_highscores_9"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	           	
+              	<TextView
+               	android:id="@+id/textview_table_9_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_9_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_9_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_9_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>	
+	   			
+			</TableRow>
+			
+			<TableRow
+		    android:id="@+id/tablerow_highscores_10"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent">
+	           	
+              	<TextView
+               	android:id="@+id/textview_table_10_0"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+				<TextView
+				android:id="@+id/textview_table_10_1"
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_10_2"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	           	android:textSize="@dimen/text_size"
+				android:typeface="serif"/>
+	           	
+	           	<TextView
+	           	android:id="@+id/textview_table_10_3"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+              	android:layout_width="wrap_content"
+	   			android:textSize="@dimen/text_size"
+				android:typeface="serif"/>	
+	   			
+			</TableRow>
+	           
+		</TableLayout>
+
+	</ScrollView>
+            
+	<Button
+	android:id="@+id/button_reset_high_scores"
+	android:layout_weight="0.2"
+	android:layout_width="fill_parent"
+	android:layout_height="0dp"
+	android:text="@string/button_reset_high_scores" 
+	android:textSize="@dimen/text_size"
+	android:typeface="serif" 
+	android:onClick="confirmHighScoreDeletion"/>  
+    	 
+</LinearLayout>

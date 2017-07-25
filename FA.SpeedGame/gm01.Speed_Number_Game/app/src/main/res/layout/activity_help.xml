@@ -1,0 +1,142 @@
+<!--  
+Speedy Numbers Android Game
+Copyright 2013 Jesse Toms
+ 
+  This file is part of Speedy Numbers.
+
+  Speedy Numbers is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  Speedy Numbers is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Speedy Numbers.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_height="match_parent"
+android:layout_width="match_parent" 
+android:orientation="vertical"
+tools:context=".Help">
+    
+    <TextView
+    android:gravity="center"
+    android:layout_height="0dp"
+    android:layout_weight="0.25"
+    android:layout_width="match_parent"
+    android:text="@string/title_activity_help"
+    android:textSize="@dimen/text_size_title"
+    android:textStyle="bold"
+    android:typeface="serif"/>
+    
+    <ScrollView
+    android:layout_height="0dp"
+    android:layout_weight="0.75"
+    android:layout_width="match_parent">
+    
+        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_intro"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_singles_title"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            android:typeface="serif"/>
+                        
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_singles"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_multiples_title"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            android:typeface="serif"/>
+                        
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_multiples"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_odd_numbers_title"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            android:typeface="serif"/>
+                        
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_odd_numbers"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_prime_numbers_title"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            android:typeface="serif"/>
+                        
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_prime_numbers"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+            <TextView
+           	android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_feedback"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            android:typeface="serif"/>
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_contact_info"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+            <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/textview_help_open_source"
+            android:textSize="@dimen/text_size"
+            android:typeface="serif"/>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+
+</LinearLayout>

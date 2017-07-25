@@ -1,0 +1,89 @@
+<!--  
+Speedy Numbers Android Game
+Copyright 2013 Jesse Toms
+ 
+  This file is part of Speedy Numbers.
+
+  Speedy Numbers is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  Speedy Numbers is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Speedy Numbers.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:orientation="vertical"
+android:weightSum="1"
+tools:context=".GameSelect">
+    
+    <TextView
+    android:gravity="center"
+    android:layout_height="0dp"
+    android:layout_weight="0.25"
+    android:layout_width="fill_parent"
+    android:text="@string/title_activity_game_select"
+    android:textSize="@dimen/text_size_title"
+    android:textStyle="bold"
+    android:typeface="serif"/>
+    
+   	<LinearLayout 
+    android:orientation="horizontal"
+    android:layout_height="0dp"
+    android:layout_weight="0.25"
+    android:weightSum="1"
+    android:layout_width="match_parent">
+  	
+        <TextView
+        android:id="@+id/textview_game_type"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:layout_width="0dp"
+        android:text="@string/game_type"
+        android:textSize="@dimen/text_size"
+        android:typeface="serif"
+        tools:ignore="NestedWeights"/>   
+        
+        <Spinner
+    	android:id="@+id/spinner_game_type"
+    	android:entries="@array/game_choices"
+    	android:gravity="center_vertical"
+    	android:layout_height="match_parent" 
+    	android:layout_weight="0.6"
+    	android:layout_width="0dp" 	
+    	android:textSize="@dimen/text_size"
+    	android:typeface="serif"
+    	android:prompt="@string/game_choices_prompt"/>
+        
+    </LinearLayout>
+    
+   	<TextView
+   	android:id="@+id/textview_starting_number"
+   	android:gravity="center" 
+    android:layout_height="0dp"
+    android:layout_weight="0.25"
+    android:layout_width="fill_parent"
+    android:textSize="@dimen/text_size"
+    android:typeface="serif"/>
+   	
+ 	<Button
+    android:id="@+id/button_start"
+    android:layout_height="0dp"
+    android:layout_weight="0.25"
+    android:layout_width="match_parent"
+    android:text="@string/button_start" 
+    android:textSize="@dimen/text_size"
+    android:typeface="serif" 
+	android:onClick="startGame"/>
+
+</LinearLayout>
