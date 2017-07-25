@@ -1,1 +1,1 @@
-include ':Currentversion', ':mobilelibrary'
+include ':Currentversion', ':mobilelibrary', ':Login'

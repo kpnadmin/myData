@@ -146,5 +146,32 @@ public class HttpRequest {
         writer.close();
         return this;
     }
+    public void test_get_login_success(){
 
+        String weburl = "http://192.168.0.59:8080/rest/login";
+        HttpRequest request = null;
+        String response = "";
+
+
+        try {
+            request = new HttpRequest(weburl).addHeader("charset","utf-8");
+            request.addParameter("id","test1id");
+            request.addParameter("pw","test1pw");
+            int httpCode = request.post();
+
+            if(httpCode == HttpURLConnection.HTTP_OK){
+                response = request.getStringResponse();
+
+            }else{
+
+            }
+            //assertEquals("1", response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            request.close();
+        }
+
+
+    }
 }

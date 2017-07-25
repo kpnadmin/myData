@@ -92,5 +92,68 @@ public class ExampleUnitTest {
 
     }
 
+    @Test
+    public void test_get_login_success(){
+
+        String weburl = "http://192.168.0.59:8080/rest/login";
+        HttpRequest request = null;
+        String response = "";
+
+
+        try {
+            request = new HttpRequest(weburl).addHeader("charset","utf-8");
+            request.addParameter("id","test1id");
+            request.addParameter("pw","test1pw");
+            int httpCode = request.post();
+
+            if(httpCode == HttpURLConnection.HTTP_OK){
+                response = request.getStringResponse();
+
+            }else{
+
+            }
+            assertEquals("1", response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            request.close();
+        }
+
+
+    }
+    @Test
+    public void test_get_json_object(){
+
+        String weburl = "http://192.168.0.59:8080/rest/login";
+        HttpRequest request = null;
+        JSONObject response = null;
+
+
+        try {
+            request = new HttpRequest(weburl).addHeader("Content-Type","application/json").addHeader("charset","utf-8");
+            request.addParameter("id","test1id");
+            int httpCode = request.get();
+
+            if(httpCode == HttpURLConnection.HTTP_OK){
+                response = request.getJSONObjectResponse();
+
+            }else{
+
+            }
+            assertEquals("valid", response.getString("id"           ));
+            assertEquals("valpw", response.getString("pw"           ));
+            assertEquals("valname", response.getString("name"           ));
+            assertEquals("valemail", response.getString("email"           ));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            request.close();
+        }
+
+
+    }
+
 
 }
