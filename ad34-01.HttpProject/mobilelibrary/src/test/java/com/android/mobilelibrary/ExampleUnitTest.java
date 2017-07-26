@@ -1,5 +1,8 @@
 package com.android.mobilelibrary;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,6 +10,10 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -124,15 +131,15 @@ public class ExampleUnitTest {
     @Test
     public void test_get_json_object(){
 
-        String weburl = "http://192.168.0.59:8080/rest/login";
+        String weburl = "http://192.168.0.59:8080/rest/personone";
         HttpRequest request = null;
         JSONObject response = null;
 
 
         try {
             request = new HttpRequest(weburl).addHeader("Content-Type","application/json").addHeader("charset","utf-8");
-            request.addParameter("id","test1id");
-            int httpCode = request.get();
+            request.addParameter("id","valname");
+            int httpCode = request.post();
 
             if(httpCode == HttpURLConnection.HTTP_OK){
                 response = request.getJSONObjectResponse();
@@ -144,6 +151,71 @@ public class ExampleUnitTest {
             assertEquals("valpw", response.getString("pw"           ));
             assertEquals("valname", response.getString("name"           ));
             assertEquals("valemail", response.getString("email"           ));
+
+            String jsonInString = response.toString();
+            Gson gson = new Gson();
+            ModelPerson person = gson.fromJson(jsonInString, ModelPerson.class);
+
+            assertEquals("valid", response.getString(person.getId()         ));
+            assertEquals("valpw", response.getString(person.getPw()       ));
+            assertEquals("valname", response.getString(person.getName()   ));
+            assertEquals("valemail", response.getString(person.getEmail()  ));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            request.close();
+        }
+
+
+    }
+    @Test
+    public void get_json_array(){
+
+        String weburl = "http://192.168.0.59:8080/rest/personlist";
+        HttpRequest request = null;
+        JSONArray response = null;
+
+
+        try {
+            request = new HttpRequest(weburl).addHeader("Content-Type","application/json").addHeader("charset","utf-8");
+            request.addParameter("id","test3id");
+            int httpCode = request.post();
+
+            if(httpCode == HttpURLConnection.HTTP_OK){
+                try {
+                    response = request.getJSONArrayResponse();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else{
+
+            }
+            assertNotNull(response);
+            assertNotEquals(0, response.length());
+
+            JSONObject json = (JSONObject) response.get(0);
+
+            assertEquals("test1id",     json.getString("id"           ));
+            assertEquals("test1pw",     json.getString("pw"           ));
+            assertEquals("test1name",   json.getString("name"           ));
+            assertEquals("test1email", json.getString("email"           ));
+
+           //
+            String jsonInString = response.toString();
+            List<ModelPerson> list = new Gson().fromJson(jsonInString, new TypeToken<List<ModelPerson>>(){}.getType());
+
+
+            assertEquals("test1id",    list.get(0).getId()       );
+            assertEquals("test1pw",    list.get(0).getPw()       );
+            assertEquals("test1name",  list.get(0).getName()     );
+            assertEquals("test1email", list.get(0).getEmail()    );
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -155,5 +227,91 @@ public class ExampleUnitTest {
 
     }
 
+    @Test
+    public void test_insert_person(){
+
+        String weburl = "http://192.168.0.59:8080/rest/insertPerson";
+        HttpRequest request = null;
+        String response = null;
+
+        int httpCode = 0 ;
+        try {
+           ModelPerson obj = new ModelPerson("valid","valpw","valname","valemail");
+            String data = new Gson().toJson(obj);
+            request = new HttpRequest(weburl).addHeader("charset","UTF-8").addHeader("Content-Type","application/json").addHeader("Accept","application/json");
+
+            httpCode = request.post(data);
+
+            if(httpCode == HttpURLConnection.HTTP_OK){
+                try {
+                    response = request.getStringResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else{
+
+            }
+            assertNotNull(response);
+            assertEquals("1", response);
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }  finally {
+            request.close();
+        }
+
+
+    }
+
+
+    @Test
+    public void test_insert_personlist(){
+
+        String weburl = "http://192.168.0.59:8080/rest/insertPersonList";
+        HttpRequest request = null;
+        String response = null;
+
+        int httpCode = 0 ;
+        try {
+
+            List<ModelPerson> list = new ArrayList<ModelPerson>();
+            for(int i = 0 ; i <10 ; i++){
+                //String t = String.valueOf(i);
+                String t = new SimpleDateFormat("yyyyMMddHHmmss").format(Calendar.getInstance().getTime());
+                ModelPerson obj = new ModelPerson("valid"+t, "valpw"+t,"valname"+t,"valemail"+t);
+                list.add(obj);
+            }
+            String data = new Gson().toJson(list);
+
+            request = new HttpRequest(weburl).addHeader("charset","UTF-8").addHeader("Content-Type","application/json").addHeader("Accept","application/json");
+
+            httpCode = request.post(data);
+
+            if(httpCode == HttpURLConnection.HTTP_OK){
+                try {
+                    response = request.getStringResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else{
+
+            }
+            assertNotNull(response);
+            assertEquals("10", response);
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }  finally {
+            request.close();
+        }
+
+
+    }
 
 }

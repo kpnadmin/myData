@@ -3,4 +3,7 @@
     <string name="title_activity_hotel_loc">Map</string>
     <string name="hotel_main_info1">종로 랜드마크 스카이호텔에 오신 것을 환영합니다.\n 넓고 세련된 객실에서 편안한 날을 보내세요.</string>
     <string name="blanks">\n</string>
+    
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
