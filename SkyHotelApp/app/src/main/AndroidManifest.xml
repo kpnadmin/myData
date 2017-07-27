@@ -8,7 +8,8 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,18 +33,25 @@
         <activity
             android:name=".HotelLocActivity"
             android:label="@string/title_activity_hotel_loc">
-           <!-- <intent-filter>
+            
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
     
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-        
+    
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".Hotel_Introduce">
+        </activity>
+        <activity android:name=".ReserveActivity">
         </activity>
     </application>
 

@@ -4,57 +4,61 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="skyblue.android.skyhotelapp.CustomerActivity">
+  
+ 
+  <EditText
+      android:id="@+id/edit_cust_info"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="호텔소개"
+      android:layout_marginTop="8dp"
+      android:layout_marginLeft="8dp"
+      android:focusableInTouchMode="false"
+     />
+  
+  <EditText
+      android:id="@+id/edit_cust_news"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="News_Event"
+      android:layout_marginTop="68dp"
+      android:layout_marginLeft="8dp"
+      android:focusableInTouchMode="false"
+   />
+  
+  <EditText
+      android:id="@+id/edit_cust_call"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="문의전화"
+      android:layout_marginTop="128dp"
+      android:layout_marginLeft="8dp"
+      android:focusableInTouchMode="false"
+     />
+  
+  <EditText
+      android:id="@+id/edit_cust_loc"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="오시는길"
+      android:layout_marginTop="188dp"
+      android:layout_marginLeft="8dp"
+      android:focusableInTouchMode="false"
+     />
+  
   <!--
     &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <EditText
-        android:id="@+id/edit_cust_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="호텔소개"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    
-    <EditText
-        android:id="@+id/edit_cust_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="News_Event"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/edit_cust_info"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    
-    <EditText
-        android:id="@+id/edit_cust_call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="문의전화"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/edit_cust_news"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    
-    <EditText
-        android:id="@+id/edit_cust_loc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="오시는길"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/edit_cust_call"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+   
     </android.support.constraint.ConstraintLayout>-->
 </FrameLayout>
