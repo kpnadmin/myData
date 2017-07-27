@@ -4,38 +4,239 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="skyblue.android.skyhotelapp.HotelInfoActivity">
+ 
+ 
+ 
+ <LinearLayout
+     android:id="@+id/line_hotel_intro"
+     android:layout_width="368dp"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="8dp"
+     android:layout_marginTop="20dp"
+     android:orientation="vertical"
+     android:layout_marginStart="8dp">
+  
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="200dp"
+      android:layout_height="200dp"
+      android:layout_gravity="center_horizontal"
+      app:srcCompat="@mipmap/ic_cityhotel"
+      />
+  
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="@string/hotel_main_info1"
+      />
+  
+ </LinearLayout>
+ 
+ <LinearLayout
+     android:id="@+id/line_hotel_group1"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_gravity="center_vertical"
+     android:orientation="horizontal"
+     android:layout_marginTop="60dp"
+     >
+ 
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="40dp"
+     android:orientation="vertical"
+     >
+ <Button
+     android:id="@+id/btn_roomInfo"
+     android:layout_width="75dp"
+     android:layout_height="75dp"
+     android:background="@drawable/circlebutton"
+     android:layout_marginTop="8dp"
+     android:layout_marginLeft="40dp"
+     android:paddingLeft="12dp"
+     android:drawableStart="@drawable/ic_hotel_roominfo"
+     android:layout_marginStart="40dp"/>
+ 
+ 
+  <TextView
+      android:id="@+id/txt_roomInfo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="호텔객실안내"
+      android:layout_gravity="center"
+      android:layout_marginLeft="20dp"/>
+  
+ </LinearLayout>
+ 
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="40dp"
+     android:orientation="vertical"
+     >
+  <Button
+      android:id="@+id/btn_reserve"
+      android:layout_width="75dp"
+      android:layout_height="75dp"
+      android:background="@drawable/circlebutton"
+      android:layout_marginTop="8dp"
+      android:layout_marginLeft="40dp"
+      android:paddingLeft="12dp"
+      android:drawableStart="@drawable/ic_hotel_reserve"
+      android:layout_marginStart="40dp"/>
+ 
+ 
+  <TextView
+      android:id="@+id/txt_reserve"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="예약하기"
+      android:layout_gravity="center"
+      android:layout_marginLeft="20dp"
+      />
+  
+  </LinearLayout>
+ 
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="40dp"
+     android:orientation="vertical"
+     >
+ 
+  <Button
+      android:id="@+id/btn_facilities"
+      android:layout_width="75dp"
+      android:layout_height="75dp"
+      android:background="@drawable/circlebutton"
+      android:layout_marginTop="8dp"
+    
+      android:layout_marginLeft="40dp"
+      android:paddingLeft="12dp"
+      android:drawableStart="@drawable/ic_hotel_service"
+      android:layout_marginStart="40dp"/>
+ 
+  <TextView
+      android:id="@+id/txt_facilities"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="호텔편의시설"
+      android:layout_gravity="center"
+      android:layout_marginLeft="20dp"/>
+  
+
+</LinearLayout>
+ 
+  
+
+ </LinearLayout>
+ 
+ 
+ 
+ <LinearLayout
+     android:id="@+id/line_hotel_group2"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_gravity="center_vertical"
+     android:orientation="horizontal"
+     android:layout_marginTop="150dp"
+     >
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="40dp"
+      android:orientation="vertical"
+      android:layout_marginLeft="40dp"
+      >
+  
+   <Button
+       android:id="@+id/btn_location"
+       android:layout_width="75dp"
+       android:layout_height="75dp"
+       android:background="@drawable/circlebutton"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="40dp"
+       android:drawableStart="@drawable/ic_hotel_loc"
+       />
+  
+   <TextView
+       android:id="@+id/txt_location"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="오시는길"
+       android:layout_marginLeft="20dp"
+       android:layout_gravity="center"
+       />
+ 
+  </LinearLayout>
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="40dp"
+     android:orientation="vertical"
+     android:layout_marginLeft="40dp"
+     >
+ 
+  <Button
+      android:id="@+id/btn_phonecall"
+      android:layout_width="75dp"
+      android:layout_height="75dp"
+      android:background="@drawable/circlebutton"
+      android:layout_marginTop="30dp"
+      android:layout_marginLeft="40dp"
+      android:drawableStart="@drawable/ic_hotel_phone"
+     />
+ 
+  <TextView
+      android:id="@+id/txt_phonecall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="전화하기"
+      android:layout_gravity="center"
+      android:layout_marginLeft="20dp"
+      />
+  
+  </LinearLayout>
+  
+ </LinearLayout>
+ 
+ 
+  
+  
+  
+  
+
+ <!--<android.support.constraint.ConstraintLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_gravity="bottom"
+     >
+ 
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ </android.support.constraint.ConstraintLayout>-->
+ 
+ 
  <!--   <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     
-    <LinearLayout
-        android:id="@+id/line_hotel_intro"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        
-        app:layout_constraintTop_toBottomOf="@+id/line_title"
-        android:layout_marginStart="8dp">
-        
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@mipmap/ic_cityhotel"
-            />
-        
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/hotel_main_info1"
-            />
-    </LinearLayout>
+   
     
     <Button
         android:id="@+id/btn_roomInfo"

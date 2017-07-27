@@ -80,8 +80,8 @@ public class HotelLocActivity extends AppCompatActivity implements OnMapReadyCal
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
+        markerOptions.title("서울SKY호텔");
+        markerOptions.snippet("HP:010-9199-8991");
         mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
