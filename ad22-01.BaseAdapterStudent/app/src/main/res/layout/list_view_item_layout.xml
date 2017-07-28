@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이름"
+        android:textSize="20dp"
+        android:background="#00ff00"
+        android:textColor="#000000"
+        />
+    
+    <TextView
+        android:id="@+id/txt_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/txt_name"
+        android:gravity="right"
+        android:text="학번"
+        android:textSize="20dp"
+        android:background="#7FFFD4"
+        android:textColor="#000000"
+        android:inputType="number"
+        />
+    
+    <TextView
+        android:id="@+id/txt_dept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_num"
+        android:text="학과"
+        android:background="#DDA0DD"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        />
+</LinearLayout>
