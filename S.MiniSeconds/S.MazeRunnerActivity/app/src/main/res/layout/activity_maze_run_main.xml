@@ -19,7 +19,8 @@
         app:layout_constraintLeft_toRightOf="@+id/gridLayout1"
         android:layout_marginLeft="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/gridLayout1"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        />
     
     <GridLayout
         android:id="@+id/gridLayout1"
@@ -27,12 +28,14 @@
         android:layout_height="140dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
         android:columnCount="3"
         android:rowCount="2"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:paddingLeft="2dp"
+        >
+    
         
         <Button
             android:id="@+id/buttonLeft"
@@ -41,7 +44,7 @@
             android:layout_height="50dp"
             android:layout_column="0"
             android:layout_row="1"
-            android:onClick="left"
+        
             android:text="@string/left"/>
         
         <Button
@@ -51,7 +54,7 @@
             android:layout_height="50dp"
             android:layout_column="1"
             android:layout_row="1"
-            android:onClick="down"
+         
             android:text="@string/down"/>
         
         <Button
@@ -61,7 +64,7 @@
             android:layout_height="50dp"
             android:layout_column="2"
             android:layout_row="1"
-            android:onClick="right"
+           
             android:text="@string/right"/>
         
         <Button
@@ -72,7 +75,7 @@
             android:layout_column="1"
             android:layout_gravity="left|bottom"
             android:layout_row="0"
-            android:onClick="up"
+           
             android:text="@string/up"/>
     </GridLayout>
     
