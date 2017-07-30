@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static int RES_CODE = 0;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private int status = -1;
+    private int status = 0;
 
 
     @Override
@@ -49,28 +49,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 status = tab.getPosition();
                 if(status == 0 ) {
-                    btn_location = (Button) findViewById(R.id.btn_location);
+                   /* btn_location = (Button) findViewById(R.id.btn_location);
+                    btn_location.setOnClickListener(MainActivity.this);*/
+              /*      btn_location = (Button) findViewById(R.id.btn_location);
                     btn_location.setOnClickListener(MainActivity.this);
                     btn_roomInfo = (Button) findViewById(R.id.btn_roomInfo);
                     btn_reserve = (Button) findViewById(R.id.btn_reserve);
                     btn_reserve.setOnClickListener(MainActivity.this);
                     btn_facilities = (Button) findViewById(R.id.btn_facilities);
-                    btn_phonecall = (Button) findViewById(R.id.btn_phonecall);
+                    btn_phonecall = (Button) findViewById(R.id.btn_phonecall);*/
 
 
                 }else if(status ==1){
-                    edit_cust_loc = (EditText) findViewById(R.id.edit_cust_loc);
+                 /*   edit_cust_loc = (EditText) findViewById(R.id.edit_cust_loc);
                     edit_cust_loc.setOnClickListener(MainActivity.this);
                     edit_cust_info = (EditText) findViewById(R.id.edit_cust_info);
                     edit_cust_info.setOnClickListener(MainActivity.this);
-
+*/
 
 
 
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
+  /*  @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_location :
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dialog.setTitle("예약일정을 선택하세요.");
                 dialog.show();
         }
-    }
+    }*/
 
    /* @Override
     public void onClick(View v) {
@@ -152,28 +153,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }*/
 
-    /*   @Override
+    @Override
     public void onClick(View v) {
 
-
-            case R.id.hotel_customer:
-
-                edit_cust_info = (EditText) findViewById(R.id.edit_cust_info);
-                edit_cust_call = (EditText) findViewById(R.id.edit_cust_call);
-                edit_cust_loc = (EditText) findViewById(R.id.edit_cust_loc);
-                edit_cust_news = (EditText) findViewById(R.id.edit_cust_news);
-                edit_cust_info.setFocusable(false);
-                edit_cust_info.setClickable(false);
-                edit_cust_call.setFocusable(false);
-               edit_cust_call.setClickable(false);
-                edit_cust_loc.setFocusable(false);
-               edit_cust_loc.setClickable(false);
-               edit_cust_news.setFocusable(false);
-                edit_cust_news.setFocusable(false);
-            case R.id.hotel_info:
-
         }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        BusProvider.getInstance().post(new ActivityResultEvent(requestCode, resultCode, data));
+    }
 
+    }
 
-    }*/
-}

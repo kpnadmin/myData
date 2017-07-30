@@ -3,6 +3,7 @@
     <string name="title_activity_hotel_loc">Map</string>
     <string name="hotel_main_info1">종로 랜드마크 스카이호텔에 오신 것을 환영합니다.\n 넓고 세련된 객실에서 편안한 날을 보내세요.</string>
     <string name="blanks">\n</string>
+    <string name="hotel_room_img_resources"><a href="https://www.tripadvisor.co.kr/LocationPhotoDirectLink-g2150164-d8686211-i213188177-Time_Hotel-Yangsan_Gyeongsangnam_do.html#213188177"><img alt="" src="https://media-cdn.tripadvisor.com/media/photo-s/0c/b4/fe/51/caption.jpg"/></a><br/>이 타임 호텔 사진의 출처는 트립어드바이저입니다.</string>
     
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -11,4 +12,48 @@
 남산 기슭에 자리잡은 스카이 서울힐튼은 대한민국 수도, 서울의 비즈니스, 문화, 역사, 쇼핑의 중심부에 위치하고 있습니다.\n 비즈니스 중심지는 약 15분 거리 이내에 있으며, 인천국제공항에서도 1시간 이내에 도착할 수 있습니다.\n
 
 또한, 스카이 서울힐튼에서는 모든 고객들이 세계 각국의 맛을 즐길 수 있도록 5개의 레스토랑, 바 그리고 델리를 갖추고 있습니다.\n 취향에 맞게 시즌즈(프렌치 요리)와 일폰테(이태리 요리), 겐지(일식), 타이판(중식)에서는 식사를, \n 바와 라운지에서는 칵테일부터 커피와 케이크를 즐길 수 있습니다. \n 이외에도 고객의 성공적인 비즈니스를 위해 초고속 인터넷을 기본으로 각종 장비가 설치된 비즈니스 센터와 8개의 회의실도 마련되어 있습니다. \n 또한, 1,000여명을 수용할 수 있는 고품격의 그랜드볼룸에서는 각종 회의 및 연회, 웨딩을 진행할 수 있습니다.\n </string>
+    <string name="title_activity_facilities">FacilitiesActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+        
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+        
+        "Bold, graphic, intentional.\n\n"
+        
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+        
+        "Motion provides meaning.\n\n"
+        
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+        
+        "3D world.\n\n"
+        
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
 </resources>
