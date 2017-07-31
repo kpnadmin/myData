@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.content.Intent;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ import java.util.List;
  */
 
 public class CrimeListFragment extends Fragment {
-
+    private static final int REQUEST_CRIME =1;
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
 
@@ -37,34 +39,54 @@ public class CrimeListFragment extends Fragment {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getmCrimes();
 
-        mAdapter = new CrimeAdapter(crimes);
-        mCrimeRecyclerView.setAdapter(mAdapter);
+
+        if(mAdapter == null) {
+
+            mAdapter = new CrimeAdapter(crimes);
+            mCrimeRecyclerView.setAdapter(mAdapter);
+        }else{
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
-    private class CrimeHolder extends RecyclerView.ViewHolder{
+    private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private Crime mCrime;
 
         //public TextView mTitleTextView;
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        private TextView mSolvedTextView;
+        private CheckBox mSolvedCheckBox;
 
         public CrimeHolder(View itemView) {
             super(itemView);
            // mTitleTextView = (TextView) itemView;
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_crime_title_text_view);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_crime_date_text_view);
-            mSolvedTextView = (TextView) itemView.findViewById(R.id.list_item_crime_solved_check_box);
+            mSolvedCheckBox = (CheckBox) itemView.findViewById(R.id.list_item_crime_solved_check_box);
 
         }
         public void bindCrime(Crime crime){
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
-            mSolvedTextView.setText(String.valueOf(mCrime.isSolved()));
+            //mSolvedTextView.setText(String.valueOf(mCrime.isSolved()));
+            mSolvedCheckBox.setChecked(mCrime.isSolved());
         }
 
+        @Override
+        public void onClick(View v) {
+            Intent intent = CrimeActivity.newIntent(getActivity() , mCrime.getId());
+            //startActivity(intent);
+            startActivityForResult(intent, REQUEST_CRIME);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if(requestCode == REQUEST_CRIME){
+                // 결과처리코드
+            }
     }
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder>{
@@ -93,5 +115,11 @@ public class CrimeListFragment extends Fragment {
         public int getItemCount() {
             return mCrimes.size();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
     }
 }

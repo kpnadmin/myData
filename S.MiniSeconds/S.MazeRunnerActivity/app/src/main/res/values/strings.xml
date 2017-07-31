@@ -20,10 +20,10 @@
     <string name="battery">Battery Level: ~</string>
     <string name="path_length">Path Length: ~ \n</string>
     <string name="battery_level">Battery</string>
-    <string name="up">Up</string>
-    <string name="down">Down</string>
-    <string name="left">Left</string>
-    <string name="right">Right</string>
+    <string name="up">U</string>
+    <string name="down">D</string>
+    <string name="left">L</string>
+    <string name="right">R</string>
     <string name="increment_map">Enlarge Map</string>
     <string name="decrement_map">Shrink Map</string>
     <string name="pause">Pause</string>
