@@ -40,8 +40,9 @@ public class HotelInfoActivity extends Fragment implements View.OnClickListener{
         btn_location.setOnClickListener(this);
         btn_facilities = (Button) v.findViewById(R.id.btn_facilities);
         btn_facilities.setOnClickListener(this);
+        btn_reserve = (Button) v.findViewById(R.id.btn_reserve);
+        btn_reserve.setOnClickListener(this);
         BusProvider.getInstance().register(this);
-
         return v;
     }
 
@@ -62,11 +63,15 @@ public class HotelInfoActivity extends Fragment implements View.OnClickListener{
                 getActivity().startActivityForResult(intent, REQ_CODE_CONTENT_DETAIL);
                 break;
             case R.id.btn_facilities :
-                Act_code = 1;
+                Act_code = 2;
                 intent = new Intent(v.getContext(),FacilitiesActivity.class);
                 getActivity().startActivityForResult(intent, REQ_CODE_CONTENT_DETAIL);
                 break;
-
+            case R.id.btn_reserve:
+                Act_code = 3;
+                intent = new Intent(v.getContext(),ReserveActivity.class);
+                getActivity().startActivityForResult(intent, REQ_CODE_CONTENT_DETAIL);
+                break;
             default:
                 break;
         }
