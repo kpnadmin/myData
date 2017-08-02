@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "287231469294",
+    "project_id": "skyhotelapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287231469294:android:ba22c919af09b571",
+        "android_client_info": {
+          "package_name": "skyblue.android.skyhotelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287231469294-gkm5v8oqvac7u2maa60m2ruvpgv5ickc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "skyblue.android.skyhotelapp",
+            "certificate_hash": "3268c1ad21fba1943f00e62a99dbbc7aef828bf3"
+          }
+        },
+        {
+          "client_id": "287231469294-75cf71tngla3t1gfhpf3d4n0557eokr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqBXkWj_RJmHeLX-ygnTsnMbyYmdbIRsc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
