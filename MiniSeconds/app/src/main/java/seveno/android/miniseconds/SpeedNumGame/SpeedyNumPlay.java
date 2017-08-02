@@ -22,7 +22,7 @@ import java.util.Locale;
 
 import seveno.android.miniseconds.R;
 
-public class SpeedyNumPlay extends AppCompatActivity implements View.OnClickListener {
+public class SpeedyNumPlay extends AppCompatActivity  {
 
     private static final int ERROR_PENALTY_SECONDS = 5;
     private static Sequence sequence;
@@ -65,11 +65,9 @@ public class SpeedyNumPlay extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void run() {
 
-
-
-                    /*timeTakenMillis = System.currentTimeMillis() - startTime;
-                    timerTextView.setText("Time: "+(convertToMinutesAndSeconds(timeTakenMillis)));
-                    h2.postDelayed(this, 500);*/
+                    timeTakenMillis = System.currentTimeMillis() - startTime;
+                    txt_speedy_time.setText("Time: "+(convertToMinutesAndSeconds(timeTakenMillis)));
+                    h2.postDelayed(this, 500);
                 }
             };
         }
@@ -104,16 +102,16 @@ public class SpeedyNumPlay extends AppCompatActivity implements View.OnClickList
 
        // setupActionBar();
         //addSequenceToButtons();
-      /*  if(timerRunning){
+     if(timerRunning){
             h2.postDelayed(run, 0);
         } else {
-            timerTextView.setText(convertToMinutesAndSeconds(timeTakenMillis));
-        }*/
+         txt_speedy_time.setText(convertToMinutesAndSeconds(timeTakenMillis));
+        }
 
     }
     //On button click, check if it is correct (If not then increase error count). If correct then make the button unpressable and translucent,
     //then check if all buttons have been correctly pressed. If they have then update the saved high scores if necessary. Start the finish screen.
-    public void buttonClick(View v) throws InterruptedException{
+    public void btn_SpeedyClick(View v) throws InterruptedException{
         if(sequence.isCorrect(Integer.parseInt((String)v.getTag()))){
             ((Button)v).setAlpha((float)0.2);
             ((Button)v).setClickable(false);
@@ -121,16 +119,17 @@ public class SpeedyNumPlay extends AppCompatActivity implements View.OnClickList
                 h2.removeCallbacks(run);
                 timerRunning = false;
                 long finalTime = timeTakenMillis + (numErrors*ERROR_PENALTY_SECONDS*1000);
-               /* int highScorePosition = findHighScorePosition(finalTime);
+              /*int highScorePosition = findHighScorePosition(finalTime);
                 if(highScorePosition >= 1 && highScorePosition <= 10){
                     updateHighScores(highScorePosition, finalTime);
-                }
+                }*/
                 Intent intent = new Intent(this, FinishScreen.class);
-                intent.putExtra("game.speed.android.speed_number_game.initialTime",timeTakenMillis);
-                intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
-                intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);
+                intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
+                intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
+               /* intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
+                intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
                 startActivity(intent);
-                finish();*/
+                finish();
             }
         } else {
             numErrors++;
@@ -178,8 +177,5 @@ public class SpeedyNumPlay extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

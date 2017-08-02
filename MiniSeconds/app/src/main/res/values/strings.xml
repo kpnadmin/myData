@@ -47,8 +47,7 @@ Copyright 2013 Jesse Toms
     <string name="textview_help_prime_numbers">This sequence starts at number 2 and each number in the sequence is the next successive prime number. e.g. 2,3,5&#8230;</string>
     <string name="textview_help_singles">The sequence used in Quickplay. It starts at number 1 and each number in the sequence is simply 1 higher than the previous number. e.g. 1,2,3&#8230;</string>
     <string name="textview_help_singles_title">Singles</string>
-    <string name="textview_finished">Finished!</string>
-    <string name="textview_table_errors">Errors</string>
+    
     <string name="textview_table_mode">Mode</string>
     <string name="textview_table_rank">Rank</string>
     <string name="textview_table_time">Time</string>
@@ -57,7 +56,8 @@ Copyright 2013 Jesse Toms
     <string name="title_activity_game_select">Game Select</string>
     <string name="title_activity_high_scores">High Scores</string>
     <string name="title_activity_play">Play</string>
-    
+    <string name="textview_finished">Finished!</string>
+    <string name="textview_table_errors">Errors</string>
     <string-array name="game_choices">
         <item>Singles</item>
         <item>Multiples of 2</item>
