@@ -1,6 +1,7 @@
 package seveno.android.miniseconds;
 
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
 
 public class IntroActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
@@ -149,6 +151,7 @@ public class IntroActivity extends AppCompatActivity implements GoogleApiClient.
             intent.putExtra("username", acct.getDisplayName());
             intent.putExtra("userEmail", acct.getEmail());
             intent.putExtra("userId",acct.getId());
+            Uri url1 = acct.getPhotoUrl();
             String str = String.valueOf(acct.getPhotoUrl());
             try {
                 str = URLEncoder.encode(str, "euc-kr");

@@ -131,6 +131,16 @@ public class MainActivity extends Activity {
 
 
 
+            try {
+                proThread.join();
+
+                img_profile.setImageBitmap(bitmap);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+
 
       /*  btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
