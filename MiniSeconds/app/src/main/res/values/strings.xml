@@ -24,7 +24,7 @@ Copyright 2013 Jesse Toms
     <string name="loading">loading</string>
     <string name="signed_out">signed_out</string>
     <string name="signed_in_fmt">LoginTest</string>
-    <string name="app_name">Four Seconds</string>
+    <string name="app_name">MiniSeconds</string>
     <string name="button_help">Help</string>
     <string name="button_highscores">High Scores</string>
     <string name="button_newgame">New Game</string>

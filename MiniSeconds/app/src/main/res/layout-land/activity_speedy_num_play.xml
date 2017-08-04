@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="seveno.android.miniseconds.SpeedNumGame.SpeedyNumPlay">
+    tools:context="seveno.android.miniseconds.SpeedNumGame.SpeedyNumPlay"
+    android:background="@drawable/main_bg_1"
+    >
     
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -165,7 +167,9 @@
             android:id="@+id/bar_speedyNum"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:max="100"
+            />
     </LinearLayout>
 
 

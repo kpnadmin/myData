@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -60,6 +61,7 @@ public class CrimeListFragment extends Fragment {
 
         public CrimeHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
            // mTitleTextView = (TextView) itemView;
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_crime_title_text_view);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_crime_date_text_view);
@@ -76,9 +78,12 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = CrimeActivity.newIntent(getActivity() , mCrime.getId());
-            //startActivity(intent);
-            startActivityForResult(intent, REQUEST_CRIME);
+            /*Toast.makeText(getActivity(), mCrime.getTitle() +"선택됨!", Toast.LENGTH_SHORT);*/
+           // Intent intent = CrimeActivity.newIntent(getActivity() , mCrime.getId());
+
+            Intent intent = new Intent(getActivity(), CrimeActivity.class);
+            startActivity(intent);
+           // startActivityForResult(intent, REQUEST_CRIME);
         }
     }
 

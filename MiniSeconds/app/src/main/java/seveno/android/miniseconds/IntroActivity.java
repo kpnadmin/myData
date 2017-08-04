@@ -1,10 +1,12 @@
 package seveno.android.miniseconds;
 
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
@@ -21,6 +23,10 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
+
 public class IntroActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
     private static final String TAG = "IntroActivity";
@@ -29,6 +35,7 @@ public class IntroActivity extends AppCompatActivity implements GoogleApiClient.
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
     private static int RES_CODE = 0;
+
 
 
     public GoogleApiClient getmGoogleApiClient() {
@@ -52,6 +59,7 @@ public class IntroActivity extends AppCompatActivity implements GoogleApiClient.
        findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
        findViewById(R.id.disconnect_button).setOnClickListener(this);
+
 
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
@@ -141,6 +149,18 @@ public class IntroActivity extends AppCompatActivity implements GoogleApiClient.
             mStatusTextView.setText(acct.getDisplayName());
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             intent.putExtra("username", acct.getDisplayName());
+            intent.putExtra("userEmail", acct.getEmail());
+            intent.putExtra("userId",acct.getId());
+            Uri url1 = acct.getPhotoUrl();
+            String str = String.valueOf(acct.getPhotoUrl());
+            try {
+                str = URLEncoder.encode(str, "euc-kr");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            intent.putExtra("userPhoto",str);
+            intent.putExtra("userIdToken",acct.getIdToken());
+            intent.putExtra("userServerCode",acct.getServerAuthCode());
             startActivityForResult(intent,RES_CODE);
 
            // updateUI(true);
