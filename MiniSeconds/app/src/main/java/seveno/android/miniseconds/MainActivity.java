@@ -2,15 +2,31 @@ package seveno.android.miniseconds;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InterruptedIOException;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLDecoder;
 
 import seveno.android.miniseconds.SpeedNumGame.SpeedyNumPlay;
 
@@ -21,8 +37,10 @@ public class MainActivity extends Activity {
     private final int RES_OK = 0;
     private Intent  Mainintent;
     private int currentGameType = 0;
-
-
+    private TextView google_txt1,google_txt2, google_txt3,google_txt4,google_txt5,google_txt6;
+    private ImageView img_profile;
+    private Uri photo_url;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +48,55 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
        Mainintent = getIntent();
         String googlename = Mainintent.getStringExtra("username");
+        String googleEmail = Mainintent.getStringExtra("userEmail");
+        String googleId = Mainintent.getStringExtra("userId");
+        String charsetname = "UTF-8";
+        String googlePhoto = null;
+        try {
+            googlePhoto = URLDecoder.decode(Mainintent.getStringExtra("userPhoto"), charsetname);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String googleIdToken = Mainintent.getStringExtra("userIdToken");
+       /* try {
+            photo_url = Uri.parse(googlePhoto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        String googleServerCode = Mainintent.getStringExtra("userServerCode");
+
+
 
         btn_game_start = (Button) findViewById(R.id.btn_game_start);
         //btn_logout = (Button) findViewById(R.id.btn_logout);
+
+      google_txt1 = (TextView) findViewById(R.id.txt_google1);
+        google_txt2 = (TextView) findViewById(R.id.txt_google2);
+        google_txt3 = (TextView) findViewById(R.id.txt_google3);
+        google_txt4 = (TextView) findViewById(R.id.txt_google4);
+        google_txt5 = (TextView) findViewById(R.id.txt_google5);
+        google_txt6 = (TextView) findViewById(R.id.txt_google6);
+
+        img_profile = (ImageView) findViewById(R.id.img_profile);
+        google_txt1.setText(googlename);
+        google_txt2.setText(googleEmail);
+        google_txt3.setText(googleId);
+        google_txt4.setText(googlePhoto);
+        google_txt5.setText(googleIdToken);
+        google_txt6.setText(googleServerCode);
+
+        google_txt1.setTextColor(Color.WHITE);
+        google_txt1.setTextSize(20);
+        google_txt2.setTextColor(Color.WHITE);
+        google_txt2.setTextSize(20);
+        google_txt3.setTextColor(Color.WHITE);
+        google_txt3.setTextSize(20);
+        google_txt4.setTextColor(Color.WHITE);
+        google_txt4.setTextSize(20);
+        google_txt5.setTextColor(Color.WHITE);
+        google_txt5.setTextSize(20);
+        google_txt6.setTextColor(Color.WHITE);
+        google_txt6.setTextSize(20);
 
         btn_game_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +108,26 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent,RES_CODE);
             }
         });
+
+        final String finalGooglePhoto = googlePhoto;
+        Thread proThread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(finalGooglePhoto);
+                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        proThread.start();
+
 
 
 

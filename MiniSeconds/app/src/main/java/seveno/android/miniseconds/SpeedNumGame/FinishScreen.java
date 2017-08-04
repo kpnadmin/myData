@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Intent;
 
 import java.util.Locale;
 
+import seveno.android.miniseconds.AvoidStarGame.AvoidStarMain;
 import seveno.android.miniseconds.R;
 
 public class FinishScreen extends AppCompatActivity {
@@ -55,7 +57,10 @@ public class FinishScreen extends AppCompatActivity {
     }
 
     public void btn_ReturnMain(View view){
-
+        Intent intent = new Intent(this, AvoidStarMain.class);
+        intent.putExtra("seveno.android.miniseconds.avoidstargame.initialTime",0);
+        intent.putExtra("seveno.android.miniseconds.avoidstargame.numErrors",0);
+        startActivity(intent);
         finish();
     }
 }

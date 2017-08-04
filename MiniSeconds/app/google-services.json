@@ -13,6 +13,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "242903320826-rehabnplb08ubq952huegpncs9dk5ilu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "seveno.android.miniseconds",
+            "certificate_hash": "26f1aea6f0805075df9febebaa08bcff09c7ea85"
+          }
+        },
+        {
           "client_id": "242903320826-d0vm08j318106hta8367qu2ichmab06n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -27,7 +35,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAcYJnbChKTgQ-SPxkERQAzdJRiWVyJxdc"
+          "current_key": "AIzaSyD51QSKxyS_w0u7WoIBqetvBfeH86G_QSc"
         }
       ],
       "services": {

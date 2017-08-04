@@ -14,17 +14,20 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import seveno.android.miniseconds.GameOver;
 import seveno.android.miniseconds.R;
 
 public class SpeedyNumPlay extends AppCompatActivity  {
 
     private static final int ERROR_PENALTY_SECONDS = 5;
+    private static int t_end_num =0;   // 1이라면 반복문 빠져나감
     private static Sequence sequence;
     private static long startTime;
     private static long timeTakenMillis;
@@ -36,8 +39,11 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private static Handler h2 = new Handler();
     private static Runnable run;
     private TextView txt_speedy_time;
-    private static Thread t;
+    private static Thread t1;
     private Integer[] speedyNumBtn;
+    private ProgressBar bar_speedyNum;
+    Handler handler_progress = new Handler();
+    private int end_speedyNum_bar = 100;
 
 
     @Override
@@ -46,7 +52,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         setContentView(R.layout.activity_speedy_num_play);
 
         txt_speedy_time = (TextView) findViewById(R.id.txt_speedy_time);
-
+        bar_speedyNum = (ProgressBar) findViewById(R.id.bar_speedyNum);
         speedyNumBtn = new Integer[9];
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
@@ -54,17 +60,14 @@ public class SpeedyNumPlay extends AppCompatActivity  {
             startTime = System.currentTimeMillis();
             numErrors = 0;
             timerRunning = true;
-
+            bar_speedyNum.setProgress(bar_speedyNum.getMax());
             //첫 시작한 현재시간
             final long start = System.currentTimeMillis();
             //시간포맷팅을 위한 포맷설정
             final SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:SSS");
             run = new Runnable() {
-
-
                 @Override
                 public void run() {
-
                     timeTakenMillis = System.currentTimeMillis() - startTime;
                     txt_speedy_time.setText("Time: "+(convertToMinutesAndSeconds(timeTakenMillis)));
                     h2.postDelayed(this, 500);
@@ -106,28 +109,73 @@ public class SpeedyNumPlay extends AppCompatActivity  {
             h2.postDelayed(run, 0);
         } else {
          txt_speedy_time.setText(convertToMinutesAndSeconds(timeTakenMillis));
+
         }
 
+                handler_progress = new Handler();
+               t1 = new Thread(new Runnable() {
+                    @Override
+                    public void run() { // Thread 로 작업할 내용을 구현
+
+                        for(int i =  bar_speedyNum.getProgress(); i >= 0; i=i-1){
+                            if(t_end_num ==1) {break;};
+                            handler_progress.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    bar_speedyNum.setProgress(bar_speedyNum.getProgress()-1);
+
+                                }
+                            });
+                            //1초동안 멈춤
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            //SystemClock.sleep(100);
+                            end_speedyNum_bar = bar_speedyNum.getProgress();
+                            if(end_speedyNum_bar == 0){
+                                Game_Over(end_speedyNum_bar);
+                            }
+                        }
+                    }
+                });
+
+        t1.start(); // 쓰레드 시작
+
+
+
     }
-    //On button click, check if it is correct (If not then increase error count). If correct then make the button unpressable and translucent,
-    //then check if all buttons have been correctly pressed. If they have then update the saved high scores if necessary. Start the finish screen.
+    public void Game_Over(int end_speedyNum_bar){
+        h2.removeCallbacks(run);
+        timerRunning = false;
+        t1.interrupt();
+        Intent intent = new Intent(this, GameOver.class);
+        intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
+        intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
+        startActivity(intent);
+        finish();
+    }
+
+
+    //버튼을 클릭 한 후 올바른지 확인. 올바른 경우 버튼을 누르지 않고 반투명하게
+    //모든 버튼이 바르게 눌려 졌는지 확인. 그완료 화면을 시작
     public void btn_SpeedyClick(View v) throws InterruptedException{
         if(sequence.isCorrect(Integer.parseInt((String)v.getTag()))){
             ((Button)v).setAlpha((float)0.2);
             ((Button)v).setClickable(false);
             if(sequence.allCorrect()){
-                h2.removeCallbacks(run);
+                t_end_num = 1;
                 timerRunning = false;
                 long finalTime = timeTakenMillis + (numErrors*ERROR_PENALTY_SECONDS*1000);
-              /*int highScorePosition = findHighScorePosition(finalTime);
-                if(highScorePosition >= 1 && highScorePosition <= 10){
-                    updateHighScores(highScorePosition, finalTime);
-                }*/
+                t1.interrupt();
+                h2.removeCallbacks(run);
                 Intent intent = new Intent(this, FinishScreen.class);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
                /* intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
                 intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
+
                 startActivity(intent);
                 finish();
             }
