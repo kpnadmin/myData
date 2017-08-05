@@ -73,6 +73,49 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                     h2.postDelayed(this, 500);
                 }
             };
+       //
+            if(timerRunning){
+                h2.postDelayed(run, 0);
+            } else {
+                txt_speedy_time.setText(convertToMinutesAndSeconds(timeTakenMillis));
+
+            }
+
+            handler_progress = new Handler();
+            t1 = new Thread(new Runnable() {
+                @Override
+                public void run() { // Thread 로 작업할 내용을 구현
+
+                    for(int i =  bar_speedyNum.getProgress(); i >= 0; i=i-1){
+                        if(t_end_num ==1) {break;};
+                        handler_progress.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                bar_speedyNum.setProgress(bar_speedyNum.getProgress()-1);
+
+                            }
+                        });
+                        //1초동안 멈춤
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        //SystemClock.sleep(100);
+                        end_speedyNum_bar = bar_speedyNum.getProgress();
+                        if(end_speedyNum_bar == 0){
+                            Game_Over(end_speedyNum_bar);
+                        }
+                    }
+                }
+            });
+
+            t1.start(); // 쓰레드 시작
+
+
+
+
+
         }
 
 
@@ -105,43 +148,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
 
        // setupActionBar();
         //addSequenceToButtons();
-     if(timerRunning){
-            h2.postDelayed(run, 0);
-        } else {
-         txt_speedy_time.setText(convertToMinutesAndSeconds(timeTakenMillis));
 
-        }
-
-                handler_progress = new Handler();
-               t1 = new Thread(new Runnable() {
-                    @Override
-                    public void run() { // Thread 로 작업할 내용을 구현
-
-                        for(int i =  bar_speedyNum.getProgress(); i >= 0; i=i-1){
-                            if(t_end_num ==1) {break;};
-                            handler_progress.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    bar_speedyNum.setProgress(bar_speedyNum.getProgress()-1);
-
-                                }
-                            });
-                            //1초동안 멈춤
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            //SystemClock.sleep(100);
-                            end_speedyNum_bar = bar_speedyNum.getProgress();
-                            if(end_speedyNum_bar == 0){
-                                Game_Over(end_speedyNum_bar);
-                            }
-                        }
-                    }
-                });
-
-        t1.start(); // 쓰레드 시작
 
 
 

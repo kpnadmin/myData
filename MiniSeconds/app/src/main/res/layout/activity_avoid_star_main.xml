@@ -9,10 +9,10 @@
     android:background="@drawable/main_bg_1"
     >
     
-<!--    <seveno.android.miniseconds.AvoidStarGame.AGameView
+    <seveno.android.miniseconds.AvoidStarGame.AGameView
         android:id="@+id/Agame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />-->
+        android:layout_height="match_parent" />
     
     
     
