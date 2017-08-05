@@ -46,31 +46,31 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       Mainintent = getIntent();
+       Mainintent = getIntent();/*
         String googlename = Mainintent.getStringExtra("username");
         String googleEmail = Mainintent.getStringExtra("userEmail");
-        String googleId = Mainintent.getStringExtra("userId");
+        String googleId = Mainintent.getStringExtra("userId");*/
         String charsetname = "UTF-8";
         String googlePhoto = null;
-        try {
+        /*try {
             googlePhoto = URLDecoder.decode(Mainintent.getStringExtra("userPhoto"), charsetname);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }
-        String googleIdToken = Mainintent.getStringExtra("userIdToken");
+        }*/
+        //String googleIdToken = Mainintent.getStringExtra("userIdToken");
        /* try {
             photo_url = Uri.parse(googlePhoto);
         } catch (Exception e) {
             e.printStackTrace();
         }*/
-        String googleServerCode = Mainintent.getStringExtra("userServerCode");
+       // String googleServerCode = Mainintent.getStringExtra("userServerCode");
 
 
 
         btn_game_start = (Button) findViewById(R.id.btn_game_start);
         //btn_logout = (Button) findViewById(R.id.btn_logout);
 
-      google_txt1 = (TextView) findViewById(R.id.txt_google1);
+     /* google_txt1 = (TextView) findViewById(R.id.txt_google1);
         google_txt2 = (TextView) findViewById(R.id.txt_google2);
         google_txt3 = (TextView) findViewById(R.id.txt_google3);
         google_txt4 = (TextView) findViewById(R.id.txt_google4);
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
         google_txt5.setTextColor(Color.WHITE);
         google_txt5.setTextSize(20);
         google_txt6.setTextColor(Color.WHITE);
-        google_txt6.setTextSize(20);
+        google_txt6.setTextSize(20);*/
 
         btn_game_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        final String finalGooglePhoto = googlePhoto;
+   /*     final String finalGooglePhoto = googlePhoto;
         Thread proThread = new Thread(){
             @Override
             public void run() {
@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
                 img_profile.setImageBitmap(bitmap);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
 
 
 
