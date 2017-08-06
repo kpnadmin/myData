@@ -9,7 +9,8 @@ import java.util.Random;
  */
 
 public class Sequence {
-    private final ArrayList<Integer> primeNumbers = new ArrayList<Integer>(Arrays.asList(2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229));
+   // private final ArrayList<Integer> primeNumbers = new ArrayList<Integer>(Arrays.asList(2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229));
+   private final ArrayList<Integer> primeNumbers  = new ArrayList<Integer>(Arrays.asList(2,3,5,8, 12 , 17, 23, 30, 38));
     private ArrayList<Integer> randomedNumbers;
     private ArrayList<Integer> orderedNumbers;
     private int numCorrect;
@@ -24,15 +25,17 @@ public class Sequence {
             for(int i = 1; i<=9; i++){
                 orderedNumbers.add(i);
             }
-        } else if(gameType>0 && gameType<10){//Game Type: Multiples
-            for(int i = 1; i <= 9; i++){
-                orderedNumbers.add(i*(gameType+1));
+        } else if(gameType == 1){//Game Type: Multiples
+            Random rand1 = new Random();
+            int r1  = rand1.nextInt(9)+1;
+            for(int i = 1; i <= r1; i++){
+                orderedNumbers.add(i*(r1+1));
             }
-        } else if(gameType==10){//Game Type: Odds
+        } else if(gameType == 2){//Game Type: Odds
             for(int i = 0; i < 9; i++){
                 orderedNumbers.add(1+(i*2));
             }
-        } else if(gameType==11){//Game Type: Primes
+        } else if(gameType == 3){//Game Type: Primes
             orderedNumbers.addAll(primeNumbers);
         }
         orderedNumbers.trimToSize();
@@ -84,5 +87,25 @@ public class Sequence {
         }
         return allCorrect;
     }
+
+
+    //Returns the string form of the game type.
+    public String getgameType(){
+        String modeName = "";
+        switch(gameType){
+            case 0: modeName = "Singles";
+                break;
+            case 1: modeName = "Multiples of n";
+                break;
+            case 2: modeName = "Odds";
+                break;
+            case 3: modeName = "Primes";
+                break;
+        }
+        return modeName;
+    }
+
+
+
 
 }

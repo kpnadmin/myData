@@ -29,6 +29,7 @@ Copyright 2013 Jesse Toms
     <string name="button_highscores">High Scores</string>
     <string name="button_newgame">New Game</string>
     <string name="button_ok">OK</string>
+    <string name="button_NextGame">Next Game</string>
     <string name="button_quickplay">Quickplay</string>
     <string name="button_reset_high_scores">Reset High Scores</string>
     <string name="button_start">Start</string>

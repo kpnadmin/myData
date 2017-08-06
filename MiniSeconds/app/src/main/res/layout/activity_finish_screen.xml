@@ -60,8 +60,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="btn_ReturnMain"
-        android:text="@string/button_ok"
+        android:onClick="btn_NextGame"
+        android:text="@string/button_NextGame"
         android:textSize="@dimen/text_size"
         android:typeface="serif"/>
+    
+    
+<!--    <Button
+        android:id="@+id/button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="btn_NextGame"
+        android:text="@string/button_ok"
+        android:textSize="@dimen/text_size"
+        android:typeface="serif"/>-->
 </LinearLayout>

@@ -91,7 +91,7 @@ public class IntroActivity extends AppCompatActivity implements GoogleApiClient.
         signInButton.setScopes(gso.getScopeArray());*/
         // [END customize_button]
 
-        //signIn();
+        signIn();
     }
 
     @Override

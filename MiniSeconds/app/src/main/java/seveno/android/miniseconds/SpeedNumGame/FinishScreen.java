@@ -63,4 +63,13 @@ public class FinishScreen extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void btn_NextGame(View view){
+        Intent intent = new Intent(this, AvoidStarMain.class);
+        intent.putExtra("seveno.android.miniseconds.avoidstargame.initialTime",0);
+        intent.putExtra("seveno.android.miniseconds.avoidstargame.numErrors",0);
+        startActivityForResult(intent, 0);
+        finish();
+    }
+
+
 }

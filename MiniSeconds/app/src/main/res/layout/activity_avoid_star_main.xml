@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +9,55 @@
     android:background="@drawable/main_bg_1"
     >
     
-    <seveno.android.miniseconds.AvoidStarGame.AGameView
-        android:id="@+id/Agame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    
+    <LinearLayout
+        android:id="@+id/layout_aGamebg1"
+        android:layout_width="368dp"
+        android:layout_height="368dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    
+        <LinearLayout
+            android:id="@+id/layout_a_start"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="vertical">
+        </LinearLayout>
+    </LinearLayout>
     
     
+    <LinearLayout
+        android:id="@+id/layout_avoidTarget"
+        android:layout_width="368dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="@+id/layout_aGamebg1"
+        app:layout_constraintTop_toBottomOf="@+id/layout_aGamebg1">
+    </LinearLayout>
     
-    
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_aProgress"
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        
+        <ProgressBar
+            android:id="@+id/bar_AvoidStar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:max="100"
+            />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

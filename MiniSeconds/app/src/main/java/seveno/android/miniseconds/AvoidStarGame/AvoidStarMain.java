@@ -13,7 +13,13 @@ public class AvoidStarMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.activity_avoid_star_main);
-        setContentView(new AGameView(this));
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setContentView(R.layout.activity_avoid_star_main);
+        //setContentView(new AGameView(this));
     }
 }

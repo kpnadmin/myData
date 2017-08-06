@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Random;
 
 import seveno.android.miniseconds.GameOver;
 import seveno.android.miniseconds.R;
@@ -44,7 +45,8 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private ProgressBar bar_speedyNum;
     Handler handler_progress = new Handler();
     private int end_speedyNum_bar = 100;
-
+    private int gameType =0;
+    private Intent speedyIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,16 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         txt_speedy_time = (TextView) findViewById(R.id.txt_speedy_time);
         bar_speedyNum = (ProgressBar) findViewById(R.id.bar_speedyNum);
         speedyNumBtn = new Integer[9];
+        Random rand2 = new Random();
+
+        gameType = rand2.nextInt(4);
+
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
-            sequence = new Sequence(getIntent().getIntExtra("seveno.android.miniseconds.speednumgame.currentGameType", 0));
+            //sequence = new Sequence(getIntent().getIntExtra("seveno.android.miniseconds.speednumgame.currentGameType", 0));
+            speedyIntent = getIntent();
+            int gameT = speedyIntent.getIntExtra("seveno.android.miniseconds.speednumgame.currentGameType", 0);
+            sequence = new Sequence(gameType);
             startTime = System.currentTimeMillis();
             numErrors = 0;
             timerRunning = true;
