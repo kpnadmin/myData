@@ -17,18 +17,71 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     
-        <LinearLayout
-            android:id="@+id/layout_a_start"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:orientation="vertical">
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/img_star_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+
+
     </LinearLayout>
     
+    
+   <!-- <LinearLayout
+        android:id="@+id/layout_a_start"
+        android:layout_width="0dp"
+        android:layout_height="360dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+    </LinearLayout>-->
     
     <LinearLayout
         android:id="@+id/layout_avoidTarget"
@@ -38,6 +91,18 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="@+id/layout_aGamebg1"
         app:layout_constraintTop_toBottomOf="@+id/layout_aGamebg1">
+        
+        
+      <!--  <seveno.android.miniseconds.avoidstargame.KnightView
+            android:id="@+id/img_KnightRun"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_gravity="center_horizontal"
+            >
+            
+        </seveno.android.miniseconds.avoidstargame.KnightView>-->
+      
+        
     </LinearLayout>
     
     <LinearLayout

@@ -47,6 +47,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private int end_speedyNum_bar = 100;
     private int gameType =0;
     private Intent speedyIntent;
+    private TextView txt_speedyError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         setContentView(R.layout.activity_speedy_num_play);
 
         txt_speedy_time = (TextView) findViewById(R.id.txt_speedy_time);
+        txt_speedyError = (TextView) findViewById(R.id.txt_speedyError);
         bar_speedyNum = (ProgressBar) findViewById(R.id.bar_speedyNum);
         speedyNumBtn = new Integer[9];
         Random rand2 = new Random();
@@ -197,7 +199,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
             }
         } else {
             numErrors++;
-            errorsMadeTextView.setText("Errors: "+numErrors);
+            txt_speedyError.setText("Errors: "+numErrors);
         }
     }
 

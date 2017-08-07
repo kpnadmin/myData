@@ -145,7 +145,7 @@
             android:text="8"
             android:typeface="serif"
             />
-        
+    
         <Button
             android:id="@+id/SpeedyBtn_9"
             android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
             android:onClick="btn_SpeedyClick"
             android:text="9"
             android:typeface="serif"
-            />
+            android:visibility="visible"/>
     </GridLayout>
     
     <LinearLayout

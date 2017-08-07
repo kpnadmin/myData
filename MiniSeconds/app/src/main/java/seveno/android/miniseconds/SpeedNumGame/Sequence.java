@@ -28,8 +28,8 @@ public class Sequence {
         } else if(gameType == 1){//Game Type: Multiples
             Random rand1 = new Random();
             int r1  = rand1.nextInt(9)+1;
-            for(int i = 1; i <= r1; i++){
-                orderedNumbers.add(i*(r1+1));
+            for(int i = 1; i <= 9; i++){
+                orderedNumbers.add(i*(r1));
             }
         } else if(gameType == 2){//Game Type: Odds
             for(int i = 0; i < 9; i++){

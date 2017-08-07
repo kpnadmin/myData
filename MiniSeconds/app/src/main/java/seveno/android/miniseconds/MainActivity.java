@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),SpeedyNumPlay.class);
                 int GameNum = 1;
-                intent.putExtra("var1", GameNum);
+                intent.putExtra("var1", RES_OK);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.currentGameType", 0);
                 startActivityForResult(intent,RES_CODE);
             }
