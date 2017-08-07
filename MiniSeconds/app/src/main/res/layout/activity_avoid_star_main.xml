@@ -23,48 +23,48 @@
     
         <ImageView
             android:id="@+id/img_star_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star"/>
-    
-        <ImageView
-            android:id="@+id/img_star_4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star"/>
-    
-        <ImageView
-            android:id="@+id/img_star_3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star"/>
-    
-        <ImageView
-            android:id="@+id/img_star_6"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star"/>
-    
-        <ImageView
-            android:id="@+id/img_star_5"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
 
             android:layout_weight="1"
             app:srcCompat="@android:drawable/btn_star"/>
     
         <ImageView
             android:id="@+id/img_star_2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star"/>
+    
+        <ImageView
+            android:id="@+id/img_star_6"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
 
             android:layout_weight="1"
             app:srcCompat="@android:drawable/btn_star"/>
@@ -101,8 +101,15 @@
             >
             
         </seveno.android.miniseconds.avoidstargame.KnightView>-->
-      
-        
+    
+    
+        <ImageView
+            android:id="@+id/img_knight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/knight"
+            android:layout_gravity="center_horizontal"
+            />
     </LinearLayout>
     
     <LinearLayout

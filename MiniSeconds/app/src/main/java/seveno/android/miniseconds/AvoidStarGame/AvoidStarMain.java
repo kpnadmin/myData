@@ -1,6 +1,7 @@
 package seveno.android.miniseconds.AvoidStarGame;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
@@ -57,8 +58,8 @@ for(int i=0; i < imgView.length(); i++){
        // KnightView nView = new KnightView(this);
         layout_avoidTarget = (LinearLayout) findViewById(R.id.layout_avoidTarget) ;
 
-        knightView = new KnightView(getApplicationContext());
-        layout_avoidTarget.addView(knightView);
+        /*knightView = new KnightView(getApplicationContext());
+        layout_avoidTarget.addView(knightView);*/
 
 
        /* requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -88,7 +89,7 @@ for(int i=0; i < imgView.length(); i++){
         Random rand4 = new Random();
 
         int direct = rand4.nextInt(2);
-
+        int startEnemy = 0;
         //setContentView(new AGameView(this));
         if (savedInstanceState == null) {
             startTime = System.currentTimeMillis();
@@ -98,11 +99,40 @@ for(int i=0; i < imgView.length(); i++){
             move_Y = Ran_move.nextInt(480) + 1;
 
             bar_AvoidStar = (ProgressBar) findViewById(R.id.bar_AvoidStar);
+            int temp = 0;
 
-            int startEnemy = rand3.nextInt(6);
+            for (int j = 0 ; j < idArr.length; j++) {
+                startEnemy = rand3.nextInt(6);
+                if(!idArr1.contains(startEnemy) || (j == 0) ){
+                    idArr1.add(startEnemy);
+                }else{
+                    j--;
+                }
+            }
 
 
+          /*  for (int j = 0 ; j < idArr.length; j++) {
+                startEnemy = rand3.nextInt(6);
+                if(j>=1){
+                    temp = -1;
+                    for (int k =0; k <idArr1.size(); k++){
+                       if(startEnemy == idArr1.get(k)){
+                           --j;
+                           temp =1;
+                           break;
+                       }
+                    }
+                    if(temp == -1){
+                    idArr1.add(startEnemy);
+                    }
+                }else{
+                    idArr1.add(startEnemy);
+                }
+            }*/
+
+       System.out.println(idArr1.toString());
             /*
+       
 
 ImageView img = (ImageView)findViewById(R.id.xxxx);
 
@@ -116,9 +146,42 @@ TranslateAnimation ani = new TranslateAnimation(
 
 img.startAnimation(ani);
             */
+            int[] location = new int[2];
+            StarimgView[startEnemy].getLocationOnScreen(location);
+
+            TranslateAnimation anim1 = new TranslateAnimation
+                    (location[0],   // fromXDelta
+                            location[0],  // toXDelta
+                            location[1],    // fromYDelta
+                            location[1]+800);// toYDelta
+
+            anim1.setDuration(500);
+
+            TranslateAnimation anim2 = new TranslateAnimation
+                    (location[0],   // fromXDelta
+                            location[0],  // toXDelta
+                            location[1],    // fromYDelta
+                            location[1]+200);// toYDelta
+
+            anim2.setDuration(500);
 
 
-            /*StarimgView[startEnemy];*/
+            if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            {
+                StarimgView[startEnemy].startAnimation(anim1);
+                anim1.setFillAfter(true);
+                // 세로 모드
+            }else if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            // 가로 모드
+                StarimgView[startEnemy].startAnimation(anim2);
+                anim2.setFillAfter(true);
+        }
+
+
+
+
+
+    /*        *//*StarimgView[startEnemy];*//*
         if(startEnemy == 0 ) {
             TranslateAnimation anim1 = new TranslateAnimation
                     (0,   // fromXDelta
@@ -175,7 +238,7 @@ img.startAnimation(ani);
             anim6.setFillAfter(true);
         }
 
-          toViewRawXY(StarimgView[startEnemy]);
+          toViewRawXY(StarimgView[startEnemy]);*/
 
            /* Toast.makeText(getApplicationContext(), sumX+" "+sumY,Toast.LENGTH_SHORT);*/
 
