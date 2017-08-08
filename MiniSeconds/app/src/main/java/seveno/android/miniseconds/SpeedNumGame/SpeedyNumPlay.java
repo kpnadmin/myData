@@ -92,11 +92,18 @@ public class SpeedyNumPlay extends AppCompatActivity  {
 
             }
 
+
+
+
             handler_progress = new Handler();
             t1 = new Thread(new Runnable() {
                 @Override
                 public void run() { // Thread 로 작업할 내용을 구현
-
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     for(int i =  bar_speedyNum.getProgress(); i >= 0; i=i-1){
                         if(t_end_num ==1) {break;};
                         handler_progress.post(new Runnable() {
@@ -123,11 +130,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
 
             t1.start(); // 쓰레드 시작
 
-
-
-
-
-        }
+        }//onCreate
 
 
 

@@ -103,13 +103,7 @@
         </seveno.android.miniseconds.avoidstargame.KnightView>-->
     
     
-        <ImageView
-            android:id="@+id/img_knight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/knight"
-            android:layout_gravity="center_horizontal"
-            />
+       
     </LinearLayout>
     
     <LinearLayout
