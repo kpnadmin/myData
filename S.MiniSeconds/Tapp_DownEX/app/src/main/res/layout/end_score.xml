@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:paddingTop="50dp"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/white">
+
+    <ImageView
+            android:layout_width="291.5dp"
+            android:layout_height="127.5dp"
+            android:id="@+id/timesUp" android:layout_gravity="center" android:background="@drawable/time_up"/>
+
+    <ImageView
+            android:layout_width="291.5dp"
+            android:layout_height="127.5dp"
+            android:id="@+id/yourScore" android:layout_gravity="center" android:background="@drawable/your_score"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="96dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="NULL"
+            android:id="@+id/end_score" android:layout_gravity="center" android:textColor="#4a414f"
+            android:textStyle="bold" android:textSize="75dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="enter your name"
+            android:ems="10"
+            android:id="@+id/myName" android:layout_gravity="center" android:textColor="#989898"
+            android:gravity="center_horizontal"
+            android:imeOptions="actionSend"/>
+
+    <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" android:layout_gravity="center">
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="menu"
+                android:id="@+id/menu" android:layout_gravity="center"/>
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="replay"
+                android:id="@+id/replay_game" android:layout_gravity="left|center_vertical"/>
+    </TableRow>
+
+</LinearLayout>

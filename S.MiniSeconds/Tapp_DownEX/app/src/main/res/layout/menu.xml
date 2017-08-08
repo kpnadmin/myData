@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                tools:context=".SplashActivity" android:background="@drawable/white">
+
+
+    <ImageView
+            android:layout_width="298.5dp"
+            android:layout_height="127.5dp"
+            android:id="@+id/bouncyLogo" android:layout_gravity="center" android:background="@drawable/title_top"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:translationY="-140dp"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="187.5dp"
+            android:layout_height="56.25dp"
+            android:id="@+id/button"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:translationX="-50dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:translationY="-30dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/playbtn"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="187.5dp"
+            android:layout_height="56.25dp"
+            android:id="@+id/button2"
+            android:textStyle="bold"
+            android:translationY="50dp"
+            android:layout_centerHorizontal="true"
+            android:translationX="-50dp"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:background="@drawable/instrbtn"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="187.5dp"
+            android:layout_height="56.25dp"
+            android:id="@+id/button3"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:translationY="130dp"
+            android:layout_centerHorizontal="true"
+            android:translationX="-50dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/leaderbtn"/>
+
+</RelativeLayout>

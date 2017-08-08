@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/white">
+
+    <ImageView
+            android:layout_width="298.5dp"
+            android:layout_height="127.5dp"
+            android:id="@+id/bouncyLogo" android:layout_gravity="center" android:background="@drawable/hscore"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    <ImageView
+            android:layout_width="250dp"
+            android:layout_height="175dp"
+            android:id="@+id/noPlace" android:layout_gravity="center" android:background="@drawable/score_banner"
+            android:translationY="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/bouncyLogo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/hScore" android:layout_gravity="center" android:textColor="#606060"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/hScore2" android:layout_gravity="center" android:textColor="#646262"
+            />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore2"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/hScore3" android:layout_gravity="center" android:textColor="#646262"
+            />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore3"
+            android:id="@+id/hScore4" android:layout_gravity="center" android:textColor="#646262"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore4"
+            android:id="@+id/hScore5" android:layout_gravity="center" android:textColor="#646262"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore5"
+            android:id="@+id/hScore6" android:layout_gravity="center" android:textColor="#646262"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_marginBottom="7dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/hScore6"
+            android:id="@+id/hScore7" android:layout_gravity="center" android:textColor="#646262"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore7"
+            android:id="@+id/hScore8" android:layout_gravity="center" android:textColor="#646262"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/hScore8"
+            android:id="@+id/hScore9" android:layout_gravity="center" android:textColor="#646262"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_below="@+id/hScore9"
+            android:id="@+id/hScore10" android:layout_gravity="center" android:textColor="#646262"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:translationY="30dp"
+            android:background="@drawable/hs15"
+            android:id="@+id/fts"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/bouncyLogo"
+            android:layout_marginLeft="13dp"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/hs30"
+            android:id="@+id/ts"
+            android:translationY="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:translationY="30dp"
+            android:background="@drawable/hs45"
+            android:id="@+id/ffs"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/bouncyLogo"
+            android:layout_marginRight="13dp"/>
+
+</RelativeLayout>

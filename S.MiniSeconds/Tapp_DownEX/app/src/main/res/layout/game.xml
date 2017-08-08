@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/game_screen"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/white">
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="0"
+              android:textColor="#4e504e"
+              android:id="@+id/TextViewCount"
+              android:textSize="150dip"
+              android:layout_centerHorizontal="true"
+              android:layout_centerVertical="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tap to start"
+            android:textSize="25dp"
+            android:textColor="#bf8cb1"
+            android:id="@+id/countdown"
+            android:translationY="-100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+</RelativeLayout>
