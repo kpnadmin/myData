@@ -40,6 +40,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private static Handler h2 = new Handler();
     private static Runnable run;
     private TextView txt_speedy_time;
+    private TextView txt_speedy_score;
     private static Thread t1;
     private Integer[] speedyNumBtn;
     private ProgressBar bar_speedyNum;
@@ -48,6 +49,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private int gameType =0;
     private Intent speedyIntent;
     private TextView txt_speedyError;
+    private int speedy_score = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         setContentView(R.layout.activity_speedy_num_play);
 
         txt_speedy_time = (TextView) findViewById(R.id.txt_speedy_time);
+        txt_speedy_score = (TextView) findViewById(R.id.txt_speedy_score);
         txt_speedyError = (TextView) findViewById(R.id.txt_speedyError);
         bar_speedyNum = (ProgressBar) findViewById(R.id.bar_speedyNum);
         speedyNumBtn = new Integer[9];
@@ -185,6 +188,8 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         if(sequence.isCorrect(Integer.parseInt((String)v.getTag()))){
             ((Button)v).setAlpha((float)0.2);
             ((Button)v).setClickable(false);
+            speedy_score += 200;
+            txt_speedy_score.setText(String.valueOf(speedy_score));
             if(sequence.allCorrect()){
                 t_end_num = 1;
                 timerRunning = false;
@@ -194,6 +199,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                 Intent intent = new Intent(this, FinishScreen.class);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
+                intent.putExtra("seveno.android.miniseconds.speednumgame.speedy_score",speedy_score);
                /* intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
                 intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
 

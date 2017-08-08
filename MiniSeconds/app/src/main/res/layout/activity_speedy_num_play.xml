@@ -36,6 +36,13 @@
             android:text="시간"/>
     
         <TextView
+            android:id="@+id/txt_speedy_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="score : "/>
+    
+        <TextView
             android:id="@+id/txt_speedyError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
