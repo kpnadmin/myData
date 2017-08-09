@@ -3,14 +3,18 @@ package seveno.android.miniseconds.AvoidStarGame;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -26,12 +30,10 @@ import java.util.Random;
 
 import seveno.android.miniseconds.R;
 
-public class AvoidStarMain extends AppCompatActivity implements View.OnTouchListener {
+public class AvoidStarMain extends AppCompatActivity implements View.OnTouchListener{
 
     private Random Ran_move;
     private int move_X, move_Y;
-    private static Thread t2;
-    Handler handler_progress2 = new Handler();
     private ProgressBar bar_AvoidStar;
     private static int t2_end_num = 0;
     private static long startTime;
@@ -45,7 +47,23 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
     private LinearLayout layout_avoidTarget;
     private KnightView knightView;
     private static Handler h3 = new Handler();
-    private static Runnable run3;
+    private static Runnable run2;
+    Handler handler_progress2 = new Handler();
+    private static Thread t2;
+
+
+    private static final String TAG = "Touch";
+
+    Matrix matrix = new Matrix();
+    private Matrix savedMatrix = new Matrix();
+    private Matrix savedMatrix2 = new Matrix();
+
+    static final int NONE = 0;
+    static final int DRAG = 1;
+
+    int mode = NONE;
+
+    private PointF start = new PointF();
 
 
 /*
@@ -73,6 +91,11 @@ for(int i=0; i < imgView.length(); i++){
                 R.id.img_star_5,
                 R.id.img_star_6
         };
+
+        ImageView img_knight1 = (ImageView) findViewById(R.id.img_knight1);
+        img_knight1.setOnTouchListener(this);
+
+
 
         for (int i = 0; i < 6; i++) {
             StarimgView[i] = (ImageView) findViewById(idArr[i]);
@@ -126,34 +149,45 @@ for(int i=0; i < imgView.length(); i++){
 
 
 
-           for(int i = 0 ; i < 6; i++) {
-
-               int[] location = new int[2];
-               StarimgView[idArr1.get(0)].getLocationOnScreen(location);
-
-               TranslateAnimation ani_start = new TranslateAnimation
-                       (location[0],   // fromXDelta
-                               location[0],  // toXDelta
-                               location[1],    // fromYDelta
-                               location[1] + 800);// toYDelta
-               ani_start.setStartOffset(1000);
-               ani_start.setDuration(500);
-               StarimgView[idArr1.get(0)].startAnimation(ani_start);
-               ani_start.setFillAfter(true);
-               idArr1.remove(0);
-           }
 
            //프로그래스바
             bar_AvoidStar.setProgress(bar_AvoidStar.getMax());
 
             new ProgressTask().execute(bar_AvoidStar.getProgress());
 
-
-
-
-
         }//
     }
+
+    public void Drop_star(){
+
+
+            int[] location = new int[2];
+            int target_img = idArr1.get(0) ;
+            StarimgView[target_img].getLocationOnScreen(location);
+
+            TranslateAnimation ani_start = new TranslateAnimation
+                    (location[0],   // fromXDelta
+                            location[0],  // toXDelta
+                            location[1],    // fromYDelta
+                            location[1] + 700);// toYDelta
+            ani_start.setStartOffset(1000);
+            ani_start.setDuration(500);
+            ani_start.setFillAfter(true);
+            StarimgView[target_img].startAnimation(ani_start);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        idArr1.remove(0);
+
+
+
+
+
+    }
+
+
 
     class ProgressTask extends AsyncTask<Integer, Integer, Boolean> {
         private boolean isPerformed = false;
@@ -182,7 +216,20 @@ for(int i=0; i < imgView.length(); i++){
             bar_AvoidStar.setProgress(values[0]);
             if (bar_AvoidStar.getProgress() == 0) {
                 isPerformed = true;
+            }else if(bar_AvoidStar.getProgress() == 90){
+                Drop_star();
+            }else if(bar_AvoidStar.getProgress() == 75){
+                Drop_star();
+            }else if(bar_AvoidStar.getProgress() == 60){
+                Drop_star();
+            }else if(bar_AvoidStar.getProgress() == 45){
+                Drop_star();
+            }else if(bar_AvoidStar.getProgress() == 30){
+                Drop_star();
+            }else if(bar_AvoidStar.getProgress() == 15){
+                Drop_star();
             }
+
         }
 
 
@@ -241,13 +288,98 @@ for(int i=0; i < imgView.length(); i++){
 
     }
 
+    float oldXvalue;
+    float oldYvalue;
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        return false;
+        ImageView view = (ImageView) v;
+
+        int width = ((ViewGroup) view.getParent()).getWidth() - v.getWidth();
+        int height = ((ViewGroup) view.getParent()).getHeight() - v.getHeight();
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            oldXvalue = event.getX();
+            oldYvalue = event.getY();
+            //  Log.i("Tag1", "Action Down X" + event.getX() + "," + event.getY());
+            Log.i("Tag1", "Action Down rX " + event.getRawX() + "," + event.getRawY());
+        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            v.setX(event.getRawX() - oldXvalue);
+            v.setY(event.getRawY() - (oldYvalue + v.getHeight()));
+            //  Log.i("Tag2", "Action Down " + me.getRawX() + "," + me.getRawY());
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+
+            if (v.getX() > width && v.getY() > height) {
+                v.setX(width);
+                v.setY(height);
+            } else if (v.getX() < 0 && v.getY() > height) {
+                v.setX(0);
+                v.setY(height);
+            } else if (v.getX() > width && v.getY() < 0) {
+                v.setX(width);
+                v.setY(0);
+            } else if (v.getX() < 0 && v.getY() < 0) {
+                v.setX(0);
+                v.setY(0);
+            } else if (v.getX() < 0 || v.getX() > width) {
+                if (v.getX() < 0) {
+                    v.setX(0);
+                    v.setY(event.getRawY() - oldYvalue - v.getHeight());
+                } else {
+                    v.setX(width);
+                    v.setY(event.getRawY() - oldYvalue - v.getHeight());
+                }
+            } else if (v.getY() < 0 || v.getY() > height) {
+                if (v.getY() < 0) {
+                    v.setX(event.getRawX() - oldXvalue);
+                    v.setY(0);
+                } else {
+                    v.setX(event.getRawX() - oldXvalue);
+                    v.setY(height);
+                }
+            }
+
+
+        }
+        return true;
+
+
+
+
+
+
+       /* switch (event.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+                savedMatrix.set(matrix);
+                start.set(event.getX(), event.getY());
+                Log.d(TAG, "mode=DRAG");
+                mode = DRAG;
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_POINTER_UP:
+                mode = NONE;
+                Log.d(TAG, "mode=NONE");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (mode == DRAG) {
+                    // ...
+                    matrix.set(savedMatrix);
+                    matrix.postTranslate(event.getX() - start.x, event.getY()
+                            - start.y);
+                }
+                break;
+        }
+
+        view.setImageMatrix(matrix);
+        return true; // indicate event was handled*/
     }
 
 
+
 }
+
+
+
 
           /*  for (int j = 0 ; j < idArr.length; j++) {
                 startEnemy = rand3.nextInt(6);
