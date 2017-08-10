@@ -1,207 +1,228 @@
 package seveno.android.miniseconds.AvoidStarGame;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.support.annotation.Nullable;
+import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.View;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 import seveno.android.miniseconds.R;
 
 /**
- * Created by 김태훈 on 2017-08-07.
+ * Created by Administrator on 2017-08-10.
  */
 
-public class KnightView extends View{
+public class KnightView extends SurfaceView implements SurfaceHolder.Callback, Runnable{
 
-    private String text = null;
-    private int backgroundColor = Color.RED;
 
-    private String tempText;
+    private Context mContext;
+    private SurfaceHolder holder;
+    private Bitmap imgMove;
+    private int moveX = 0 ;
+    private int moveY  = 0 ;
+    private int imgWidth = 0 ;
+    private int imgHeight = 0 ;
+    private int moveLength = 20;
+    private Thread thread = null;
+    private Point pImage;
+    private Point pWindow;
+    private boolean bMove = false;
+    private int mouseX = 0 ;
+    private int mouseY = 0 ;
 
 
     public KnightView(Context context) {
         super(context);
+        mContext =context;
+
+        // surfaceHolder Create
+        holder = getHolder();
+        holder.addCallback(this);
+        setFocusable(true);
     }
 
-    public KnightView(Context context, @Nullable AttributeSet attrs) {
-        this(context,attrs,0);
+    public KnightView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        mContext =context;
+
+        // surfaceHolder Create
+        holder = getHolder();
+        holder.addCallback(this);
+        setFocusable(true);
     }
 
-    public KnightView(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        super(context,attrs,defStyle);
-
-        this.text = attrs.getAttributeValue(null,"text");
+    public KnightView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
-
-    public KnightView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-    /*
-        * xml 로 부터 모든 뷰를 inflate 를 끝내고 실행된다.
-        * 대부분 이 함수에서는 각종 변수 초기화가 이루어 진다.
-        * super 메소드에서는 아무것도 하지않기때문에 쓰지 않는다.
-        */
+    /** surface 가 생성될때 */
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    public void surfaceCreated(SurfaceHolder holder) {
 
+   /*     DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefeaultDisplay().getMetrics(dm);
+        dm.widthPixels;
+        dm.heightPixels*/
+
+        //window 크기
+        pWindow = new Point();
+        pWindow.x = 240;
+        pWindow.y = 240 ;
+        // 이미지 위치
+        pImage = new Point(0,0);
+        Resources res = getResources();
+        Bitmap tempBitmap = BitmapFactory.decodeResource(res, R.drawable.knight);
+        imgWidth = 240;
+        imgHeight = 240;
+        // 표시할 위치
+        moveX = pWindow.x /2;
+        moveY = pWindow.y / 2;
+        // 이미지 그리기 scaledBitmap width, height 에 맞추어생성됨
+        imgMove = Bitmap.createScaledBitmap(tempBitmap, imgWidth, imgHeight, true);
         setClickable(true);
-        Log.w("CustomView","onFinishInflate()");
+        thread = new Thread(this);
+        thread.start();
     }
-    /*
-        * 넘어오는 파라메터는 부모뷰로부터 결정된 치수제한을 의미한다.
-        * 또한 파라메터에는 bit 연산자를 사용해서 모드와 크기를 같이 담고있다.
-        * 모드는 MeasureSpec.getMode(spec) 형태로 얻어오며 다음과 같은 3종류가 있다.
-        *    MeasureSpec.AT_MOST : wrap_content (뷰 내부의 크기에 따라 크기가 달라짐)
-        *    MeasureSpec.EXACTLY : fill_parent, match_parent (외부에서 이미 크기가 지정되었음)
-        *    MeasureSpec.UNSPECIFIED : MODE 가 셋팅되지 않은 크기가 넘어올때 (대부분 이 경우는 없다)
-        *
-        *   fill_parent, match_parent 를 사용하면 윗단에서 이미 크기가 계산되어 EXACTLY 로 넘어온다.
-        *   이러한 크기는 MeasureSpec.getSize(spec) 으로 얻어낼 수 있다.
-        *
-        *   이 메소드에서는 setMeasuredDimension(measuredWidth,measuredHeight) 를 호출해 주어야 하는데
-        *   super.onMeasure() 에서는 기본으로 이를 기본으로 계산하는 함수를 포함하고 있다.
-        *
-        *   만약 xml 에서 크기를 wrap_content 로 설정했다면 이 함수에서 크기를 계산해서 셋팅해 줘야한다.
-        *   그렇지 않으면 무조껀 fill_parent 로 나오게 된다.
-        */
+    /** surface 가 변경될때 */
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
-        // height 진짜 크기 구하기
-        int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = 0;
-        switch(heightMode) {
-            case View.MeasureSpec.UNSPECIFIED:    // mode 가 셋팅되지 않은 크기가 넘어올때
-                heightSize = heightMeasureSpec;
-                break;
-            case View.MeasureSpec.AT_MOST:        // wrap_content (뷰 내부의 크기에 따라 크기가 달라짐)
-                heightSize = 60;
-                break;
-            case View.MeasureSpec.EXACTLY:        // fill_parent, match_parent (외부에서 이미 크기가 지정되었음)
-                heightSize = View.MeasureSpec.getSize(heightMeasureSpec);
-                break;
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        try {
+            thread.interrupt();
+        } catch (Exception e) {
+            Log.e(this.getClass().getName(), e.getMessage());
         }
+    }
 
-        // width 진짜 크기 구하기
-        int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
-        int widthSize = 0;
-        switch(widthMode) {
-            case View.MeasureSpec.UNSPECIFIED:    // mode 가 셋팅되지 않은 크기가 넘어올때
-                widthSize = widthMeasureSpec;
-                break;
-            case View.MeasureSpec.AT_MOST:        // wrap_content (뷰 내부의 크기에 따라 크기가 달라짐)
-                widthSize = 60;
-                break;
-            case View.MeasureSpec.EXACTLY:        // fill_parent, match_parent (외부에서 이미 크기가 지정되었음)
-                widthSize = View.MeasureSpec.getSize(widthMeasureSpec);
-                break;
+    @Override
+    public void run() {
+        // canvas 의 사이즈
+        pWindow.x = getWidth();
+        pWindow.y = getHeight();
+
+        while(!Thread.currentThread().isInterrupted()){
+            Canvas c= null;
+
+            try {
+                c = holder.lockCanvas(null);
+                synchronized (holder){
+                    doDraw(c);
+                    Thread.sleep(50);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }finally {
+                if(c != null){
+                    holder.unlockCanvasAndPost(c);
+                }
+            }
+
+
         }
-
-        Log.w("CustomView","onMeasure("+widthMeasureSpec+","+heightMeasureSpec+")");
-
-        setMeasuredDimension(widthSize, heightSize);
-    }
-    /*
-     *  onMeasure() 메소드에서 결정된 width 와 height 을 가지고 어플리케이션 전체 화면에서 현재 뷰가
-      *  그려지는 bound 를 돌려준다.
-     *  이 메소드에서는 일반적으로 이 뷰에 딸린 children 들을 위치시키고 크기를 조정하는 작업을 한다.
-     *  유의할점은 넘어오는 파라메터가 어플리케이션 전체를 기준으로 위치를 돌려준다.
-     *  super 메소드에서는 아무것도 하지않기때문에 쓰지 않는다.
-     */
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        Log.w("CustomView","onLayout("+changed+","+left+","+top+","+right+","+bottom+")");
     }
 
-
-    /*
-     * 이 뷰의 크기가 변경되었을때 호출된다.
-     * super 메소드에서는 아무것도 하지않기때문에 쓰지 않는다.
-     */
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        Log.w("CustomView","onSizeChanged("+w+","+h+","+oldw+","+oldh+")");
+    private void doDraw(Canvas cv) {
+        pImage.x = moveX;
+        pImage.y = moveY;
+        //cv.drawColor(Color.); // 새로그림
+        cv.drawBitmap(imgMove, moveX -120, moveY - 120, null);
+        //  Paint표시, 그리기 객체
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setTextSize(24);
+        paint.setColor(Color.RED);
+        cv.drawText("Move Enable : "+bMove, 0 , 800, paint);
+        cv.drawText("Image Point : X = " + pImage.x +", Y="+pImage.y, 0 , 850, paint);
+        cv.drawText("Mouse Point : X = " + mouseX + ", Y="+mouseY, 0, 900, paint );
     }
 
-
-    /*
-     * 실제로 화면에 그리는 영역으로 View 를 상속하고 이 메소드만 구현해도 제대로 보여지게 된다.
-     * 그릴 위치는 0,0 으로 시작해서 getMeasuredWidth(), getMeasuredHeight() 까지 그리면 된다.
-     * super 메소드에서는 아무것도 하지않기때문에 쓰지 않는다.
-     */
-    @Override
-    protected void onDraw(Canvas canvas) {
-        final Paint p = new Paint();
-        p.setColor(backgroundColor);
-        //canvas.drawRect(0,0,getMeasuredWidth(),getMeasuredHeight(), p);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.knight);
-        Rect rtDest = new Rect(0,0,getMeasuredWidth(),getMeasuredHeight());
-        canvas.drawBitmap(bitmap, null,rtDest, null);
-        if (text != null) {
-            p.setColor(Color.BLACK);
-            canvas.drawText(text, 10, 15, p); // 왼쪽 아래를 0,0 으로 보고있음
-        }
-        Log.w("CustomView","onDraw("+canvas+")");
-    }
-
-
-    /*
-     * 현재 view 가 focus 상태일때 key 를 누르면 이 메소드가 호출됨.
-     * 즉 이 메소드를 사용하려면 setFocusable(true) 여야함.
-     * 그리고 super 메소드에서는 기본적인 키 작업(예를들면 BACK 키 누르면 종료)을 처리하기
-     * 때문에 일반적으로 return 시에 호출하는게 좋다.
-     * 만약 기본적인 작업을 하지않게 하려면 super 함수를 호출하지 않아도 된다.
-     * 다른 event 메소드들도 유사하게 동작한다.
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.w("CustomView","onKeyDown("+keyCode+","+event+")");
+        switch (keyCode){
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (moveX > 0){
+                    moveX -= moveLength;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if((moveX + imgWidth) < pWindow.x){
+                    moveX += moveLength;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if(moveX >0){
+                    moveY -= moveLength;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if((moveY + imgHeight) < pWindow.y){
+                    moveY += moveLength;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                break;
+        }
+
         return super.onKeyDown(keyCode, event);
     }
 
-    /*
-     * 이 view 에 touch 가 일어날때 실행됨.
-     * 기본적으로 touch up 이벤트가 일어날때만 잡아내며
-     * setClickable(true) 로 셋팅하면 up,move,down 모두 잡아냄
-     */
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.w("CustomView","onTouchEvent("+event+")");
-        switch(event.getAction()) {
+        int keyAction = event.getAction();
+        int x = (int)event.getX();
+        int y = (int)event.getY();
+        mouseX = x;
+        mouseY = y;
+
+        switch(keyAction){
+            case MotionEvent.ACTION_MOVE:
+                if(bMove){
+                    moveX = x;
+                    moveY =y;
+                }
+                break;
             case MotionEvent.ACTION_UP:
-                backgroundColor = Color.RED;
-                text = tempText;
+                bMove =false;
                 break;
             case MotionEvent.ACTION_DOWN:
-                backgroundColor = Color.YELLOW;
-                tempText = text;
-                text = "Clicked!";
-                break;
-            case MotionEvent.ACTION_MOVE:
-                backgroundColor = Color.BLUE;
-                text = "Moved!";
+                this.checkImageMove(x,y);
                 break;
         }
-        invalidate();
-        return super.onTouchEvent(event);
+
+        // 함수 override 해서 사용하게 되면  return  값이  super.onTouchEvent(event) 되므로
+        // MOVE, UP 관련 이벤트가 연이어 발생하게 할려면 true 를 반환해주어야 한다.
+
+        //return super.onTouchEvent(event);
+        return true;
     }
 
+/**
+ * 현재 이미지위에 마우스가 위치하는지 판단한다.
+ * @param x
+ * @param y
+ */
 
-    public String getText() {
-        return text;
+private void checkImageMove(int x, int y){
+        int inWidth = 120 ;
+    int inHeight = 120;
+    if((pImage.x - inWidth <x) &&(x <pImage.x + inWidth)){
+       if((pImage.y - inHeight < y) && (y < pImage.y  + inHeight) )
+        bMove = true;
     }
-    public void setText(String text) {
-        this.text = text;
-    }
-
+}
 }

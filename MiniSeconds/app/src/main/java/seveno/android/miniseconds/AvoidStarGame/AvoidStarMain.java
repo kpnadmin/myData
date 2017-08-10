@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.AsyncTask;
@@ -11,7 +12,9 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -50,6 +54,17 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
     private static Runnable run2;
     Handler handler_progress2 = new Handler();
     private static Thread t2;
+
+    private TextView tv1;
+    private TextView tv2;
+
+    int w_width;
+    int w_height;
+    float density;
+    float d_width;
+          float  d_height;
+    private int tv_width;
+    private int tv_height;
 
 
     private static final String TAG = "Touch";
@@ -83,23 +98,47 @@ for(int i=0; i < imgView.length(); i++){
         layout_avoidTarget = (LinearLayout) findViewById(R.id.layout_avoidTarget);
 
         setContentView(R.layout.activity_avoid_star_main);
-        int idArr[] = {
+       /* int idArr[] = {
                 R.id.img_star_1,
                 R.id.img_star_2,
                 R.id.img_star_3,
                 R.id.img_star_4,
                 R.id.img_star_5,
                 R.id.img_star_6
-        };
+        };*/
 
-        ImageView img_knight1 = (ImageView) findViewById(R.id.img_knight1);
+       /* ImageView img_knight1 = (ImageView) findViewById(R.id.img_knight1);
         img_knight1.setOnTouchListener(this);
+*/
+
+   /*  tv1 = (TextView)findViewById(R.id.tv1);
+           tv2 = (TextView) findViewById(R.id.tv2);*/
+
+       /* Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        w_width = size.x;
+        w_height = size.y;*/
+
+
+     /*   DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+        w_width = dm.widthPixels;
+        w_height = dm.heightPixels;
+        density = dm.density;
+        d_width = w_width/density;
+        d_height = w_height/density;
+
+        tv1.setText("x=>"+w_width+",y=>"+w_height+", dp_x = > "+ d_width + ", dp_y => " + d_height );*/
 
 
 
-        for (int i = 0; i < 6; i++) {
+
+        knightView = (KnightView) findViewById(R.id.class_knightView);
+
+
+     /*   for (int i = 0; i < 6; i++) {
             StarimgView[i] = (ImageView) findViewById(idArr[i]);
-        }
+        }*/
         Random rand3 = new Random();
         Random rand4 = new Random();
 
@@ -118,14 +157,14 @@ for(int i=0; i < imgView.length(); i++){
             bar_AvoidStar = (ProgressBar) findViewById(R.id.bar_AvoidStar);
             int temp = 0;
 
-            for (int j = 0; j < idArr.length; j++) {
+          /*  for (int j = 0; j < idArr.length; j++) {
                 startEnemy = rand3.nextInt(6);
                 if (!idArr1.contains(startEnemy) || (j == 0)) {
                     idArr1.add(startEnemy);
                 } else {
                     j--;
                 }
-            }
+            }*/
 
 
             final Animation animTransRight = AnimationUtils.loadAnimation(
@@ -216,7 +255,7 @@ for(int i=0; i < imgView.length(); i++){
             bar_AvoidStar.setProgress(values[0]);
             if (bar_AvoidStar.getProgress() == 0) {
                 isPerformed = true;
-            }else if(bar_AvoidStar.getProgress() == 90){
+            }/*else if(bar_AvoidStar.getProgress() == 90){
                 Drop_star();
             }else if(bar_AvoidStar.getProgress() == 75){
                 Drop_star();
@@ -228,7 +267,7 @@ for(int i=0; i < imgView.length(); i++){
                 Drop_star();
             }else if(bar_AvoidStar.getProgress() == 15){
                 Drop_star();
-            }
+            }*/
 
         }
 
@@ -237,7 +276,7 @@ for(int i=0; i < imgView.length(); i++){
         protected void onPostExecute(Boolean aPerform) {
             super.onPostExecute(aPerform);
             if(isPerformed) {
-                PlayNextGame();
+               // PlayNextGame();
             }
         }
 
@@ -292,6 +331,17 @@ for(int i=0; i < imgView.length(); i++){
     float oldYvalue;
 
     @Override
+    public boolean onTouch(View v, MotionEvent event) {
+    return  true;
+    }
+
+
+
+}
+
+
+/*
+  @Override
     public boolean onTouch(View v, MotionEvent event) {
         ImageView view = (ImageView) v;
 
@@ -348,7 +398,7 @@ for(int i=0; i < imgView.length(); i++){
 
 
 
-       /* switch (event.getAction() & MotionEvent.ACTION_MASK) {
+       switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
                 savedMatrix.set(matrix);
                 start.set(event.getX(), event.getY());
@@ -369,14 +419,12 @@ for(int i=0; i < imgView.length(); i++){
                 }
                 break;
         }
-
+}
         view.setImageMatrix(matrix);
         return true; // indicate event was handled*/
-    }
 
 
 
-}
 
 
 

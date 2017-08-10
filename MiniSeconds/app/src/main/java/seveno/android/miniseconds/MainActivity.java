@@ -67,6 +67,7 @@ public class MainActivity extends Activity {
 
 
 
+
         btn_game_start = (Button) findViewById(R.id.btn_game_start);
         //btn_logout = (Button) findViewById(R.id.btn_logout);
 
