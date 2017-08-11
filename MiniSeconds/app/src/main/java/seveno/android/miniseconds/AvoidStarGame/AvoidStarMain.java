@@ -34,7 +34,7 @@ import java.util.Random;
 
 import seveno.android.miniseconds.R;
 
-public class AvoidStarMain extends AppCompatActivity implements View.OnTouchListener{
+public class AvoidStarMain extends AppCompatActivity implements View.OnTouchListener {
 
     private Random Ran_move;
     private int move_X, move_Y;
@@ -65,6 +65,7 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
           float  d_height;
     private int tv_width;
     private int tv_height;
+   // private ImageView img_b_pipe;
 
 
     private static final String TAG = "Touch";
@@ -80,6 +81,11 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
 
     private PointF start = new PointF();
 
+    private Random rand5;
+    private int rand_attack;
+
+    private int pipe_width;
+    private int pipe_height;
 
 /*
     배열 선언 할 때에는 onCreate 메소드 밖에서 해줘야 됨.
@@ -98,14 +104,14 @@ for(int i=0; i < imgView.length(); i++){
         layout_avoidTarget = (LinearLayout) findViewById(R.id.layout_avoidTarget);
 
         setContentView(R.layout.activity_avoid_star_main);
-       /* int idArr[] = {
+        int idArr[] = {
                 R.id.img_star_1,
                 R.id.img_star_2,
                 R.id.img_star_3,
                 R.id.img_star_4,
                 R.id.img_star_5,
                 R.id.img_star_6
-        };*/
+        };
 
        /* ImageView img_knight1 = (ImageView) findViewById(R.id.img_knight1);
         img_knight1.setOnTouchListener(this);
@@ -134,11 +140,15 @@ for(int i=0; i < imgView.length(); i++){
 
 
         knightView = (KnightView) findViewById(R.id.class_knightView);
+        knightView.setOnTouchListener(this);
+        //img_b_pipe = (ImageView) findViewById(R.id.img_b_pipe);
 
-
-     /*   for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < 6; i++) {
             StarimgView[i] = (ImageView) findViewById(idArr[i]);
-        }*/
+          //StarimgView[i].setVisibility(View.VISIBLE);
+        }
+
+        //StarimgView[0].setVisibility(View.VISIBLE);
         Random rand3 = new Random();
         Random rand4 = new Random();
 
@@ -150,21 +160,24 @@ for(int i=0; i < imgView.length(); i++){
         if (savedInstanceState == null) {
             startTime = System.currentTimeMillis();
 
-            Ran_move = new Random();
+                    Ran_move = new Random();
             move_X = Ran_move.nextInt(800) + 1;
             move_Y = Ran_move.nextInt(480) + 1;
 
             bar_AvoidStar = (ProgressBar) findViewById(R.id.bar_AvoidStar);
             int temp = 0;
 
-          /*  for (int j = 0; j < idArr.length; j++) {
+            Random rand5 = new Random();
+             rand_attack = rand5.nextInt(1000)+40;
+
+          for (int j = 0; j < idArr.length; j++) {
                 startEnemy = rand3.nextInt(6);
                 if (!idArr1.contains(startEnemy) || (j == 0)) {
                     idArr1.add(startEnemy);
                 } else {
                     j--;
                 }
-            }*/
+            }
 
 
             final Animation animTransRight = AnimationUtils.loadAnimation(
@@ -197,33 +210,30 @@ for(int i=0; i < imgView.length(); i++){
         }//
     }
 
-    public void Drop_star(){
-
+    public void Drop_star(int rand_attack){
 
             int[] location = new int[2];
             int target_img = idArr1.get(0) ;
+            StarimgView[target_img].setVisibility(View.VISIBLE);
             StarimgView[target_img].getLocationOnScreen(location);
+
+
 
             TranslateAnimation ani_start = new TranslateAnimation
                     (location[0],   // fromXDelta
-                            location[0],  // toXDelta
+                            rand_attack,  // toXDelta
                             location[1],    // fromYDelta
-                            location[1] + 700);// toYDelta
+                            location[1] + 800);// toYDelta
             ani_start.setStartOffset(1000);
             ani_start.setDuration(500);
             ani_start.setFillAfter(true);
             StarimgView[target_img].startAnimation(ani_start);
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         idArr1.remove(0);
-
-
-
-
-
     }
 
 
@@ -235,7 +245,7 @@ for(int i=0; i < imgView.length(); i++){
         @Override
         protected Boolean doInBackground(Integer... params) {
 
-            for (int i = params[0]; i >= 0; i--){
+            for (int i = params[0]; i >= 0; i--) {
                 publishProgress(i);
                 SystemClock.sleep(100);
             }
@@ -252,10 +262,27 @@ for(int i=0; i < imgView.length(); i++){
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
+
             bar_AvoidStar.setProgress(values[0]);
             if (bar_AvoidStar.getProgress() == 0) {
                 isPerformed = true;
-            }/*else if(bar_AvoidStar.getProgress() == 90){
+            } else if (bar_AvoidStar.getProgress() == 90) {
+                Drop_star(rand_attack);
+            }
+
+           /* img_b_pipe.post(new Runnable(){
+                @Override
+                public void run() {
+                    pipe_width = img_b_pipe.getWidth();
+                     pipe_height= img_b_pipe.getHeight();
+
+                    Log.e("DEBUG", "h2: " + img_b_pipe.getHeight());
+                    Log.e("DEBUG", "w2: " + img_b_pipe.getWidth());    }
+            });
+            if(pipe_height < 1500)
+            img_b_pipe.setLayoutParams(new LinearLayout.LayoutParams(pipe_width, pipe_height+1));*/
+
+            /*else if(bar_AvoidStar.getProgress() == 90){
                 Drop_star();
             }else if(bar_AvoidStar.getProgress() == 75){
                 Drop_star();
@@ -270,6 +297,7 @@ for(int i=0; i < imgView.length(); i++){
             }*/
 
         }
+
 
 
         @Override
@@ -332,12 +360,59 @@ for(int i=0; i < imgView.length(); i++){
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-    return  true;
+        /*int width = ((ViewGroup) v.getParent()).getWidth() - v.getWidth();
+        int height = ((ViewGroup) v.getParent()).getHeight() - v.getHeight();
+
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+            oldXvalue = event.getX();
+            oldYvalue = event.getY();
+            //
+            Log.i("TAG1", "Action Down X" + event.getX() +"," +event.getY());
+
+        }else if(event.getAction() == MotionEvent.ACTION_MOVE){
+            v.setX(event.getRawX() - oldXvalue);
+            v.setY(event.getRawY() - (oldYvalue + v.getHeight()));
+        }else if(event.getAction() == MotionEvent.ACTION_UP){
+            if(v.getX() > width && v.getY() > height){
+                v.setX(width);
+                v.setY(height);
+            }else if(v.getX() > width && v.getY() < 0){
+                v.setX(width);
+                v.setY(0);
+            }else if(v.getX() > 0 && v.getY() < 0 ){
+                v.setX(width);
+                v.setY(0);
+            }else if(v.getX() < 0 && v.getY() < 0){
+                v.setX(0);
+                v.setY(0);
+            }else if(v.getX() < 0 || v.getX() > width){
+
+                if(v.getX() <0){
+                    v.setX(0);
+                    v.setY(event.getRawY() - oldYvalue -v.getHeight());
+                }else{
+                    v.setX(width);
+                    v.setY(event.getRawY() - oldYvalue - v.getHeight());
+                }
+            }else if (v.getY() < 0 || v.getY() > height) {
+                if (v.getY() < 0) {
+                    v.setX(event.getRawX() - oldXvalue);
+                    v.setY(0);
+                } else {
+                    v.setX(event.getRawX() - oldXvalue);
+                    v.setY(height);
+                }
+            }
+        }*/
+
+
+        return false;
+    }
+
     }
 
 
 
-}
 
 
 /*

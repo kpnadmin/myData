@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -130,7 +131,7 @@ public class KnightView extends SurfaceView implements SurfaceHolder.Callback, R
     private void doDraw(Canvas cv) {
         pImage.x = moveX;
         pImage.y = moveY;
-        cv.drawColor(Color.LTGRAY); // 새로그림
+        cv.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         cv.drawBitmap(imgMove, moveX -60, moveY - 60, null);
         //  Paint표시, 그리기 객체
         Paint paint = new Paint();

@@ -8,9 +8,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -28,6 +30,7 @@ public class KnightView extends SurfaceView implements SurfaceHolder.Callback, R
     private Context mContext;
     private SurfaceHolder holder;
     private Bitmap imgMove;
+    private Bitmap imgBack;
     private int moveX = 0 ;
     private int moveY  = 0 ;
     private int imgWidth = 0 ;
@@ -76,12 +79,13 @@ public class KnightView extends SurfaceView implements SurfaceHolder.Callback, R
 
         //window 크기
         pWindow = new Point();
-        pWindow.x = 240;
+        pWindow.x = 1080;
         pWindow.y = 240 ;
         // 이미지 위치
         pImage = new Point(0,0);
         Resources res = getResources();
         Bitmap tempBitmap = BitmapFactory.decodeResource(res, R.drawable.knight);
+        Bitmap bgBitmap = BitmapFactory.decodeResource(res, R.drawable.main_bg_green);
         imgWidth = 240;
         imgHeight = 240;
         // 표시할 위치
@@ -91,6 +95,7 @@ public class KnightView extends SurfaceView implements SurfaceHolder.Callback, R
         imgMove = Bitmap.createScaledBitmap(tempBitmap, imgWidth, imgHeight, true);
         setClickable(true);
         thread = new Thread(this);
+        imgBack = Bitmap.createScaledBitmap(bgBitmap, pWindow.x,pWindow.y,true);
         thread.start();
     }
     /** surface 가 변경될때 */
@@ -138,7 +143,10 @@ public class KnightView extends SurfaceView implements SurfaceHolder.Callback, R
     private void doDraw(Canvas cv) {
         pImage.x = moveX;
         pImage.y = moveY;
-        //cv.drawColor(Color.); // 새로그림
+
+
+        //cv.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR); // 새로그림
+        cv.drawBitmap(imgBack, 0, 0, null);
         cv.drawBitmap(imgMove, moveX -120, moveY - 120, null);
         //  Paint표시, 그리기 객체
         Paint paint = new Paint();
@@ -194,13 +202,28 @@ public class KnightView extends SurfaceView implements SurfaceHolder.Callback, R
                 if(bMove){
                     moveX = x;
                     moveY =y;
+                    if(moveY <0){
+                        moveY = pWindow.y / 2;
+                    }else if(moveY > pWindow.y){
+                        moveY = pWindow.y / 2;
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                if(moveX <0){
+                    moveX *= -1;
+
+                }else if(moveX >= pWindow.x){
+                    moveX = pWindow.x - 9;
+                }
+
+
+
                 bMove =false;
                 break;
             case MotionEvent.ACTION_DOWN:
                 this.checkImageMove(x,y);
+                this.checkImageOut(x,y);
                 break;
         }
 
@@ -225,4 +248,9 @@ private void checkImageMove(int x, int y){
         bMove = true;
     }
 }
+
+    private void checkImageOut(int x, int y){
+
+    }
+
 }
