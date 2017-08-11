@@ -202,6 +202,7 @@ for(int i=0; i < imgView.length(); i++){
 
 
 
+
            //프로그래스바
             bar_AvoidStar.setProgress(bar_AvoidStar.getMax());
 
@@ -214,9 +215,9 @@ for(int i=0; i < imgView.length(); i++){
 
             int[] location = new int[2];
             int target_img = idArr1.get(0) ;
-            StarimgView[target_img].setVisibility(View.VISIBLE);
+            //StarimgView[target_img].setVisibility(View.VISIBLE);
             StarimgView[target_img].getLocationOnScreen(location);
-
+            StarimgView[target_img].bringToFront();
 
 
             TranslateAnimation ani_start = new TranslateAnimation

@@ -16,18 +16,17 @@
         <activity android:name=".IntroActivity">
         </activity>
         <activity android:name=".SpeedNumGame.SpeedyNumPlay">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-        
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".SpeedNumGame.FinishScreen">
         </activity>
         <activity android:name=".GameOver">
         </activity>
         <activity android:name=".AvoidStarGame.AvoidStarMain">
-           
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+        
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".AvoidStarGame.FinishScreenA">
         </activity>
