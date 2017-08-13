@@ -9,6 +9,8 @@ import android.content.Intent;
 import java.util.Locale;
 
 import seveno.android.miniseconds.AvoidStarGame.AvoidStarMain;
+import seveno.android.miniseconds.MainActivity;
+import seveno.android.miniseconds.PoppingBall.PoppingBallGameActivity;
 import seveno.android.miniseconds.R;
 
 public class FinishScreen extends AppCompatActivity {
@@ -62,14 +64,14 @@ public class FinishScreen extends AppCompatActivity {
     }
 
     public void btn_ReturnMain(View view){
-        Intent intent = new Intent(this, AvoidStarMain.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("seveno.android.miniseconds.avoidstargame.initialTime",0);
         intent.putExtra("seveno.android.miniseconds.avoidstargame.numErrors",0);
         startActivity(intent);
         finish();
     }
     public void btn_NextGame(View view){
-        Intent intent = new Intent(this, AvoidStarMain.class);
+        Intent intent = new Intent(this, PoppingBallGameActivity.class);
         intent.putExtra("seveno.android.miniseconds.avoidstargame.initialTime",0);
         intent.putExtra("seveno.android.miniseconds.avoidstargame.numErrors",0);
         startActivityForResult(intent, 0);

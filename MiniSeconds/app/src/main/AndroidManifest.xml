@@ -22,13 +22,17 @@
         <activity android:name=".GameOver">
         </activity>
         <activity android:name=".AvoidStarGame.AvoidStarMain">
+        </activity>
+        <activity android:name=".AvoidStarGame.FinishScreenA">
+        </activity>
+        <activity android:name=".PoppingBall.PoppingBallGameActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
         
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AvoidStarGame.FinishScreenA">
+        <activity android:name=".PoppingBall.FinishScreenPop">
         </activity>
     </application>
 

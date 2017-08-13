@@ -54,7 +54,7 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
     private static Runnable run2;
     Handler handler_progress2 = new Handler();
     private static Thread t2;
-
+private  boolean gameShut = false;
     private TextView tv1;
     private TextView tv2;
 
@@ -66,6 +66,9 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
     private int tv_width;
     private int tv_height;
    // private ImageView img_b_pipe;
+
+    //
+    private int star_cnt = 0 ;
 
 
     private static final String TAG = "Touch";
@@ -86,6 +89,10 @@ public class AvoidStarMain extends AppCompatActivity implements View.OnTouchList
 
     private int pipe_width;
     private int pipe_height;
+
+    private int target_img;
+
+    private boolean method_cancelled = false;
 
 /*
     배열 선언 할 때에는 onCreate 메소드 밖에서 해줘야 됨.
@@ -200,9 +207,6 @@ for(int i=0; i < imgView.length(); i++){
             }*/
 
 
-
-
-
            //프로그래스바
             bar_AvoidStar.setProgress(bar_AvoidStar.getMax());
 
@@ -214,7 +218,7 @@ for(int i=0; i < imgView.length(); i++){
     public void Drop_star(int rand_attack){
 
             int[] location = new int[2];
-            int target_img = idArr1.get(0) ;
+       target_img = idArr1.get(0) ;
             //StarimgView[target_img].setVisibility(View.VISIBLE);
             StarimgView[target_img].getLocationOnScreen(location);
             StarimgView[target_img].bringToFront();
@@ -229,12 +233,43 @@ for(int i=0; i < imgView.length(); i++){
             ani_start.setDuration(500);
             ani_start.setFillAfter(true);
             StarimgView[target_img].startAnimation(ani_start);
+                star_cnt++;
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            int[] imgDestination = new int[2];
+            for(int k = 0 ; k < StarimgView.length+1 - idArr1.size(); k++){
+                StarimgView[idArr1.get(k)].getLocationOnScreen(imgDestination);
+                gameShut =  chkTouchInside(StarimgView[idArr1.get(k)],imgDestination[0],imgDestination[1] );
+                if(gameShut){
+                    break;
+                }
+                //Log.d("gameShutDown","OK");
+            }
+            //StarimgView[target_img].getLocationOnScreen(imgDestination);
+            //Thread.sleep(1000);
+            //gameShut =  chkTouchInside(StarimgView[target_img],imgDestination[0],imgDestination[1] );
+            /*t2 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        int[] imgDestination = new int[2];
+                        StarimgView[target_img].getLocationOnScreen(imgDestination);
+                        handler_progress2 = new Handler();
+                        Thread.sleep(1000);
+                       // gameShut =  chkTouchInside(StarimgView[target_img],imgDestination[0],imgDestination[1] );
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            t2.start();*/
+
+        } catch (Exception e){
+
+        }finally {
+            idArr1.remove(0);
         }
-        idArr1.remove(0);
+
     }
 
 
@@ -249,6 +284,9 @@ for(int i=0; i < imgView.length(); i++){
             for (int i = params[0]; i >= 0; i--) {
                 publishProgress(i);
                 SystemClock.sleep(100);
+            }
+            if(isCancelled){
+                return  isCancelled;
             }
             return isPerformed;
         }
@@ -269,6 +307,26 @@ for(int i=0; i < imgView.length(); i++){
                 isPerformed = true;
             } else if (bar_AvoidStar.getProgress() == 90) {
                 Drop_star(rand_attack);
+               /* if(gameShut){
+                    isCancelled = true;
+                    cancel(isCancelled);
+
+                }*/
+            }else if(bar_AvoidStar.getProgress() == 75){
+                Drop_star(rand_attack);
+
+            }else if(bar_AvoidStar.getProgress() == 60){
+                Drop_star(rand_attack);
+
+            }else if(bar_AvoidStar.getProgress() == 45){
+                Drop_star(rand_attack);
+
+            }else if(bar_AvoidStar.getProgress() == 30){
+                Drop_star(rand_attack);
+
+            }else if(bar_AvoidStar.getProgress() == 15){
+                Drop_star(rand_attack);
+
             }
 
            /* img_b_pipe.post(new Runnable(){
@@ -299,13 +357,11 @@ for(int i=0; i < imgView.length(); i++){
 
         }
 
-
-
         @Override
         protected void onPostExecute(Boolean aPerform) {
             super.onPostExecute(aPerform);
             if(isPerformed) {
-               // PlayNextGame();
+                PlayNextGame();
             }
         }
 
@@ -314,15 +370,16 @@ for(int i=0; i < imgView.length(); i++){
         protected void onCancelled(Boolean aCancel) {
             super.onCancelled(aCancel);
             if(isCancelled) {
+               // t2.interrupt();
                 PlayNextGame();
             }
         }
     }
 
     private void PlayNextGame() {
-       // t2.interrupt();
+       //t2.interrupt();
         Intent intent = new Intent(this, FinishScreenA.class);
-        intent.putExtra("seveno.android.miniseconds.avoidstargame.initialTime", 40000);
+        intent.putExtra("seveno.android.miniseconds.avoidstargame.initialATime", 40000);
         intent.putExtra("seveno.android.miniseconds.avoidstargame.numErrors", 0);
                /* intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
                 intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
@@ -355,6 +412,34 @@ for(int i=0; i < imgView.length(); i++){
 
 
     }
+
+    public boolean chkTouchInside(View view, int x, int y) {
+        int[] location3 = new int[2];
+        view.getLocationOnScreen(location3);
+        if (x >= location3[0]) {
+            if (x <= location3[0] + view.getWidth()) {
+                if (y >= location3[1]) {
+                    if (y <= location3[1] + view.getHeight()) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+
+        return false;
+
+        /* if (x >= location[0]) {
+            if (x <= location[0] + view.getWidth()) {
+                if (y >= location[1]) {
+                    if (y <= location[1] + view.getHeight()) {
+                        return true;
+                    }
+                }
+            }
+        }*/
+    }
+
 
     float oldXvalue;
     float oldYvalue;
