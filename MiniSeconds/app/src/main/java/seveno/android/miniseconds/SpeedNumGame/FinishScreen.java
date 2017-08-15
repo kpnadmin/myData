@@ -8,29 +8,30 @@ import android.content.Intent;
 
 import java.util.Locale;
 
-import seveno.android.miniseconds.AvoidStarGame.AvoidStarMain;
+import seveno.android.miniseconds.BubbleShooter.BubbleGame;
 import seveno.android.miniseconds.MainActivity;
-import seveno.android.miniseconds.PoppingBall.PoppingBallGameActivity;
+//import seveno.android.miniseconds.PoppingBall.PoppingBallGameActivity;
 import seveno.android.miniseconds.R;
 
 public class FinishScreen extends AppCompatActivity {
     private static final int ERROR_PENALTY_SECONDS = 10;
     private TextView fin_speedy_score;
+    private int T_score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_screen);
         fin_speedy_score = (TextView) findViewById(R.id.fin_speedy_score);
 
-        long initialTime = getIntent().getLongExtra("seveno.android.miniseconds.speednumgame.initialTime",0);
+       long initialTime = getIntent().getLongExtra("seveno.android.miniseconds.speednumgame.initialTime",0);
         int numErrors = getIntent().getIntExtra("seveno.android.miniseconds.speednumgame.numErrors",0);
         int speedy_score = getIntent().getIntExtra("seveno.android.miniseconds.speednumgame.speedy_score", 0);
+
+        T_score = speedy_score;
         fin_speedy_score.setText(String.valueOf(speedy_score));
         fin_speedy_score.setTextSize(20);
         setupInitialTimeTextView(initialTime);
         setupFinalTimeTextView(initialTime, numErrors);
-
-
     }
 
 
@@ -71,9 +72,9 @@ public class FinishScreen extends AppCompatActivity {
         finish();
     }
     public void btn_NextGame(View view){
-        Intent intent = new Intent(this, PoppingBallGameActivity.class);
-        intent.putExtra("seveno.android.miniseconds.avoidstargame.initialTime",0);
-        intent.putExtra("seveno.android.miniseconds.avoidstargame.numErrors",0);
+        Intent intent = new Intent(this, BubbleGame.class);
+        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",0);
+        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore",T_score);
         startActivityForResult(intent, 0);
         finish();
     }

@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Random;
 
+import seveno.android.miniseconds.BubbleShooter.BubbleGame;
 import seveno.android.miniseconds.GameOver;
 import seveno.android.miniseconds.R;
 
@@ -196,7 +197,8 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                 long finalTime = timeTakenMillis + (numErrors*ERROR_PENALTY_SECONDS*1000);
                 t1.interrupt();
                 h2.removeCallbacks(run);
-                Intent intent = new Intent(this, FinishScreen.class);
+              Intent intent = new Intent(this, FinishScreen.class);
+                //Intent intent = new Intent(this, BubbleGame.class);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.speedy_score",speedy_score);
@@ -209,6 +211,8 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         } else {
             numErrors++;
             txt_speedyError.setText("Errors: "+numErrors);
+            speedy_score -= 100;
+            txt_speedy_score.setText(String.valueOf(speedy_score));
         }
     }
 
