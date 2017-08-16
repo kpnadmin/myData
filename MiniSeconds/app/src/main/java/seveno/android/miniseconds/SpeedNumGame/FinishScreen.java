@@ -75,7 +75,8 @@ public class FinishScreen extends AppCompatActivity {
         Intent intent = new Intent(this, BubbleGame.class);
         intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",0);
         intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore",T_score);
-        startActivityForResult(intent, 0);
+        //startActivityForResult(intent, 0);
+        startActivity(intent);
         finish();
     }
 

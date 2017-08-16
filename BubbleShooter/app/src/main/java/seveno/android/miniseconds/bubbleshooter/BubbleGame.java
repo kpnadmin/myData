@@ -103,7 +103,6 @@ public class BubbleGame extends AppCompatActivity {
         intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.numErrors", 0);
                /* intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
                 intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
-
         startActivity(intent);
         finish();
     }

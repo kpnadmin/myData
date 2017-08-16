@@ -197,12 +197,12 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                 long finalTime = timeTakenMillis + (numErrors*ERROR_PENALTY_SECONDS*1000);
                 t1.interrupt();
                 h2.removeCallbacks(run);
-              Intent intent = new Intent(this, FinishScreen.class);
+                 Intent intent = new Intent(this, FinishScreen.class);
                 //Intent intent = new Intent(this, BubbleGame.class);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.speedy_score",speedy_score);
-               /* intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
+              /*  intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
                 intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
 
                 startActivity(intent);
@@ -255,6 +255,9 @@ public class SpeedyNumPlay extends AppCompatActivity  {
             }
         }
     }
+
+
+
 
 
 }

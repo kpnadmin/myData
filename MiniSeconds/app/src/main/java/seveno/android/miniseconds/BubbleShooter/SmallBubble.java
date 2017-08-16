@@ -9,7 +9,7 @@ import java.util.Random;
 import seveno.android.miniseconds.R;
 
 /**
- * Created by 김태훈 on 2017-08-15.
+ * Created by Administrator on 2017-08-16.
  */
 
 public class SmallBubble {
@@ -38,11 +38,11 @@ public class SmallBubble {
 
         Random rand = new Random();
         speed = rand.nextInt(5) + 4;            // 속도     : 4~10
-        radi = rand.nextInt(6) + 3;                 // 반지름   : 3~8
+        radi = rand.nextInt(6) + 2;                 // 반지름   : 2~7
         num = rand.nextInt(6);                    // 이미지  : 0~5
         life = rand.nextInt(31) + 20; // 20~50
 
-        imgBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.bubble_b0 + num);
+        imgBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.bubble_b0+ num);
         imgBall = Bitmap.createScaledBitmap(imgBall, radi * 2, radi * 2, false);
         cr = 10;      // 원의 초기 반지름
         MoveSBubble();
@@ -59,6 +59,5 @@ public class SmallBubble {
                 y < -radi || y > height + radi || life <= 0)
             dead = true;
     }
-
 
 }
