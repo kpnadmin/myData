@@ -9,10 +9,9 @@ import java.util.Random;
 import seveno.android.miniseconds.R;
 
 /**
- * Created by 김태훈 on 2017-08-15.
+ * Created by Administrator on 2017-08-16.
  */
 
-//  bubble
 public class Bubble {
     public int x, y, radi;                      // 좌표, 반지름
     public Bitmap imgBall;                 // 비트맵 이미지
@@ -26,11 +25,6 @@ public class Bubble {
     private int loop = 0;                       // 루프 카운터
     private int counter = 0;                   // 벽과 충돌 회수
 
-    //-----------------------------
-    //  생성자
-    //-----------------------------
-
-
     public Bubble() {
     }
 
@@ -40,16 +34,17 @@ public class Bubble {
         this.width = width_;
         this.height = height_;
 
+
         imgBall = BitmapFactory.decodeResource(context.getResources(), R.drawable.bubble_1);
         Random rand = new Random();
         radi_ = rand.nextInt(11) + 30;
         radi = radi_;
         Random rand2 = new Random();
-        int speedrand = rand.nextInt(10) +10;
+        int speedrand = rand.nextInt(5) +4;
 
         // 반지름이 2 간격으로 커졌자 작아지는 공 6개 만들기
-        for (int i = 0 ; i <=3 ; i++){
-            Bubbles[i] = Bitmap.createScaledBitmap(imgBall, radi_ *2 + i*2, radi_*2+i*2, false);
+        for (int i = 0 ; i <=3 ; i++) {
+            Bubbles[i] = Bitmap.createScaledBitmap(imgBall, radi_ * 2 + i * 2, radi_ * 2 + i * 2, false);
             Bubbles[4] = Bubbles[2];
             Bubbles[5] = Bubbles[1];
             imgBall = Bubbles[0];
@@ -58,7 +53,6 @@ public class Bubble {
             sy = rand.nextInt(2) == 0 ? -2 * speedrand : 2 * speedrand;
             MoveBubble();
         }
-
     }
     //-----------------------------------
     //  Move
@@ -87,5 +81,4 @@ public class Bubble {
         if (counter >= 3) dead = true;  // 벽과 충돌 횟수
     }
 
-
-}
+    }

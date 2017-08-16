@@ -5,14 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Handler;
-import android.os.Message;
-import android.util.AttributeSet;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,9 +18,15 @@ import seveno.android.miniseconds.R;
  * Created by Administrator on 2017-08-16.
  */
 
-public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callback{
-    public GameThread mThread;
-    SurfaceHolder mHolder;
+public class GameThread extends Thread {
+
+    //-------------------------------------
+    //  GameThread Class
+    //-------------------------------------
+
+        SurfaceHolder mHolder;                                    // SurfaceHolder를 저장할 변수
+        Context mContext;
+        Boolean bubbleRun =  false;
     public int BubbleScore;
 
     public int getBubbleScore() {
@@ -36,68 +37,7 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
         BubbleScore = bubbleScore;
     }
 
-    public BubbleGameView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        SurfaceHolder holder = getHolder();
-        holder.addCallback(this);
-        mHolder = holder;
-        mThread = new GameThread(holder, context);
-        setFocusable(true);  // View가 포커스를 받을 수 있도록 설정
-    }
-
-    public BubbleGameView(Context context) {
-        super(context);
-    }
-
-    public BubbleGameView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-
-
-    //-------------------------------------
-    //  SurfaceView가 생성될 때 실행되는 부분
-    //-------------------------------------
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        mThread.setRunning(true);
-       // mThread.setDaemon(true);
-        mThread.start();
-    }
-    //-------------------------------------
-    //  SurfaceView가 바뀔 때 실행되는 부분
-    //-------------------------------------
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-    }
-    //-------------------------------------
-    //  SurfaceView가 해제될 때 실행되는 부분
-    //-------------------------------------
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean done = true;
-        mThread.setRunning(false);
-        while (done) {
-            try {
-                mThread.join();                        // 스레드가 현재 step을 끝낼 때 까지 대기
-                done = false;
-            } catch (InterruptedException e) {  // 인터럽트 신호가 오면?
-                // 그 신호 무시 - 아무것도 않음
-            }
-        } // while
-    }
-
-
-    //-------------------------------------
-    //  GameThread Class
-    //-------------------------------------
-  /*  class GameThread extends Thread {
-        SurfaceHolder mHolder;                                    // SurfaceHolder를 저장할 변수
-        Context mContext;
-        Boolean bubbleRun =  false;
-
-        public void setRunning(boolean b) {
+    public void setRunning(boolean b) {
             bubbleRun = b;
         }
 
@@ -119,7 +59,7 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
             width = display.getWidth();              // View의 가로 폭
             height = display.getHeight() - 50;     // View의 세로 높이
 
-            imgBack = BitmapFactory.decodeResource(getResources(), R.drawable.bubble_sky);
+            imgBack = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.bubble_sky);
             imgBack = Bitmap.createScaledBitmap(imgBack, width, height, false);
 
 
@@ -129,9 +69,32 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
             this.mHandler = mHandler;
         }
 
-       //-------------------------------------
+
+        //-------------------------------------
+        //  비눗방울 만들기  - Touch Event에서 호출
+        //-------------------------------------
+      /*  public void MakeBubble(int x, int y) {
+
+            boolean flag = false;
+            for (Bubble tmp :  mBubble) {
+                if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
+                    tmp.dead = true;                   // 비눗방울 Touch일 경우
+                    flag = true;
+                }
+            }
+            if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
+                mBubble.add(new Bubble(mContext, x, y, width, height));
+        }*/
+
+        /*
+                Random rnd1 = new Random();
+             x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
+             y = rnd1.nextInt(height); //화면의 높이 안의 랜덤한 y지점
+        * */
+
+        /* //-------------------------------------
          //  비눗방울 만들기  - Touch Event에서 호출
-         //-------------------------------------
+         //-------------------------------------*/
         public void MakeBubble() {
             synchronized (mHolder) {
                 Random rnd1 = new Random();
@@ -151,8 +114,9 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
                 if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
                     tmp.dead = true;                   // 비눗방울 Touch일 경우
                     flag = true;
-                    BubbleScore += 100 ;
+                    BubbleScore = 100 ;
                     //int bubScore = 100;
+                    setBubbleScore(BubbleScore);
 
                 }else{
                     flag = false;
@@ -227,27 +191,11 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
                         mHolder.unlockCanvasAndPost(canvas);
                 }
             } // while
-
+            /*try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
         } // run
 
-    }*/
-
-
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // return super.onTouchEvent(event);
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            synchronized (mHolder) {
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                mThread.TouchBubble(x, y);
-                //mThread.MakeBubble(x, y);
-            }
-        }else{
-            return false;
-        }
-        return true;
-
     }
-}
