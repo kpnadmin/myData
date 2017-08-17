@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.handlertexttoggle.BackgroundThreadActivity">
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#3F0099"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="백그라운드 1초에 한번씩 글을 숨기거나 보여주는 예제 "
+        android:textColor="#FFFFFF" />
+    
+    <TextView
+        android:id="@+id/mytext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="48dp"
+        android:text="이글은 백그라운드 스레드에서 보여주거나 숨깁니다. " />
+    
+    
+
+</LinearLayout>
