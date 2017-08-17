@@ -61,7 +61,7 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         mThread.setRunning(true);
-       // mThread.setDaemon(true);
+        mThread.setDaemon(true);
         mThread.start();
     }
     //-------------------------------------
@@ -86,6 +86,7 @@ public class BubbleGameView extends SurfaceView implements SurfaceHolder.Callbac
                 // 그 신호 무시 - 아무것도 않음
             }
         } // while
+
     }
 
 

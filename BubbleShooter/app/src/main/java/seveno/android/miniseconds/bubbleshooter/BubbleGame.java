@@ -14,7 +14,7 @@ public class BubbleGame extends AppCompatActivity {
     private ProgressBar bar_BubbleGame;
     private LinearLayout linear_1;
     private BubbleGameView mBubbleGameView;
-    private BubbleGameView.GameThread threadExGame;
+    private BubbleThread threadExGame;
     private int BubbleScore;
     private int T_score;
 
@@ -80,6 +80,9 @@ public class BubbleGame extends AppCompatActivity {
             bar_BubbleGame.setProgress(values[0]);
             if(bar_BubbleGame.getProgress() == 0 ){
                 isPerformed  =  true;
+                if( threadExGame != null && threadExGame.isAlive()){
+                    threadExGame.interrupt();
+                }
             }
         }
 
@@ -110,7 +113,7 @@ public class BubbleGame extends AppCompatActivity {
  private void ViewCompleted(View view){
      try {
          view.setVisibility(View.GONE);
-         BubbleGameView.GameThread.sleep(5000);
+         threadExGame.wait(5000);
      } catch (InterruptedException e) {
          e.printStackTrace();
      }

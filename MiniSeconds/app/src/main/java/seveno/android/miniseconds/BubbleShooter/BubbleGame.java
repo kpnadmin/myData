@@ -152,7 +152,7 @@ public class BubbleGame extends AppCompatActivity {
                /* T_score += BubbleScore;
                 updateScore();*/
             /*if(BubbleScore != 0){}*/
-        if(bar_BubbleGame.getProgress() > 10 ){
+        if(bar_BubbleGame.getProgress() > 0 ){
             BubbleScore = mBubbleGameView.getBubbleScore();
 
             //int bubS = mBubbleGameView.getBubbleScore();

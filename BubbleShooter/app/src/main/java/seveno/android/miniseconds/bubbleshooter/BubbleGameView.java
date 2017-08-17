@@ -19,7 +19,7 @@ import java.util.Random;
  */
 
 public class BubbleGameView  extends SurfaceView implements SurfaceHolder.Callback{
-    GameThread mThread;
+    BubbleThread mThread;
     SurfaceHolder mHolder;
     public int BubbleScore;
 
@@ -28,7 +28,7 @@ public class BubbleGameView  extends SurfaceView implements SurfaceHolder.Callba
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         mHolder = holder;
-        mThread = new GameThread(holder, context);
+        mThread = new BubbleThread(holder, context);
         setFocusable(true);  // View가 포커스를 받을 수 있도록 설정
     }
 
@@ -75,7 +75,7 @@ public class BubbleGameView  extends SurfaceView implements SurfaceHolder.Callba
     }
 
 
-    //-------------------------------------
+   /* //-------------------------------------
     //  GameThread Class
     //-------------------------------------
     class GameThread extends Thread {
@@ -111,28 +111,7 @@ public class BubbleGameView  extends SurfaceView implements SurfaceHolder.Callba
      //-------------------------------------
         //  비눗방울 만들기  - Touch Event에서 호출
         //-------------------------------------
-      /*  public void MakeBubble(int x, int y) {
 
-            boolean flag = false;
-            for (Bubble tmp :  mBubble) {
-                if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
-                    tmp.dead = true;                   // 비눗방울 Touch일 경우
-                    flag = true;
-                }
-            }
-            if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
-                mBubble.add(new Bubble(mContext, x, y, width, height));
-        }*/
-
-        /*
-                Random rnd1 = new Random();
-             x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
-             y = rnd1.nextInt(height); //화면의 높이 안의 랜덤한 y지점
-        * */
-
-       /* //-------------------------------------
-        //  비눗방울 만들기  - Touch Event에서 호출
-        //-------------------------------------*/
        public void MakeBubble() {
             synchronized (mHolder) {
                 Random rnd1 = new Random();
@@ -219,14 +198,10 @@ public class BubbleGameView  extends SurfaceView implements SurfaceHolder.Callba
                         mHolder.unlockCanvasAndPost(canvas);
                 }
             } // while
-            /*try {
-                sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
+
         } // run
 
-    }
+    }*/
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -243,3 +218,30 @@ public class BubbleGameView  extends SurfaceView implements SurfaceHolder.Callba
 
     }
 }
+ /*  public void MakeBubble(int x, int y) {
+
+            boolean flag = false;
+            for (Bubble tmp :  mBubble) {
+                if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
+                    tmp.dead = true;                   // 비눗방울 Touch일 경우
+                    flag = true;
+                }
+            }
+            if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
+                mBubble.add(new Bubble(mContext, x, y, width, height));
+        }*/
+
+        /*
+                Random rnd1 = new Random();
+             x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
+             y = rnd1.nextInt(height); //화면의 높이 안의 랜덤한 y지점
+        * */
+
+       /* //-------------------------------------
+        //  비눗방울 만들기  - Touch Event에서 호출
+        //-------------------------------------*/
+        /*try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
