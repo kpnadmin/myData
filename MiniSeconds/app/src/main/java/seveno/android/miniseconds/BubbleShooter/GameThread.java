@@ -41,8 +41,11 @@ public class GameThread extends Thread {
             bubbleRun = b;
         }
 
+    public Boolean getBubbleRun() {
+        return bubbleRun;
+    }
 
-        int width, height;
+    int width, height;
         Bitmap imgBack;
         ArrayList<Bubble> mBubble = new ArrayList<Bubble>();              // 큰방울
         ArrayList<SmallBubble> sBubble = new ArrayList<SmallBubble>();         // 작은방울
@@ -73,7 +76,7 @@ public class GameThread extends Thread {
         //-------------------------------------
         //  비눗방울 만들기  - Touch Event에서 호출
         //-------------------------------------
-      /*  public void MakeBubble(int x, int y) {
+       public void MakeBubble(int x, int y) {
 
             boolean flag = false;
             for (Bubble tmp :  mBubble) {
@@ -84,7 +87,7 @@ public class GameThread extends Thread {
             }
             if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
                 mBubble.add(new Bubble(mContext, x, y, width, height));
-        }*/
+        }
 
         /*
                 Random rnd1 = new Random();
@@ -95,7 +98,7 @@ public class GameThread extends Thread {
         /* //-------------------------------------
          //  비눗방울 만들기  - Touch Event에서 호출
          //-------------------------------------*/
-        public void MakeBubble() {
+        /*public void MakeBubble() {
             synchronized (mHolder) {
                 Random rnd1 = new Random();
                 int x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
@@ -105,18 +108,18 @@ public class GameThread extends Thread {
                     mBubble.add(new Bubble(mContext, x, y, width, height));
             }
 
-        }
+        }*/
         //비눗방울 터치
         public void TouchBubble(int x, int y) {
             boolean flag = false;
-            BubbleScore = 0 ;
+            //BubbleScore = 0 ;
             for (Bubble tmp :  mBubble) {
                 if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
                     tmp.dead = true;                   // 비눗방울 Touch일 경우
                     flag = true;
-                    BubbleScore = 100 ;
+                   // BubbleScore = 100 ;
                     //int bubScore = 100;
-                    setBubbleScore(BubbleScore);
+                   // setBubbleScore(BubbleScore);
 
                 }else{
                     flag = false;
@@ -126,6 +129,18 @@ public class GameThread extends Thread {
             }
         }
 
+   /* public void MakeBubble(int x, int y) {
+        boolean flag = false;
+        for (Bubble tmp :  mBubble) {
+            if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
+                tmp.dead = true;                   // 비눗방울 Touch일 경우
+                flag = true;
+            }
+        }
+        if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
+            mBubble.add(new Bubble(mContext, x, y, width, height));
+    }
+*/
 
         //-------------------------------------
         //  작은  비눗방울 만들기
@@ -165,16 +180,18 @@ public class GameThread extends Thread {
         //-------------------------------------
         public void run() {
             // while (!Thread.currentThread().isInterrupted()) {
+            bubbleRun = getBubbleRun();
             while (bubbleRun) {
+                bubbleRun = getBubbleRun();
                 Canvas canvas = null;      // canvas를 만든다
                 canvas = mHolder.lockCanvas();  // canvas를 잠그고 버퍼 할당
                 boolean BubbleTurn  = true;
                 try {
                     synchronized (mHolder) {  // 동기화 유지
-                        if(BubbleTurn) {
+                      /*  if(BubbleTurn) {
                             MakeBubble();
                         }
-                        BubbleTurn = !BubbleTurn;
+                        BubbleTurn = !BubbleTurn;*/
                         MoveBubble();
                         canvas.drawBitmap(imgBack, 0, 0, null);
                         // 큰 비눗방울
@@ -191,11 +208,6 @@ public class GameThread extends Thread {
                         mHolder.unlockCanvasAndPost(canvas);
                 }
             } // while
-            /*try {
-                sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         } // run
 
     }

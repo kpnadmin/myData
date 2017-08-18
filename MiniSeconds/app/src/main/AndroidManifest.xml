@@ -12,15 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-          
         </activity>
         <activity android:name=".IntroActivity">
-            
         </activity>
         <activity android:name=".SpeedNumGame.SpeedyNumPlay">
+          
         </activity>
         <activity android:name=".SpeedNumGame.FinishScreen">
-            
         </activity>
         <activity android:name=".GameOver">
         </activity>
@@ -32,7 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameEnding">
-           
+        </activity>
+        <activity android:name=".BubbleShooter.FinishScreenBubble">
         </activity>
     </application>
 

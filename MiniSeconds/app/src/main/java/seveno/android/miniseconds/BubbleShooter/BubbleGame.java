@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,12 +21,17 @@ public class BubbleGame extends AppCompatActivity {
     private LinearLayout linear_1, linear_text;
     private TextView txt_Bubble_score;
     private ProgressBar bar_BubbleGame;
-    private BubbleGameView mBubbleGameView;
+   // private BubbleGameView mBubbleGameView;
     private GameThread threadExGame;
     private int BubbleScore;
     private int T_score;
     private Boolean TouchOnOff;
-
+    private FrameLayout frame1;
+    private static long startTime;
+    private static long timeTakenMillis;
+    private static long elapsedTime;
+    private Boolean BubbleTurn = false;
+    private GameThread mExGame;
 
 
 
@@ -33,10 +39,6 @@ public class BubbleGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bubble_game);
-
-        Intent  intent = getIntent();
-        long initialTime =  intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",0);
-        int speedy_score =  intent.getIntExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore",T_score);
        /* long initialTime =  intent.getLongExtra("seveno.android.miniseconds.speednumgame.initialTime",0);
         int speedy_score =  intent.getIntExtra("seveno.android.miniseconds.speednumgame.speedy_score",T_score);*/
 
@@ -44,75 +46,62 @@ public class BubbleGame extends AppCompatActivity {
         //intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
         //intent.putExtra("seveno.android.miniseconds.speednumgame.speedy_score",speedy_score);
 
-        T_score = speedy_score;
-
-
+        frame1 = (FrameLayout) findViewById(R.id.frame1);
         bar_BubbleGame = (ProgressBar) findViewById(R.id.bar_BubbleGame);
         linear_1 = (LinearLayout) findViewById(R.id.linear_1);
         linear_text = (LinearLayout) findViewById(R.id.linear_text);
         txt_Bubble_score = (TextView) findViewById(R.id.txt_Bubble_score);
-        //프로그래스바
-        bar_BubbleGame.setProgress(bar_BubbleGame.getMax());
-
-        linear_1.bringToFront();
-        linear_text.bringToFront();
-        mBubbleGameView = (BubbleGameView) findViewById(R.id.mBubbleGameView);
+       // mBubbleGameView = (BubbleGameView) findViewById(R.id.mBubbleGameView);
 
         //txt_Bubble_score.setText(String.valueOf(T_score));
-        txt_Bubble_score.setText("Score : " + T_score);
-        txt_Bubble_score.setTextSize(20);
+
+        if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
+
+            linear_1.bringToFront();
+            linear_text.bringToFront();
+            //mBubbleGameView.setVisibility(View.VISIBLE);
+
+            Intent  intent = getIntent();
+
+            long speedyTime =  intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",0);
+            int speedy_score =  intent.getIntExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore",T_score);
+            elapsedTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime",elapsedTime);
+            T_score = speedy_score;
+            elapsedTime +=speedyTime;
+            //프로그래스바
+            bar_BubbleGame.setProgress(bar_BubbleGame.getMax());
 
 
-       // 스레드 생성하고 시작
+            txt_Bubble_score.setText("Score : " + T_score);
+            txt_Bubble_score.setTextSize(20);
+            startTime = System.currentTimeMillis();
+
+            // 스레드 생성하고 시작
         /*GameThread g_thread = new GameThread(handler);
         g_thread.setDaemon(true);
         g_thread.start();*/
 
-    // asyncTask 실행
-        new BubbleProgressTask().execute(bar_BubbleGame.getProgress());
 
+            // asyncTask 실행
+            new BubbleProgressTask().execute(bar_BubbleGame.getProgress());
 
+        }
     }
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             if(msg.what == 0){   // Message id 가 0 이면
                 //backValue = msg.getData().getInt("backValue");
-                BubbleScore = msg.arg1;
+               /* BubbleScore = msg.arg1;
                 T_score += BubbleScore;
-                txt_Bubble_score.setText("Score : " + T_score);
+                txt_Bubble_score.setText("Score : " + T_score);*/
+
+                mExGame.setRunning(false);
                 //backText.setText("BackValue:" + backValue); // 메인스레드의 UI 내용 변경
             }
         }
     };
 
-
- /* @Override
-    protected void onStop() {
-        super.onStop();
-        if( threadExGame != null && threadExGame.isAlive()){
-            threadExGame.interrupt();
-        }
-
-    }*/
-
-    /*@Override
-    protected void onPause() {
-        super.onPause();
-        if( threadExGame != null && threadExGame.isAlive()){
-            threadExGame.interrupt();
-        }
-        SystemClock.sleep(2000);
-    }*/
-    /*
-    *  BubbleScore = mBubbleGameView.getBubbleScore();
-
-            if(BubbleScore != 0){
-                T_score += BubbleScore;
-            updateScore();
-            }
-    *
-    * */
 
     class BubbleProgressTask extends AsyncTask<Integer, Integer, Boolean> {
         private boolean isPerformed = false;
@@ -129,10 +118,10 @@ public class BubbleGame extends AppCompatActivity {
             if(isCancelled){
                 return isCancelled;
             }
-           //* ViewCompleted(mBubbleGameView);
-            bubbleRun = false;
-
+            timeTakenMillis = System.currentTimeMillis() - startTime;
+            //ViewCompleted(mBubbleGameView);
             //BubbleGameView.GameThread.interrupted()
+
             return isPerformed;
         }
 
@@ -148,24 +137,16 @@ public class BubbleGame extends AppCompatActivity {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             bar_BubbleGame.setProgress(values[0]);
-            //BubbleScore = mBubbleGameView.getBubbleScore();
-               /* T_score += BubbleScore;
-                updateScore();*/
-            /*if(BubbleScore != 0){}*/
-        if(bar_BubbleGame.getProgress() > 0 ){
-            BubbleScore = mBubbleGameView.getBubbleScore();
-
-            //int bubS = mBubbleGameView.getBubbleScore();
-            T_score += BubbleScore;
-            updateScore();
-
+           // BubbleScore = mBubbleGameView.getBubbleScore();
+            if(bar_BubbleGame.getProgress() > 0 ){
+            /*if(BubbleScore != 0){
+                T_score += BubbleScore;
+                updateScore();
+            }*/
         }else if(bar_BubbleGame.getProgress() == 0 ){
                 isPerformed  =  true;
-                if( threadExGame != null && threadExGame.isAlive()){
-                    threadExGame.interrupt();
-                }
+        }
 
-            }
         }
 
         @Override
@@ -176,6 +157,8 @@ public class BubbleGame extends AppCompatActivity {
         protected void onPostExecute(Boolean performed) {
             super.onPostExecute(performed);
             if(performed) {
+              // mBubbleGameView.setVisibility(View.GONE);
+               // SystemClock.sleep(2000);
                 PlayNextGame();
             }
         }
@@ -187,11 +170,10 @@ public class BubbleGame extends AppCompatActivity {
 
     private void PlayNextGame() {
         //t2.interrupt();
-        Intent intent = new Intent(this, GameEnding.class);
-        intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.initialATime", 0);
+        Intent intent = new Intent(this, FinishScreenBubble.class);
+        intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.bubbleTime", timeTakenMillis);
         intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.tscore2", T_score);
-               //intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
-                //intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);
+        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime",elapsedTime);
 
         startActivity(intent);
         finish();
@@ -200,7 +182,7 @@ public class BubbleGame extends AppCompatActivity {
     private void ViewCompleted(View view){
         try {
             view.setVisibility(View.GONE);
-          GameThread.sleep(5000);
+          GameThread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -208,9 +190,10 @@ public class BubbleGame extends AppCompatActivity {
 
     }
 
-
-
 }
+
+//intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
+//intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);
 /*
 *
   Intent  intent = getIntent();
@@ -242,3 +225,22 @@ public class BubbleGame extends AppCompatActivity {
 
 
 */
+ /* @Override
+    protected void onStop() {
+        super.onStop();
+        if( threadExGame != null && threadExGame.isAlive()){
+            threadExGame.interrupt();
+        }
+
+    }*/
+
+    /**/
+    /*
+    *  BubbleScore = mBubbleGameView.getBubbleScore();
+
+            if(BubbleScore != 0){
+                T_score += BubbleScore;
+            updateScore();
+            }
+    *
+    * */

@@ -33,6 +33,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private static Sequence sequence;
     private static long startTime;
     private static long timeTakenMillis;
+    private static long elapsedTime =0;
     private static boolean timerRunning;
     private static TextView timerTextView;
     private TextView txtView;
@@ -199,9 +200,10 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                 h2.removeCallbacks(run);
                  Intent intent = new Intent(this, FinishScreen.class);
                 //Intent intent = new Intent(this, BubbleGame.class);
-                intent.putExtra("seveno.android.miniseconds.speednumgame.initialTime",timeTakenMillis);
+                intent.putExtra("seveno.android.miniseconds.speednumgame.takenspeedyTime",timeTakenMillis);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.speedy_score",speedy_score);
+                intent.putExtra("seveno.android.miniseconds.speednumgame.elapsedTime",elapsedTime);
               /*  intent.putExtra("game.speed.android.speed_number_game.numErrors",numErrors);
                 intent.putExtra("game.speed.android.speed_number_game.position",highScorePosition);*/
 
