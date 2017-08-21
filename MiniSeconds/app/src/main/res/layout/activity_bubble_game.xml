@@ -50,10 +50,10 @@
             android:max="100"/>
     </LinearLayout>
     
-  <!--<seveno.android.miniseconds.BubbleShooter.BubbleGameView
+  <seveno.android.miniseconds.BubbleShooter.BubbleGameView
         android:id="@+id/mBubbleGameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>-->
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
     <!-- <LinearLayout

@@ -89,16 +89,12 @@ public class GameThread extends Thread {
                 mBubble.add(new Bubble(mContext, x, y, width, height));
         }
 
-        /*
-                Random rnd1 = new Random();
-             x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
-             y = rnd1.nextInt(height); //화면의 높이 안의 랜덤한 y지점
-        * */
 
-        /* //-------------------------------------
+
+         //-------------------------------------
          //  비눗방울 만들기  - Touch Event에서 호출
          //-------------------------------------*/
-        /*public void MakeBubble() {
+        public void MakeBubble() {
             synchronized (mHolder) {
                 Random rnd1 = new Random();
                 int x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
@@ -107,8 +103,7 @@ public class GameThread extends Thread {
                 if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
                     mBubble.add(new Bubble(mContext, x, y, width, height));
             }
-
-        }*/
+        }
         //비눗방울 터치
         public void TouchBubble(int x, int y) {
             boolean flag = false;
@@ -128,19 +123,6 @@ public class GameThread extends Thread {
 
             }
         }
-
-   /* public void MakeBubble(int x, int y) {
-        boolean flag = false;
-        for (Bubble tmp :  mBubble) {
-            if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
-                tmp.dead = true;                   // 비눗방울 Touch일 경우
-                flag = true;
-            }
-        }
-        if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
-            mBubble.add(new Bubble(mContext, x, y, width, height));
-    }
-*/
 
         //-------------------------------------
         //  작은  비눗방울 만들기
@@ -188,10 +170,10 @@ public class GameThread extends Thread {
                 boolean BubbleTurn  = true;
                 try {
                     synchronized (mHolder) {  // 동기화 유지
-                      /*  if(BubbleTurn) {
+                    if(BubbleTurn) {
                             MakeBubble();
                         }
-                        BubbleTurn = !BubbleTurn;*/
+                        BubbleTurn = !BubbleTurn;
                         MoveBubble();
                         canvas.drawBitmap(imgBack, 0, 0, null);
                         // 큰 비눗방울
@@ -211,3 +193,21 @@ public class GameThread extends Thread {
         } // run
 
     }
+
+     /* public void MakeBubble(int x, int y) {
+        boolean flag = false;
+        for (Bubble tmp :  mBubble) {
+            if (Math.pow(tmp.x - x, 2) + Math.pow(tmp.y - y, 2)  <= Math.pow(tmp.radi, 2)) {
+                tmp.dead = true;                   // 비눗방울 Touch일 경우
+                flag = true;
+            }
+        }
+        if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
+            mBubble.add(new Bubble(mContext, x, y, width, height));
+    }
+*/
+   /*
+                Random rnd1 = new Random();
+             x = rnd1.nextInt(width); //화면의 폭 안의 랜덤한 x지점
+             y = rnd1.nextInt(height); //화면의 높이 안의 랜덤한 y지점
+        * */

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private Intent speedyIntent;
     private TextView txt_speedyError;
     private int speedy_score = 100;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +197,12 @@ public class SpeedyNumPlay extends AppCompatActivity  {
             if(sequence.allCorrect()){
                 t_end_num = 1;
                 timerRunning = false;
+                if(mp != null){
+                    isPlaying();
+                }else{
+                    mp = MediaPlayer.create(SpeedyNumPlay.this, R.raw.s_correct_answer);
+                    isPlaying();
+                }
                 long finalTime = timeTakenMillis + (numErrors*ERROR_PENALTY_SECONDS*1000);
                 t1.interrupt();
                 h2.removeCallbacks(run);
@@ -260,6 +268,14 @@ public class SpeedyNumPlay extends AppCompatActivity  {
 
 
 
-
+private  void isPlaying(){
+    if(!mp.isPlaying()){
+        mp.start();
+    }else{
+        mp.stop();
+        mp.release();
+        mp = null;
+    }
+}
 
 }
