@@ -162,7 +162,7 @@ public class GameThread extends Thread {
         //-------------------------------------
         public void run() {
             // while (!Thread.currentThread().isInterrupted()) {
-            bubbleRun = getBubbleRun();
+            //bubbleRun = getBubbleRun();
             while (bubbleRun) {
                 bubbleRun = getBubbleRun();
                 Canvas canvas = null;      // canvas를 만든다

@@ -14,6 +14,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,6 +55,15 @@ public class SpeedyNumPlay extends AppCompatActivity  {
     private TextView txt_speedyError;
     private int speedy_score = 100;
     private MediaPlayer mp;
+    private SpeedyController controller;
+    private TextView countdown_view;
+    private GridLayout gridLayout1;
+    private boolean Start_Ok;
+    Handler sHandler = new Handler();
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,44 +74,65 @@ public class SpeedyNumPlay extends AppCompatActivity  {
         txt_speedy_score = (TextView) findViewById(R.id.txt_speedy_score);
         txt_speedyError = (TextView) findViewById(R.id.txt_speedyError);
         bar_speedyNum = (ProgressBar) findViewById(R.id.bar_speedyNum);
+        countdown_view = (TextView) findViewById(R.id.countdown_view);
+        gridLayout1 = (GridLayout) findViewById(R.id.gridLayout1);
+
         speedyNumBtn = new Integer[9];
         Random rand2 = new Random();
 
         gameType = rand2.nextInt(4);
-
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
             //sequence = new Sequence(getIntent().getIntExtra("seveno.android.miniseconds.speednumgame.currentGameType", 0));
             speedyIntent = getIntent();
             int gameT = speedyIntent.getIntExtra("seveno.android.miniseconds.speednumgame.currentGameType", 0);
             sequence = new Sequence(gameType);
-            startTime = System.currentTimeMillis();
+
             numErrors = 0;
-            timerRunning = true;
+
             bar_speedyNum.setProgress(bar_speedyNum.getMax());
             //첫 시작한 현재시간
             final long start = System.currentTimeMillis();
             //시간포맷팅을 위한 포맷설정
             final SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:SSS");
-            run = new Runnable() {
-                @Override
+
+            addSequenceToButtons();
+
+            gridLayout1.setVisibility(View.GONE);
+            controller = new SpeedyController(this);
+            controller.setCountdownView(countdown_view);
+            controller.startGame();
+
+
+// 3초 지연후 실행
+            sHandler.postDelayed(new Runnable()  {
                 public void run() {
-                    timeTakenMillis = System.currentTimeMillis() - startTime;
-                    txt_speedy_time.setText("Time: "+(convertToMinutesAndSeconds(timeTakenMillis)));
-                    h2.postDelayed(this, 500);
+                    //#명령어
+                    t1.start();
+                    startTime = System.currentTimeMillis();
+                    run = new Runnable() {
+                        @Override
+                        public void run() {
+                            timeTakenMillis = System.currentTimeMillis() - startTime;
+                            txt_speedy_time.setText("Time: "+(convertToMinutesAndSeconds(timeTakenMillis)));
+                            h2.postDelayed(this, 500);
+                        }
+                    };
+                    gridLayout1.setVisibility(View.VISIBLE);
+                    timerRunning = true;
+                    if(timerRunning){
+                        h2.postDelayed(run, 0);
+                    } else {
+                        txt_speedy_time.setText(convertToMinutesAndSeconds(timeTakenMillis));
+
+                    }
+                    sHandler.removeMessages(0);
                 }
-            };
+            }, 3000);
+
+
+
        //
-            if(timerRunning){
-                h2.postDelayed(run, 0);
-            } else {
-                txt_speedy_time.setText(convertToMinutesAndSeconds(timeTakenMillis));
-
-            }
-
-
-
-
             handler_progress = new Handler();
             t1 = new Thread(new Runnable() {
                 @Override
@@ -135,43 +166,14 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                 }
             });
 
-            t1.start(); // 쓰레드 시작
+             // 쓰레드 시작
 
         }//onCreate
 
 
 
-           /* t = new Thread(new Runnable() {
-                public void run() {
-                    //첫 시작한 현재시간
-                    final long start = System.currentTimeMillis();
-                    //시간포맷팅을 위한 포맷설정
-                    final SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:SSS");
-
-                    while (!(t.isInterrupted())) {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                //쓰레드가 돌때마다 계속 현재시간 갱신
-                                long end = System.currentTimeMillis();
-                                //진행된시간을 계산하여 포맷에 맞게 TextView에 뿌리기
-                                txt_speedy_time.setText(sdf.format(end - start).substring(0, 8));
-                            }
-                        });
-                        //0.01초마다 Thread돌리기
-                        SystemClock.sleep(10);
-                    }
-                }
-            });
-            t.start();*/
-
-
-        addSequenceToButtons();
-
        // setupActionBar();
         //addSequenceToButtons();
-
-
-
 
     }
     public void Game_Over(int end_speedyNum_bar){
@@ -279,3 +281,25 @@ private  void isPlaying(){
 }
 
 }
+  /* t = new Thread(new Runnable() {
+                public void run() {
+                    //첫 시작한 현재시간
+                    final long start = System.currentTimeMillis();
+                    //시간포맷팅을 위한 포맷설정
+                    final SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:SSS");
+
+                    while (!(t.isInterrupted())) {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                //쓰레드가 돌때마다 계속 현재시간 갱신
+                                long end = System.currentTimeMillis();
+                                //진행된시간을 계산하여 포맷에 맞게 TextView에 뿌리기
+                                txt_speedy_time.setText(sdf.format(end - start).substring(0, 8));
+                            }
+                        });
+                        //0.01초마다 Thread돌리기
+                        SystemClock.sleep(10);
+                    }
+                }
+            });
+            t.start();*/

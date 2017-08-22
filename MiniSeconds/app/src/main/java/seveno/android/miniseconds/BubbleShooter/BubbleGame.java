@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import seveno.android.miniseconds.GameEnding;
 import seveno.android.miniseconds.R;
+import seveno.android.miniseconds.SpeedNumGame.SpeedyController;
 
 public class BubbleGame extends AppCompatActivity {
 
@@ -32,7 +33,9 @@ public class BubbleGame extends AppCompatActivity {
     private static long elapsedTime;
     private Boolean BubbleTurn = false;
     private GameThread mExGame;
-
+    private TextView countdown_view;
+    private BubbleController controller;
+    Handler bHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,25 +48,50 @@ public class BubbleGame extends AppCompatActivity {
         linear_text = (LinearLayout) findViewById(R.id.linear_text);
         txt_Bubble_score = (TextView) findViewById(R.id.txt_Bubble_score);
         mBubbleGameView = (BubbleGameView) findViewById(R.id.mBubbleGameView);
+        countdown_view = (TextView) findViewById(R.id.countdown_view_b);
+
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
 
             linear_1.bringToFront();
             linear_text.bringToFront();
-            //mBubbleGameView.setVisibility(View.VISIBLE);
+            countdown_view.bringToFront();
+            mBubbleGameView.setVisibility(View.GONE);
             Intent intent = getIntent();
+
             long speedyTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime", 0);
             int speedy_score = intent.getIntExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore", T_score);
             elapsedTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime", elapsedTime);
             T_score = speedy_score;
             elapsedTime += speedyTime;
+
+
+            controller = new BubbleController(this);
+            controller.setCountdownView(countdown_view);
+            controller.startGame();
+
             //프로그래스바
             bar_BubbleGame.setProgress(bar_BubbleGame.getMax());
             txt_Bubble_score.setText("Score : " + T_score);
             txt_Bubble_score.setTextSize(20);
-            startTime = System.currentTimeMillis();
-            // asyncTask 실행
-            new BubbleProgressTask().execute(bar_BubbleGame.getProgress());
+
+
+            bHandler.postDelayed(new Runnable()  {
+                public void run() {
+                    //#명령어
+                    mBubbleGameView.setVisibility(View.VISIBLE);
+                    startTime = System.currentTimeMillis();
+                    // asyncTask 실행
+                    new BubbleProgressTask().execute(bar_BubbleGame.getProgress());
+                    bHandler.removeMessages(0);
+                }
+            }, 4000);
+
+
+
+
+
+
 
         }
     }
@@ -121,7 +149,7 @@ public class BubbleGame extends AppCompatActivity {
         protected void onPostExecute(Boolean performed) {
             super.onPostExecute(performed);
             if (performed) {
-                // mBubbleGameView.setVisibility(View.GONE);
+                 mBubbleGameView.setVisibility(View.GONE);
                 // SystemClock.sleep(2000);
                 PlayNextGame();
             }

@@ -19,6 +19,7 @@ public class FinishScreenBubble extends AppCompatActivity {
     private static int bubble_score;
     private static long elapsedTime;
     private static final int ERROR_PENALTY_SECONDS = 10;
+    private long final_elapsedTime;
 
 
     @Override
@@ -31,7 +32,7 @@ public class FinishScreenBubble extends AppCompatActivity {
         initialTime = intent.getLongExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.bubbleTime",0);
         bubble_score = intent.getIntExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.tscore2", 0);
         elapsedTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime",0);
-
+        final_elapsedTime = initialTime+elapsedTime;
 
        /* intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.bubbleTime", timeTakenMillis);
         intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.tscore2", T_score);
@@ -75,7 +76,7 @@ public class FinishScreenBubble extends AppCompatActivity {
         Intent intent = new Intent(this, GameEnding.class);
         intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",initialTime);
         intent.putExtra("seveno.android.miniseconds.gameEnding.tscore",T_score);
-        intent.putExtra("seveno.android.miniseconds.gameEnding.elapsedTime",elapsedTime);
+        intent.putExtra("seveno.android.miniseconds.gameEnding.elapsedTime",final_elapsedTime);
         /*
             long elapsedTime = intent.getLongExtra("seveno.android.miniseconds.gameEnding.elapsedTime", 0);
         int finalScore = intent.getIntExtra("seveno.android.miniseconds.gameEnding.tscore",0);
