@@ -29,7 +29,7 @@ import java.net.URLEncoder;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
-    private static final String TAG = "IntroActivity";
+    private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
