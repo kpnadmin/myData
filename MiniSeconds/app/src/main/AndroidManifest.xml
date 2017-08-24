@@ -14,32 +14,25 @@
         <activity
             android:name=".MainActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar">
+        </activity>
+        <activity android:name=".SpeedNumGame.SpeedyNumPlay">
+        </activity>
+        <activity android:name=".SpeedNumGame.ClearNumScreen">
+        </activity>
+        <activity android:name=".GameOver">
+        </activity>
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
         
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SpeedNumGame.SpeedyNumPlay">
-        </activity>
-        <activity android:name=".SpeedNumGame.FinishScreen">
-        </activity>
-        <activity android:name=".GameOver">
-        </activity>
-        <activity android:name=".BubbleShooter.BubbleGame">
-            
-        </activity>
-        <activity android:name=".GameEnding">
-        </activity>
-        <activity android:name=".BubbleShooter.FinishScreenBubble">
-        </activity>
-        <activity android:name=".IntroActivity">
-        </activity>
         <activity android:name=".LoginActivity">
         </activity>
         <activity android:name=".PicturePuzzle.PicturePuzzleGame">
         </activity>
-        <activity android:name=".PicturePuzzle.FinishPuzzleScreen">
+        <activity android:name=".PicturePuzzle.ClearPuzzleScreen">
         </activity>
         <activity android:name=".PicturePuzzle.PuzzlePreview">
             

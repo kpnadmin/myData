@@ -1,7 +1,9 @@
 package seveno.android.miniseconds.PicturePuzzle;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,11 +24,15 @@ public class PicturePuzzleGame extends Activity {
     Handler p_Handler = new Handler();
     private PuzzleView puzzleView;
     private static long startTime;
+    private static long prevTime;
     private static long timeTakenMillis;
     private static long elapsedTime;
     private TextView countdown_view;
     private PuzzleController controller;
     private ProgressBar bar_PuzzleGame;
+    private int T_score;
+    private BroadcastReceiver receiver;
+
 
 
     @Override
@@ -42,9 +48,19 @@ public class PicturePuzzleGame extends Activity {
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
 
+         /*   intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.bubbleTime", timeTakenMillis);
+            intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.tscore2", T_score);
+            intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.elapsedTime", elapsedTime);*/
+            Intent intent = getIntent();
+            prevTime = intent.getLongExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.initialTime", 0);
+            int puzzle_score = intent.getIntExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.tscore", T_score);
+            elapsedTime = intent.getLongExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.elapsedTime", elapsedTime);
+            T_score = puzzle_score;
+
             controller = new PuzzleController(this);
             controller.setCountdownView(countdown_view);
             controller.startGame();
+
 
 
             //프로그래스바
@@ -114,6 +130,8 @@ public class PicturePuzzleGame extends Activity {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             bar_PuzzleGame.setProgress(values[0]);
+
+
             if (bar_PuzzleGame.getProgress() == 0) {
                 isPerformed = true;
             }
@@ -145,12 +163,17 @@ public class PicturePuzzleGame extends Activity {
 
     private void PlayNextGame() {
         //t2.interrupt();
-        Intent intent = new Intent(this, FinishPuzzleScreen.class);
-        intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.bubbleTime", timeTakenMillis);
-        //intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.tscore2", T_score);
-        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime", elapsedTime);
+        Intent intent2 = new Intent(this, ClearPuzzleScreen.class);
 
-        startActivity(intent);
+         /*   intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.bubbleTime", timeTakenMillis);
+            intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.tscore2", T_score);
+            intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.elapsedTime", elapsedTime);*/
+        intent2.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.puzzleTime", timeTakenMillis);
+        T_score += 1000;
+        intent2.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.tscore2", T_score);
+        intent2.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.elapsedTime", elapsedTime);
+
+        startActivity(intent2);
         finish();
     }
 

@@ -86,6 +86,8 @@ Copyright 2013 Jesse Toms
     <string name="complete_puzzle_title">Puzzle_Game</string>
     <string name="completed_puzzle">You have completed the puzzle!</string>
     <string name="shuffle">Shuffle</string>
+    <string name="txt_TimeOVer">Time Over...</string>
     
+    <string name="textview_cleared">Clear!</string>
     
 </resources>

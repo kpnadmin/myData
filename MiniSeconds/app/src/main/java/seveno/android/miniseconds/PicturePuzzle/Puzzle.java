@@ -306,6 +306,7 @@ public class Puzzle {
             Puzzle_finish = true;
             setPuzzle_finish(Puzzle_finish);
 
+
             pView.invalidate();
         }
     }

@@ -8,12 +8,12 @@ import android.content.Intent;
 
 import java.util.Locale;
 
-import seveno.android.miniseconds.BubbleShooter.BubbleGame;
 import seveno.android.miniseconds.MainActivity;
 //import seveno.android.miniseconds.PoppingBall.PoppingBallGameActivity;
+import seveno.android.miniseconds.PicturePuzzle.PuzzlePreview;
 import seveno.android.miniseconds.R;
 
-public class FinishScreen extends AppCompatActivity {
+public class ClearNumScreen extends AppCompatActivity {
     private static final int ERROR_PENALTY_SECONDS = 10;
     private TextView fin_speedy_score;
     private int T_score;
@@ -25,7 +25,7 @@ public class FinishScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_finish_screen);
+        setContentView(R.layout.activity_num_clear_screen);
         fin_speedy_score = (TextView) findViewById(R.id.fin_speedy_score);
 
         initialTime = getIntent().getLongExtra("seveno.android.miniseconds.speednumgame.takenspeedyTime",0);
@@ -86,10 +86,14 @@ public class FinishScreen extends AppCompatActivity {
         finish();
     }
     public void btn_NextGame(View view){
-        Intent intent = new Intent(this, BubbleGame.class);
-        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",initialTime);
+        Intent intent = new Intent(this, PuzzlePreview.class);
+       /* intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime",initialTime);
         intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore",T_score);
-        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime",elapsedTime);
+        intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime",elapsedTime);*/
+        intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.initialTime",initialTime);
+        intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.tscore",T_score);
+        intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.elapsedTime",elapsedTime);
+
         //startActivityForResult(intent, 0);
         startActivity(intent);
         finish();

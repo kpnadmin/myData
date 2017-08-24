@@ -5,22 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="seveno.android.miniseconds.PicturePuzzle.ClearPuzzleScreen"
     android:orientation="vertical"
-    tools:context="seveno.android.miniseconds.SpeedNumGame.FinishScreen">
+    >
+    
     
     <TextView
-        android:id="@+id/textview_finished"
+        android:id="@+id/txt_puz_finished"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/textview_finished"
+        android:text="@string/textview_cleared"
         android:textSize="@dimen/text_size_title"
         android:textStyle="bold"
         android:typeface="serif"/>
     
     <TextView
-        android:id="@+id/textview_time"
+        android:id="@+id/txt_puz_time"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -29,7 +31,7 @@
         android:typeface="serif"/>
     
     <TextView
-        android:id="@+id/textview_finaltime"
+        android:id="@+id/txt_puz_finaltime"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -37,17 +39,17 @@
         android:textSize="@dimen/text_size"
         android:typeface="serif"/>
     
-    <TextView
+    <!--<TextView
         android:id="@+id/textview_errors"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
         android:textSize="@dimen/text_size"
-        android:typeface="serif"/>
+        android:typeface="serif"/>-->
     
     <TextView
-        android:id="@+id/fin_speedy_score"
+        android:id="@+id/fin_puz_score"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -56,23 +58,13 @@
         android:typeface="serif"/>
     
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_puz_next"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="btn_NextGame"
+        android:onClick="btn_puzzle_next"
         android:text="@string/button_NextGame"
         android:textSize="@dimen/text_size"
         android:typeface="serif"/>
-    
-    
-<!--    <Button
-        android:id="@+id/button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="btn_NextGame"
-        android:text="@string/button_ok"
-        android:textSize="@dimen/text_size"
-        android:typeface="serif"/>-->
+
 </LinearLayout>

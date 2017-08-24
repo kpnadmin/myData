@@ -1,16 +1,12 @@
 package seveno.android.miniseconds.SpeedNumGame;
 
 import android.app.ActionBar;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -18,13 +14,11 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Random;
 
-import seveno.android.miniseconds.BubbleShooter.BubbleGame;
 import seveno.android.miniseconds.GameOver;
 import seveno.android.miniseconds.R;
 
@@ -128,7 +122,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                     }
                     sHandler.removeMessages(0);
                 }
-            }, 3000);
+            }, 4000);
 
 
 
@@ -208,7 +202,7 @@ public class SpeedyNumPlay extends AppCompatActivity  {
                 long finalTime = timeTakenMillis + (numErrors*ERROR_PENALTY_SECONDS*1000);
                 t1.interrupt();
                 h2.removeCallbacks(run);
-                 Intent intent = new Intent(this, FinishScreen.class);
+                 Intent intent = new Intent(this, ClearNumScreen.class);
                 //Intent intent = new Intent(this, BubbleGame.class);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.takenspeedyTime",timeTakenMillis);
                 intent.putExtra("seveno.android.miniseconds.speednumgame.numErrors",numErrors);

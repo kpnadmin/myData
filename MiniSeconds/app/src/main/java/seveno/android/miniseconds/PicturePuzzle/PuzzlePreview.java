@@ -15,7 +15,10 @@ public class PuzzlePreview extends AppCompatActivity {
 
     private ImageView sparty_first;
     private TextView txt_puzzle_content;
-
+    private static long prevTime;
+    private static long timeTakenMillis;
+    private static long elapsedTime;
+    private int T_score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,16 @@ public class PuzzlePreview extends AppCompatActivity {
 
 
         sparty_first = (ImageView) findViewById(R.id.sparty_first);
-
+        Intent intent = getIntent();
+/*
+        intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.initialTime",initialTime);
+        intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.tscore",T_score);
+        intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.elapsedTime",elapsedTime);
+        */
+        prevTime = intent.getLongExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.initialTime", 0);
+        int speedy_score = intent.getIntExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.tscore", T_score);
+        elapsedTime = intent.getLongExtra("seveno.android.miniseconds.PicturePuzzle.PuzzlePreview.elapsedTime", elapsedTime);
+        T_score = speedy_score;
 
         // thread start
         p_1_handler = new Handler();
@@ -33,7 +45,10 @@ public class PuzzlePreview extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent( getApplicationContext(), PicturePuzzleGame.class );
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("intro", false);
+                intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.puzzleTime", timeTakenMillis);
+                intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.tscore2", T_score);
+                intent.putExtra("seveno.android.miniseconds.PicturePuzzle.PuzzleGame.elapsedTime", elapsedTime);
+
                 startActivity(intent);
                 // 액티비티 이동시 페이드인/아웃 효과를 보여준다. 즉, 인트로
                 //    화면에 부드럽게 사라진다.
