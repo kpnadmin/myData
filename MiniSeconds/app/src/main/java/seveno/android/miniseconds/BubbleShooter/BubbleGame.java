@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import seveno.android.miniseconds.GameEnding;
 import seveno.android.miniseconds.R;
@@ -36,6 +37,13 @@ public class BubbleGame extends AppCompatActivity {
     private TextView countdown_view;
     private BubbleController controller;
     Handler bHandler = new Handler();
+
+
+    private final long FINISH_INTERVAL_TIME = 1000;
+    private long backPressedTime = 0;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +73,6 @@ public class BubbleGame extends AppCompatActivity {
             T_score = speedy_score;
             elapsedTime += speedyTime;
 
-
             controller = new BubbleController(this);
             controller.setCountdownView(countdown_view);
             controller.startGame();
@@ -86,12 +93,6 @@ public class BubbleGame extends AppCompatActivity {
                     bHandler.removeMessages(0);
                 }
             }, 4000);
-
-
-
-
-
-
 
         }
     }
@@ -149,7 +150,7 @@ public class BubbleGame extends AppCompatActivity {
         protected void onPostExecute(Boolean performed) {
             super.onPostExecute(performed);
             if (performed) {
-                 mBubbleGameView.setVisibility(View.GONE);
+                // mBubbleGameView.setVisibility(View.GONE);
                 // SystemClock.sleep(2000);
                 PlayNextGame();
             }
@@ -170,6 +171,27 @@ public class BubbleGame extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번 더 뒤로가기 누르면 꺼버린다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 }
 
 // 스레드 생성하고 시작

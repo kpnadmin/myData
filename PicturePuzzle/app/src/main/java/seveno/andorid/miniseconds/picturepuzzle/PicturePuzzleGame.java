@@ -23,17 +23,16 @@ public class PicturePuzzleGame extends Activity {
     Handler p_1_Handler = new Handler();
     Handler p_Handler = new Handler();
     private PuzzleView puzzleView;
-
-
     private static long startTime;
     private static long timeTakenMillis;
     private static long elapsedTime;
-
+    private TextView countdown_view;
+    private PuzzleController controller;
     private ProgressBar bar_PuzzleGame;
 
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_puzzle_game);
 
@@ -41,26 +40,38 @@ public class PicturePuzzleGame extends Activity {
         puzzleView = (PuzzleView)this.findViewById(R.id.puzzleView);
 
         bar_PuzzleGame = (ProgressBar) findViewById(R.id.bar_PuzzleGame);
+        countdown_view = (TextView) findViewById(R.id.countdown_view_p);
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
 
 
+
+            controller = new PuzzleController(this);
+            controller.setCountdownView(countdown_view);
+            controller.startGame();
 
 
             //프로그래스바
             bar_PuzzleGame.setProgress(bar_PuzzleGame.getMax());
 
 
-            p_1_Handler.postDelayed(new Runnable()  {
+           /* p_1_Handler.postDelayed(new Runnable()  {
                 public void run() {
                     //#명령어
                     Animation animation = new AlphaAnimation(1, 0);
                     animation.setDuration(500);
-                    /*.setVisibility(View.GONE);
-                    .setAnimation(animation);*/
+                    *//*.setVisibility(View.GONE);
+                    .setAnimation(animation);*//*
                     p_1_Handler.removeMessages(0);
                 }
-            }, 4000);
+            }, 4000);*/
+
+
+                   if(savedInstanceState != null){
+
+
+                puzzleView.loadInstanceState(savedInstanceState);
+            }
 
             p_Handler.postDelayed(new Runnable()  {
                 public void run() {
@@ -69,14 +80,13 @@ public class PicturePuzzleGame extends Activity {
                     startTime = System.currentTimeMillis();
                     // asyncTask 실행
                     new PuzzleProgressTask().execute(bar_PuzzleGame.getProgress());
-                   // puzzleView.setVisibility(View.VISIBLE);
-                  //  puzzleView.loadInstanceState(savedInstanceState);
+                    puzzleView.setVisibility(View.VISIBLE);
+
                     p_Handler.removeMessages(0);
                 }
             }, 4500);
 
         }
-
         }
 
     class PuzzleProgressTask extends AsyncTask<Integer, Integer, Boolean> {
@@ -88,7 +98,7 @@ public class PicturePuzzleGame extends Activity {
         protected Boolean doInBackground(Integer... params) {
             for (int i = params[0]; i >= 0; i--) {
                 publishProgress(i);
-                SystemClock.sleep(100);
+                SystemClock.sleep(200);
             }
             if (isCancelled) {
                 return isCancelled;
@@ -96,7 +106,6 @@ public class PicturePuzzleGame extends Activity {
             timeTakenMillis = System.currentTimeMillis() - startTime;
             //ViewCompleted(mBubbleGameView);
             //BubbleGameView.GameThread.interrupted()
-
             return isPerformed;
         }
 

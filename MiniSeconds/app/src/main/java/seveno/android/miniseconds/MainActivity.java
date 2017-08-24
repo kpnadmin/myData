@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.ResultCallback;
@@ -42,6 +43,9 @@ public class MainActivity extends Activity {
     private Uri photo_url;
     Bitmap bitmap;
 
+    private final long FINISH_INTERVAL_TIME = 1000;
+    private long backPressedTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +56,6 @@ public class MainActivity extends Activity {
 
         String charsetname = "UTF-8";
         String googlePhoto = null;
-
-
-
 
         btn_game_start = (Button) findViewById(R.id.btn_game_start);
         //btn_logout = (Button) findViewById(R.id.btn_logout);
@@ -76,5 +77,21 @@ public class MainActivity extends Activity {
 
 
 }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번 더 뒤로가기 누르면 꺼버린다.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }

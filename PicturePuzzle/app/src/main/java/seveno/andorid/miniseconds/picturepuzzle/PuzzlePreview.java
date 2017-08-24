@@ -10,9 +10,9 @@ import android.widget.TextView;
 public class PuzzlePreview extends AppCompatActivity {
 
     private Handler p_1_handler;
-    private TextView countdown_view;
-    private PuzzleController controller;
+
     private ImageView sparty_first;
+    private TextView txt_puzzle_content;
 
 
     @Override
@@ -20,16 +20,8 @@ public class PuzzlePreview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle_preview);
 
-        countdown_view = (TextView) findViewById(R.id.countdown_view_p);
+
         sparty_first = (ImageView) findViewById(R.id.sparty_first);
-
-
-
-        controller = new PuzzleController(this);
-        controller.setCountdownView(countdown_view);
-        controller.startGame();
-
-
 
 
         // thread start

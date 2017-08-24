@@ -7,6 +7,13 @@
     <string name="welcome_puzzle">Welcome to QIJUN\'s Puzzle</string>
     <string name="title_activity_puzzle">PuzzleActivity</string>
     <string name="hurrah">Hurrah!!!</string>
+    <string name="complete_puzzle_title">Puzzle_Game</string>
     <string name="completed_puzzle">You have completed the puzzle!</string>
     <string name="shuffle">Shuffle</string>
+    <string name="title_activity_finish_screen">Finish Screen</string>
+    <string name="title_activity_game_select">Game Select</string>
+    <string name="title_activity_high_scores">High Scores</string>
+    <string name="title_activity_play">Play</string>
+    <string name="textview_finished">Finished!</string>
+    <string name="textview_table_errors">Errors</string>
 </resources>

@@ -22,29 +22,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ListView lv = (ListView) findViewById(R.id.listView1);
-
         // 데이터 생성
         List<ModelItem> list  = new ArrayList<>();
-
         // 어댑터 객체 생성
         adapter = new AdapterCustom(this, R.layout.list_item, R.id.dataItem01,  list );
         adapter.setInitData(0, 9);
-
         // 리스뷰와 어댑터 연결
         lv.setAdapter(adapter);
-
         // item click listener
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-
             }
         });
-
         // item long click listener
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
@@ -52,16 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
 
             }
-
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
                 // Sample calculation to determine if the last item is fully visible.
                 final int lastItem = firstVisibleItem + visibleItemCount;    
                 if(lastItem == totalItemCount) {

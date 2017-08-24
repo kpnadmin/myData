@@ -99,6 +99,16 @@ public class Puzzle {
 
     private static Random random = new Random();
 
+    private boolean Puzzle_finish;
+
+    public boolean isPuzzle_finish() {
+        return Puzzle_finish;
+    }
+
+    public void setPuzzle_finish(boolean puzzle_finish) {
+        Puzzle_finish = puzzle_finish;
+    }
+
     public Puzzle(Context context) {
         // Create paint for filling the area the puzzle will
         // be solved in.
@@ -107,16 +117,16 @@ public class Puzzle {
 
 
         // Load the solved puzzle image
-        puzzleComplete = BitmapFactory.decodeResource(context.getResources(), R.drawable.sparty_done);
+        puzzleComplete = BitmapFactory.decodeResource(context.getResources(), R.drawable.p_sparty_done);
         //completePuzzle = new PuzzlePiece(context, R.drawable.sparty_done,0f,0f);
 
         // Load the puzzle pieces
-        pieces.add(new PuzzlePiece(context, R.drawable.sparty1, 0.259f, 0.238f));
-        pieces.add(new PuzzlePiece(context, R.drawable.sparty2, 0.666f, 0.158f));
-        pieces.add(new PuzzlePiece(context, R.drawable.sparty3, 0.741f, 0.501f));
-        pieces.add(new PuzzlePiece(context, R.drawable.sparty4, 0.341f, 0.519f));
-        pieces.add(new PuzzlePiece(context, R.drawable.sparty5, 0.718f, 0.834f));
-        pieces.add(new PuzzlePiece(context, R.drawable.sparty6, 0.310f, 0.761f));
+        pieces.add(new PuzzlePiece(context, R.drawable.p_sparty1, 0.259f, 0.238f));
+        pieces.add(new PuzzlePiece(context, R.drawable.p_sparty2, 0.666f, 0.158f));
+        pieces.add(new PuzzlePiece(context, R.drawable.p_sparty3, 0.741f, 0.501f));
+        pieces.add(new PuzzlePiece(context, R.drawable.p_sparty4, 0.341f, 0.519f));
+        pieces.add(new PuzzlePiece(context, R.drawable.p_sparty5, 0.718f, 0.834f));
+        pieces.add(new PuzzlePiece(context, R.drawable.p_sparty6, 0.310f, 0.761f));
         shuffle();
 
     }
@@ -260,10 +270,10 @@ public class Puzzle {
 
                     ShuffleListener listener = new ShuffleListener();
                     // Parameterize the builder
-                    builder.setTitle(R.string.hurrah);
+                    builder.setTitle(R.string.complete_puzzle_title);
                     builder.setMessage(R.string.completed_puzzle);
                     builder.setPositiveButton(android.R.string.ok, null);
-                    builder.setNegativeButton(R.string.shuffle, listener);
+                   // builder.setNegativeButton(R.string.shuffle, listener);
 
 
                     // Create the dialog box and show it
@@ -285,6 +295,18 @@ public class Puzzle {
             pView.invalidate();
         }
     }
+    private class FinishListener implements DialogInterface.OnClickListener{
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+            Puzzle_finish = true;
+            setPuzzle_finish(Puzzle_finish);
+
+            pView.invalidate();
+        }
+    }
+
 
     /**
      * Determine if the puzzle is done!
