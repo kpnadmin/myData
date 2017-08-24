@@ -274,7 +274,8 @@ public class Puzzle {
                     // Parameterize the builder
                     builder.setTitle(R.string.complete_puzzle_title);
                     builder.setMessage(R.string.completed_puzzle);
-                    builder.setPositiveButton(android.R.string.ok, null);
+                    FinishListener finishListener = new FinishListener();
+                    builder.setPositiveButton(android.R.string.ok, finishListener);
                    // builder.setNegativeButton(R.string.shuffle, listener);
 
 
