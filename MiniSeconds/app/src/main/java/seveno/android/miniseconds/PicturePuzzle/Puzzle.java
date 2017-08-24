@@ -1,4 +1,4 @@
-package seveno.andorid.miniseconds.picturepuzzle;
+package seveno.android.miniseconds.PicturePuzzle;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import seveno.android.miniseconds.R;
 
 /**
  * Created by Administrator on 2017-08-23.

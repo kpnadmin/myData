@@ -28,15 +28,20 @@
         <activity android:name=".BubbleShooter.FinishScreenBubble">
         </activity>
         <activity android:name=".IntroActivity">
-           
-        </activity>
-        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
         
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".PicturePuzzle.PicturePuzzleGame">
+        </activity>
+        <activity android:name=".PicturePuzzle.FinishPuzzleScreen">
+        </activity>
+        <activity android:name=".PicturePuzzle.PuzzlePreview">
+            
+        </activity>
     </application>
-
 </manifest>

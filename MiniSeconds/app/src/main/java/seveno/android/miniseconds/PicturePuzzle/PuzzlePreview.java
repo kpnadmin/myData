@@ -1,11 +1,13 @@
-package seveno.andorid.miniseconds.picturepuzzle;
+package seveno.android.miniseconds.PicturePuzzle;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import seveno.android.miniseconds.R;
 
 public class PuzzlePreview extends AppCompatActivity {
 

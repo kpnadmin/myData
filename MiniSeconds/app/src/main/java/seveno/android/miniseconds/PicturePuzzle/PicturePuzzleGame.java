@@ -1,20 +1,18 @@
-package seveno.andorid.miniseconds.picturepuzzle;
+package seveno.android.miniseconds.PicturePuzzle;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import seveno.android.miniseconds.R;
 
 public class PicturePuzzleGame extends Activity {
 
@@ -44,8 +42,6 @@ public class PicturePuzzleGame extends Activity {
 
         if (savedInstanceState == null) {//On first startup, creates the sequence, begins the timer and does some cleanup work.
 
-
-
             controller = new PuzzleController(this);
             controller.setCountdownView(countdown_view);
             controller.startGame();
@@ -65,8 +61,6 @@ public class PicturePuzzleGame extends Activity {
                     p_1_Handler.removeMessages(0);
                 }
             }, 4000);*/
-
-
                    if(savedInstanceState != null){
 
 

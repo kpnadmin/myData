@@ -65,7 +65,6 @@ public class BubbleGame extends AppCompatActivity {
             T_score = speedy_score;
             elapsedTime += speedyTime;
 
-
             controller = new BubbleController(this);
             controller.setCountdownView(countdown_view);
             controller.startGame();
@@ -86,12 +85,6 @@ public class BubbleGame extends AppCompatActivity {
                     bHandler.removeMessages(0);
                 }
             }, 4000);
-
-
-
-
-
-
 
         }
     }
@@ -149,7 +142,7 @@ public class BubbleGame extends AppCompatActivity {
         protected void onPostExecute(Boolean performed) {
             super.onPostExecute(performed);
             if (performed) {
-                 mBubbleGameView.setVisibility(View.GONE);
+                // mBubbleGameView.setVisibility(View.GONE);
                 // SystemClock.sleep(2000);
                 PlayNextGame();
             }

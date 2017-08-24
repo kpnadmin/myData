@@ -53,9 +53,6 @@ public class MainActivity extends Activity {
         String charsetname = "UTF-8";
         String googlePhoto = null;
 
-
-
-
         btn_game_start = (Button) findViewById(R.id.btn_game_start);
         //btn_logout = (Button) findViewById(R.id.btn_logout);
 
