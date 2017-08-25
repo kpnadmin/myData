@@ -28,7 +28,6 @@ public class GameThread extends Thread {
         Context mContext;
         Boolean bubbleRun =  false;
     public int BubbleScore;
-    private int cnt;
 
     public int getBubbleScore() {
         return BubbleScore;
@@ -103,11 +102,6 @@ public class GameThread extends Thread {
                 boolean flag = false;
                 if (flag == false)                              // 비눗방울 Touch가 아니면 비눗방울 생성
                     mBubble.add(new Bubble(mContext, x, y, width, height));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         }
         //비눗방울 터치

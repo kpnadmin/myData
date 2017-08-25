@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.content.Intent;
 
 import java.util.Locale;
 
@@ -16,7 +15,7 @@ public class GameEnding extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_ending);
+        setContentView(R.layout.act_game_ending);
 
         text_end_title = (TextView) findViewById(R.id.text_end_title);
         text_end_playtime = (TextView) findViewById(R.id.text_end_playtime);

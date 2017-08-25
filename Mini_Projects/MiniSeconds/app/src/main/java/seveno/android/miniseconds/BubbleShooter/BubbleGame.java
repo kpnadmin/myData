@@ -3,7 +3,6 @@ package seveno.android.miniseconds.BubbleShooter;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,11 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import seveno.android.miniseconds.GameEnding;
 import seveno.android.miniseconds.R;
-import seveno.android.miniseconds.SpeedNumGame.SpeedyController;
 
 public class BubbleGame extends AppCompatActivity {
 
@@ -38,17 +34,10 @@ public class BubbleGame extends AppCompatActivity {
     private BubbleController controller;
     Handler bHandler = new Handler();
 
-
-    private final long FINISH_INTERVAL_TIME = 1000;
-    private long backPressedTime = 0;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bubble_game);
+        setContentView(R.layout.act_bubble_game);
 
         frame1 = (FrameLayout) findViewById(R.id.frame1);
         bar_BubbleGame = (ProgressBar) findViewById(R.id.bar_BubbleGame);
@@ -67,11 +56,12 @@ public class BubbleGame extends AppCompatActivity {
             mBubbleGameView.setVisibility(View.GONE);
             Intent intent = getIntent();
 
-            long speedyTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime", 0);
+            long speedyTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.initialTime", timeTakenMillis);
             int speedy_score = intent.getIntExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.tscore", T_score);
             elapsedTime = intent.getLongExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime", elapsedTime);
             T_score = speedy_score;
             elapsedTime += speedyTime;
+
 
             controller = new BubbleController(this);
             controller.setCountdownView(countdown_view);
@@ -93,6 +83,12 @@ public class BubbleGame extends AppCompatActivity {
                     bHandler.removeMessages(0);
                 }
             }, 4000);
+
+
+
+
+
+
 
         }
     }
@@ -150,7 +146,7 @@ public class BubbleGame extends AppCompatActivity {
         protected void onPostExecute(Boolean performed) {
             super.onPostExecute(performed);
             if (performed) {
-                // mBubbleGameView.setVisibility(View.GONE);
+                 mBubbleGameView.setVisibility(View.GONE);
                 // SystemClock.sleep(2000);
                 PlayNextGame();
             }
@@ -163,7 +159,7 @@ public class BubbleGame extends AppCompatActivity {
 
     private void PlayNextGame() {
         //t2.interrupt();
-        Intent intent = new Intent(this, FinishScreenBubble.class);
+        Intent intent = new Intent(this, ClearScreenBubble.class);
         intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.bubbleTime", timeTakenMillis);
         intent.putExtra("seveno.android.miniseconds.bubbleshooter.bubbleGame.tscore2", T_score);
         intent.putExtra("seveno.android.miniseconds.BubbleShooter.BubbleGame.elapsedTime", elapsedTime);
@@ -171,27 +167,6 @@ public class BubbleGame extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-    @Override
-    public void onBackPressed() {
-        long tempTime = System.currentTimeMillis();
-        long intervalTime = tempTime - backPressedTime;
-
-        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
-        {
-            super.onBackPressed();
-        }
-        else
-        {
-            backPressedTime = tempTime;
-            Toast.makeText(getApplicationContext(), "한번 더 뒤로가기 누르면 꺼버린다.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-
-
 }
 
 // 스레드 생성하고 시작

@@ -16,7 +16,7 @@ public class GameOver extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.act_game_over);
         intent1 = getIntent();
         btn_Gameover_return = (Button) findViewById(R.id.btn_Gameover_return);
 

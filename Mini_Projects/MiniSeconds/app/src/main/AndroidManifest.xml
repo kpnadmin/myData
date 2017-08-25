@@ -17,7 +17,7 @@
         </activity>
         <activity android:name=".SpeedNumGame.SpeedyNumPlay">
         </activity>
-        <activity android:name=".SpeedNumGame.FinishScreen">
+        <activity android:name=".SpeedNumGame.ClearNumScreen">
         </activity>
         <activity android:name=".GameOver">
         </activity>
@@ -25,23 +25,32 @@
         </activity>
         <activity android:name=".GameEnding">
         </activity>
-        <activity android:name=".BubbleShooter.FinishScreenBubble">
+        <activity android:name=".BubbleShooter.ClearScreenBubble">
         </activity>
         <activity android:name=".IntroActivity">
+        </activity>
+        <activity android:name=".duckcard.CardStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
         
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".duckcard.CardMainActivity">
         </activity>
-        <activity android:name=".PicturePuzzle.PicturePuzzleGame">
+        <activity android:name=".duckcard.CardOverActivity">
         </activity>
-        <activity android:name=".PicturePuzzle.FinishPuzzleScreen">
+        <activity android:name=".duckcard.CardClearActivity">
         </activity>
-        <activity android:name=".PicturePuzzle.PuzzlePreview">
-            
+    
+        <activity android:name=".colorbrick.CBStartActivity">
+        </activity>
+        <activity android:name=".colorbrick.CBMainActivity">
+        </activity>
+        <activity android:name=".colorbrick.CBOverActivity">
+        </activity>
+        <activity android:name=".colorbrick.CBClearActivity">
         </activity>
     </application>
+
 </manifest>
