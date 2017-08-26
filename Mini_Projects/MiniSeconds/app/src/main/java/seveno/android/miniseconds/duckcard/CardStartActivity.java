@@ -31,6 +31,8 @@ public class CardStartActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+
+
         initialTime = intent.getLongExtra("seveno.android.miniseconds.duckcard.cardstart.initialTime",0);
         card_start_score = intent.getIntExtra("seveno.android.miniseconds.duckcard.cardstart.tscore", 0);
         elapsedTime = intent.getLongExtra("seveno.android.miniseconds.duckcard.cardstart.elapsedTime",0);

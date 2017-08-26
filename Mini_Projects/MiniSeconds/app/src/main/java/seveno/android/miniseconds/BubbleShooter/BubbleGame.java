@@ -112,6 +112,7 @@ public class BubbleGame extends AppCompatActivity {
             //ViewCompleted(mBubbleGameView);
             //BubbleGameView.GameThread.interrupted()
 
+            mBubbleGameView.mThread.setRunning(false);
             return isPerformed;
         }
 
@@ -146,7 +147,8 @@ public class BubbleGame extends AppCompatActivity {
         protected void onPostExecute(Boolean performed) {
             super.onPostExecute(performed);
             if (performed) {
-                 mBubbleGameView.setVisibility(View.GONE);
+                mBubbleGameView.setVisibility(View.GONE);
+
                 // SystemClock.sleep(2000);
                 PlayNextGame();
             }

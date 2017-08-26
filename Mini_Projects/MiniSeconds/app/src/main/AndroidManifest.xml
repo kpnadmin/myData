@@ -28,6 +28,7 @@
         <activity android:name=".BubbleShooter.ClearScreenBubble">
         </activity>
         <activity android:name=".IntroActivity">
+           
         </activity>
         <activity android:name=".duckcard.CardStartActivity">
             <intent-filter>
@@ -37,12 +38,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".duckcard.CardMainActivity">
+            
         </activity>
         <activity android:name=".duckcard.CardOverActivity">
         </activity>
         <activity android:name=".duckcard.CardClearActivity">
         </activity>
-    
         <activity android:name=".colorbrick.CBStartActivity">
         </activity>
         <activity android:name=".colorbrick.CBMainActivity">

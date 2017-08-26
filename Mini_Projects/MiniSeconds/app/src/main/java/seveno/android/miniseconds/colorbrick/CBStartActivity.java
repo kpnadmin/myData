@@ -17,6 +17,11 @@ public class CBStartActivity extends AppCompatActivity {
     CountDownTimer threeTimer;
     TextView countThree;
     LinearLayout startLinear;
+    private static long initialTime;
+    private static int cb_score;
+    private static long elapsedTime;
+    private int T_score;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,16 @@ public class CBStartActivity extends AppCompatActivity {
         countThree = (TextView) findViewById(R.id.countThree);
         startLinear = (LinearLayout) findViewById(R.id.startLinear);
         final int millisInFuture = 3100;
+        /*
+
+        *
+        * */
+        Intent intent = getIntent();
+
+        initialTime = intent.getLongExtra("seveno.android.miniseconds.colorbrick.cbstart.initialTime",0);
+        cb_score = intent.getIntExtra("seveno.android.miniseconds.colorbrick.cbstart.tscore", 0);
+        elapsedTime = intent.getLongExtra("seveno.android.miniseconds.colorbrick.cbstart.elapsedTime",0);
+        T_score = cb_score;
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +66,11 @@ public class CBStartActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         countThree.setText(String.valueOf("시작!"));
-                        Intent intent = new Intent(CBStartActivity.this, CBMainActivity.class);
-                        startActivity(intent);
+                        Intent intent2 = new Intent(CBStartActivity.this, CBMainActivity.class);
+                        intent2.putExtra("seveno.android.miniseconds.colorbrick.cbmain.initialTime",initialTime);
+                        intent2.putExtra("seveno.android.miniseconds.colorbrick.cbmain.tscore",elapsedTime);
+                        intent2.putExtra("seveno.android.miniseconds.colorbrick.cbmain.elapsedTime",T_score);
+                        startActivity(intent2);
                         overridePendingTransition(android.R.anim.fade_in,
                                 android.R.anim.fade_out);
                     }

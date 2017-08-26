@@ -50,7 +50,7 @@ public class CardMainActivity extends AppCompatActivity {
     //카운트다운
 
     CountDownTimer timer;
-    int millisInFuture = 4100 ;
+    int millisInFuture = 40100 ;
     double fr = 4.0;
 
     //
@@ -59,6 +59,7 @@ public class CardMainActivity extends AppCompatActivity {
     private static long elapsedTime;
       private static long startTime;
         private static long timeTakenMillis;
+    private static double cardTakenTime;
 
                                      //
     private int T_score;
@@ -668,8 +669,12 @@ public class CardMainActivity extends AppCompatActivity {
                 countText.setText(String.valueOf("0.0"));
                 drogBar.setProgress(0);
                 if (sec == 0){
-                    Intent intent = new Intent(getApplicationContext(), CardOverActivity.class);
-                    startActivity(intent);
+                    Intent Overintent = new Intent(getApplicationContext(), CardOverActivity.class);
+                    T_score += score;
+                    Overintent.putExtra("seveno.android.miniseconds.duckcard.cardover.cardTime",timeTakenMillis);
+                    Overintent.putExtra("seveno.android.miniseconds.duckcard.cardover.tscore", T_score);
+                    Overintent.putExtra("seveno.android.miniseconds.duckcard.cardover.elapsedTime",elapsedTime);
+                    startActivity(Overintent);
                 }
             }
         };
@@ -698,18 +703,30 @@ public class CardMainActivity extends AppCompatActivity {
         if (ok == 6){
             timer.cancel();
             double cotxt = fr -Double.parseDouble(String.valueOf(countText.getText()));
-            String cot = String.valueOf(cotxt).toString();
+            //double cotxt = Math.round(((fr -Double.parseDouble(countText.getText().toString()))*10)/10);
+            cotxt = Math.round(cotxt*100/100.0);
+            //Math.round(67.655*100)/100.0);
+
+            //String cot = String.format("%.1f", cotxt);
+
+            String cot = String.valueOf(cotxt);
             countText.setText(cot);
             T_score += score;
              timeTakenMillis = System.currentTimeMillis() - startTime;
             elapsedTime += timeTakenMillis;
             Intent clearIntent = new Intent(getApplicationContext(), CardClearActivity.class);
 
-            clearIntent.putExtra("scoreA", scoreText.getText().toString());
-            clearIntent.putExtra("timerA", countText.getText().toString());
-            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.initialTime",timeTakenMillis);
-            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardmain.tscore", T_score);
-            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardmain.elapsedTime",elapsedTime);
+            //clearIntent.putExtra("scoreA", scoreText.getText().toString());
+            //clearIntent.putExtra("timerA", countText.getText().toString());
+            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.tscore", T_score);
+            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.timerA", cotxt);
+            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.cardTime",timeTakenMillis);
+            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.elapsedTime",elapsedTime);
+            //clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.cardTime",timeTakenMillis);
+
+          /* clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.cardTime",timeTakenMillis);
+            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.tscore", T_score);
+            clearIntent.putExtra("seveno.android.miniseconds.duckcard.cardclear.elapsedTime",elapsedTime);*/
             startActivity(clearIntent);
         }
         yes.setColorFilter(R.color.colorPrimaryDark);

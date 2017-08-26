@@ -31,8 +31,16 @@ public class CBMainActivity extends AppCompatActivity {
     CountDownTimer timer;
 
     int i = 0;
-
-    double fr = 15.0;
+    //double fr = 15.0;
+    double fr = 20.0;
+    //
+    private static long initialTime;
+    private static long cbplayTime;
+    private static int cb_score;
+    private static long elapsedTime;
+    private int T_score;
+    private static long timeTakenMillis;
+    private static long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,15 @@ public class CBMainActivity extends AppCompatActivity {
         colorBtn3.setImageResource(R.drawable.b_yellow);
 
         toastText = (TextView) findViewById(R.id.toastText);
+
+        Intent intent = getIntent();
+        /*intent2.putExtra("seveno.android.miniseconds.colorbrick.cbmain.initialTime",initialTime);
+        intent2.putExtra("seveno.android.miniseconds.colorbrick.cbmain.tscore",elapsedTime);
+        intent2.putExtra("seveno.android.miniseconds.colorbrick.cbmain.elapsedTime",T_score);*/
+        initialTime = intent.getLongExtra("seveno.android.miniseconds.colorbrick.cbmain.initialTime",0);
+        cb_score = intent.getIntExtra("seveno.android.miniseconds.colorbrick.cbmain.tscore", 0);
+        elapsedTime = intent.getLongExtra("seveno.android.miniseconds.colorbrick.cbmain.elapsedTime",0);
+        score   = cb_score;
 
 
 
@@ -101,7 +118,7 @@ public class CBMainActivity extends AppCompatActivity {
 
         countText = (TextView) findViewById(R.id.countText);
         final long sec = 0;
-        final int millisInFuture = 15100 ;
+        final int millisInFuture = 20100 ;
 
         //타이머 카운트다운
         timer = new CountDownTimer(millisInFuture,100){
@@ -133,6 +150,7 @@ public class CBMainActivity extends AppCompatActivity {
             }
         };
         timer.start();
+        startTime = System.currentTimeMillis();
     }
 
     private void colorMethod(ArrayList<Integer> blickClr, int color) {
@@ -160,15 +178,29 @@ public class CBMainActivity extends AppCompatActivity {
             // blickClr가 0 되면 클리어
             if (p == 0) {
                 timer.cancel();
-
-                double cotxt = fr -Double.parseDouble(String.valueOf(countText.getText()));
-                String cot = String.valueOf(cotxt).toString();
+                //double cotxt = Math.round(((fr -Double.parseDouble(countText.getText().toString()))*10)/10);
+                //double cotxt = fr -Double.parseDouble(String.valueOf(countText.getText()));
+                T_score +=score;
+                timeTakenMillis = System.currentTimeMillis() - startTime;
+                elapsedTime += timeTakenMillis;
+                double cotxt = Math.round(((fr -Double.parseDouble(countText.getText().toString()))*10)/10);
+                String cot = String.valueOf(cotxt);
                 countText.setText(cot);
                 Intent clearIntent = new Intent(CBMainActivity.this, CBClearActivity.class);
 
                 // score, timer 결과를 clearactivity로 넘김
-                clearIntent.putExtra("scoreA", scoreText.getText().toString());
-                clearIntent.putExtra("timerA", countText.getText().toString());
+                //clearIntent.putExtra("scoreA", scoreText.getText().toString());
+               // clearIntent.putExtra("timerA", countText.getText().toString());
+                clearIntent.putExtra("seveno.android.miniseconds.colorbrick.cbclear.tscore", T_score);
+                clearIntent.putExtra("seveno.android.miniseconds.colorbrick.cbclear.timerA", cot);
+                clearIntent.putExtra("seveno.android.miniseconds.colorbrick.cbclear.cbPlayTime",timeTakenMillis);
+                clearIntent.putExtra("seveno.android.miniseconds.colorbrick.cbclear.elapsedTime",elapsedTime);
+                /*
+                initialTime = intent.getLongExtra("seveno.android.miniseconds.colorbrick.cbmain.initialTime",0);
+        cb_score = intent.getIntExtra("seveno.android.miniseconds.colorbrick.cbmain.tscore", 0);
+        elapsedTime = intent.getLongExtra("seveno.android.miniseconds.colorbrick.cbmain.elapsedTime",0);
+        T_score = cb_score;
+                * */
                 startActivity(clearIntent);
             }
         }
